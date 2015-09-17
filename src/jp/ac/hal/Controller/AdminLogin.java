@@ -35,6 +35,7 @@ public class AdminLogin extends HttpServlet {
 		request.getParameter("userName");
 		request.getParameter("passwd");
 		
+		
 	}
 
 	/**
