@@ -1,9 +1,11 @@
 package jp.ac.hal.Controller;
 
 public class InputCheck {
-	
-	/*
-	 * 空文字またはNullチェック
+
+	/**
+	 * 引数にNullまたは空文字があった場合trueを返す
+	 * @param org
+	 * @return
 	 */
 	public boolean checkNullChar(String... org) {
 		boolean err = false;
@@ -14,8 +16,11 @@ public class InputCheck {
 		return err;
 	}
 
-	/*
-	 * 入力文字数チェック
+	/**
+	 * 引数strが引数length以上の文字数だった場合trueを返す
+	 * @param str
+	 * @param length
+	 * @return
 	 */
 	public boolean checkCharaLength(String str, int length) {
 		boolean err = str.length() > length ? true : false ;
@@ -23,9 +28,10 @@ public class InputCheck {
 		return err;
 	}
 	
-	
-	/*
-	 * 数字チェック
+	/**
+	 * 引数strに数字以外が含まれている場合trueを返す
+	 * @param str
+	 * @return
 	 */
 	public boolean checkNumbers(String str) {
 		boolean err = false;

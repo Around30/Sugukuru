@@ -29,13 +29,18 @@ public class AdminLogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
-		String userName = "";
-		String passwd = "";
-		
-		request.getParameter("userName");
-		request.getParameter("passwd");
-		
-		
+		//パラメータ受け取り
+		String corporationId = request.getParameter("corporationId");
+		String passwd = request.getParameter("passwd");
+		InputCheck i = new InputCheck();
+		boolean err = false;
+		err |= i.checkCharaLength(corporationId, 8);
+		err |= i.checkNullChar(corporationId, passwd);
+		err |= i.checkNumbers(corporationId);
+		 
+		if (!err) {
+			//ログイン処理
+		}
 	}
 
 	/**
