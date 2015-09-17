@@ -17,7 +17,4 @@ public class ProductGenre {
 	public void setProductGenreName(String productGenreName) {
 		this.productGenreName = productGenreName;
 	}
-
-
-
 }

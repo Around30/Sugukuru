@@ -39,7 +39,4 @@ public class Product {
 	public void setMakerId(int makerId) {
 		this.makerId = makerId;
 	}
-
-
-
 }

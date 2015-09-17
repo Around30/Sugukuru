@@ -16,7 +16,7 @@ public class Corporation {
 	private String corporationAccountName;
 	private String state;
 	private int orderId;
-	private Date estimateDate; 
+	private Date estimateDate; //コンフリクト
 	
 	public int getCorporationId() {
 		return corporationId;
