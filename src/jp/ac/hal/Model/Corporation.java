@@ -2,22 +2,24 @@ package jp.ac.hal.Model;
 
 import java.sql.Date;
 
+//法人
 public class Corporation {
-	
-	private int corporationId;
-	private String corporationName;
-	private int postalCode;
-	private String address;
-	private int phoneNumber;
-	private String passwd;
-	private int creditLimit;
-	private Date registDate;
-	private int corporationAccountId;
-	private String corporationAccountName;
-	private String state;
-	private int orderId;
-	private Date estimateDate; 
-	
+
+	private int corporationId;				//法人ID
+	private String corporationName;			//法人名
+	private int postalCode;					//郵便番号
+	private String address;					//住所
+	private int phoneNumber;				//電話番号
+	private String passwd;					//パスワード
+	private int creditLimit;				//与信限度額
+	private Date registDate;				//登録日
+	private int corporationAccountId;		//法人アカウントID
+	private String corporationAccountName;	//法人アカウント名
+	private String state;					//状態
+	private int orderId;					//注文ID
+	private Date estimateDate; 				//見積日
+
+
 	public int getCorporationId() {
 		return corporationId;
 	}
