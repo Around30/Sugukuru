@@ -1,6 +1,7 @@
 package jp.ac.hal.Model;
 
 //商品ジャンルクラス
+//Product.javaにまとめました
 public class ProductGenre {
 	private int productGenreId;			//商品ジャンルID
 	private String productGenreName;	//商品ジャンル名
@@ -17,4 +18,7 @@ public class ProductGenre {
 	public void setProductGenreName(String productGenreName) {
 		this.productGenreName = productGenreName;
 	}
+
+
+
 }

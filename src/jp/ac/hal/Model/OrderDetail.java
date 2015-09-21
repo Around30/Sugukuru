@@ -1,6 +1,7 @@
 package jp.ac.hal.Model;
 
 //注文詳細クラス
+//Order.javaにまとめました
 public class OrderDetail {
 	private int productId;	//商品ID
 	private int orderId;	//注文ID
