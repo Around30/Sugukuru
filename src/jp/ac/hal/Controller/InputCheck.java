@@ -7,9 +7,9 @@ public class InputCheck {
 	 * @param org
 	 * @return
 	 */
-	public boolean checkNullChar(String... org) {
+	public boolean checkNullChar(String... args) {
 		boolean err = false;
-		for (String str : org) {
+		for (String str : args) {
 			err |= (str == null || str.length() == 0);
 		}
 		
@@ -23,9 +23,8 @@ public class InputCheck {
 	 * @return
 	 */
 	public boolean checkCharaLength(String str, int length) {
-		boolean err = str.length() > length ? true : false ;
 		
-		return err;
+		return str.length() > length;
 	}
 	
 	/**
@@ -33,10 +32,12 @@ public class InputCheck {
 	 * @param str
 	 * @return
 	 */
-	public boolean checkNumbers(String str) {
+	public boolean checkNumbers(String... args) {
 		boolean err = false;
 		try {
-			Integer.parseInt(str);
+			for (String str : args) {
+				Integer.parseInt(str);
+			}
 		} catch (NumberFormatException e) {
 			err = true;
 		}
