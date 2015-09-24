@@ -205,14 +205,16 @@ public class Dao
 			c.getCreditLimit()
 		);
 	}
-	/*
-	public void insert() throws SQLException
+	
+	public void insert(CorporationAccount a) throws SQLException
 	{
 		executeUpdate
 		(
-			"insert into _t values(_seq.nextval, ?)",
+			"insert into corporation_account_t values(corporation_account_seq.nextval, ?, ?)",
+			a.getCorporationAccountName(),
+			a.getCorporationAccountId()
 		);
-	}*/
+	}
 	
 	public int executeInsert(Order o) throws SQLException
 	{
