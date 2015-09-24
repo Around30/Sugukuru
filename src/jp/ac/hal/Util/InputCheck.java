@@ -1,4 +1,4 @@
-package jp.ac.hal.Controller;
+package jp.ac.hal.Util;
 
 public class InputCheck {
 
