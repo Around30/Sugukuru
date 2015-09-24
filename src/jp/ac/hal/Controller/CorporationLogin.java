@@ -1,7 +1,10 @@
 package jp.ac.hal.Controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import jp.ac.hal.Dao.CorporationDao;
+import jp.ac.hal.Dao.Dao;
 import jp.ac.hal.Model.Corporation;
+import jp.ac.hal.Util.InputCheck;
 
 /**
  * Servlet implementation class CorporationLogin
@@ -51,19 +55,12 @@ public class CorporationLogin extends HttpServlet {
 		//エラーフラグ
 		boolean err = false;
 		//メッセージ格納用ArrayList
-//		ArrayList<String> msg = new ArrayList<String>();
+		ArrayList<String> msg = new ArrayList<String>();
 
 		//セッションを生成
 		HttpSession session = request.getSession(true);
 		//セッションの有効時間を30分に設定
 		session.setMaxInactiveInterval(1800);
-
-
-		//Corporationオブジェクト生成
-		Corporation corporationData = new Corporation();
-
-		//DAOオブジェクト作成
-		CorporationDao dao = new CorporationDao();
 
 		//パラメータ受取
 		String corporationId = request.getParameter("corporationId");
@@ -78,11 +75,25 @@ public class CorporationLogin extends HttpServlet {
 		//エラーなし
 		if (!err) {
 			//ログイン処理
-			corporationData.setCorporationId(Integer.parseInt(corporationId));
-			corporationData.setPasswd(passwd);
 
-			//Dao処理
+			try {
+				Dao dao = Dao.getNewInstance();
+				//Corporationオブジェクト生成
+				Corporation c = new Corporation();
+				c.setCorporationId(Integer.parseInt(corporationId));
+				c.setPasswd(passwd);
 
+				dao.select(c);
+//				msg.add( "ログインしました。");
+			} catch (NamingException e) {
+				e.printStackTrace();
+				err = true;
+				msg.add( "DB処理でエラーが発生しました。");
+			} catch (SQLException e) {
+				e.printStackTrace();
+				err = true;
+				msg.add( "DB処理でエラーが発生しました。");
+			}
 
 		}
 		//エラーあり
@@ -90,15 +101,17 @@ public class CorporationLogin extends HttpServlet {
 
 		//Login画面へ戻る
 		sendURL = "CorpLogin.jsp";
+		//メッセージ転送
+		request.setAttribute("msg", msg);
 
 		}
+
 		RequestDispatcher disp = request.getRequestDispatcher(sendURL);
 
 		//文字コード
 		response.setContentType("text/html; charset=UTF-8");
 
-		//メッセージ転送
-//		request.setAttribute("msg", msg);
+
 		disp.forward(request, response);
 
 
