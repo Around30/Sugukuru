@@ -1,8 +1,5 @@
 package jp.ac.hal.Controller;
 
-import jp.ac.hal.Dao.*;
-import jp.ac.hal.Model.*;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -13,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import jp.ac.hal.Dao.*;
+import jp.ac.hal.Model.*;
+import jp.ac.hal.Util.*;
 
 /**
  * Servlet implementation class CorporationRegist

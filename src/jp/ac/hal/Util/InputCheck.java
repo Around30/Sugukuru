@@ -1,4 +1,4 @@
-package jp.ac.hal.Controller;
+package jp.ac.hal.Util;
 
 public class InputCheck {
 
@@ -12,7 +12,7 @@ public class InputCheck {
 		for (String str : args) {
 			err |= (str == null || str.length() == 0);
 		}
-
+		
 		return err;
 	}
 
@@ -23,10 +23,10 @@ public class InputCheck {
 	 * @return
 	 */
 	public boolean checkCharaLength(String str, int length) {
-
+		
 		return str.length() > length;
 	}
-
+	
 	/**
 	 * 引数strに数字以外が含まれている場合trueを返す
 	 * @param str
@@ -41,8 +41,7 @@ public class InputCheck {
 		} catch (NumberFormatException e) {
 			err = true;
 		}
-
-
+		
 		return err;
 	}
 }
