@@ -52,5 +52,4 @@ public class AdminLogin extends HttpServlet {
 			
 		}
 	}
-
 }

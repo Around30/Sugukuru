@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import jp.ac.hal.Dao.CorporationDao;
 import jp.ac.hal.Model.Corporation;
 
 /**
@@ -61,9 +60,6 @@ public class LoginServlet extends HttpServlet {
 
 		//Corporationオブジェクト生成
 		Corporation corporationData = new Corporation();
-
-		//DAOオブジェクト作成
-		CorporationDao dao = new CorporationDao();
 
 		//corporationIdの設定
 		corporationData.setCorporationId(Integer.parseInt(request.getParameter("corporationId")));
