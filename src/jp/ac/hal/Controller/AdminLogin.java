@@ -45,12 +45,11 @@ public class AdminLogin extends HttpServlet {
 		boolean err = false;
 		err |= i.checkCharaLength(administratorId, 8);
 		err |= i.checkCharaLength(passwd, 50);
-		err |= i.checkNullChar(passwd);
+		err |= i.checkNullChar(administratorId ,passwd);
 		err |= i.checkNumbers(administratorId);
 		 
 		if (!err) {
 			
 		}
 	}
-
 }
