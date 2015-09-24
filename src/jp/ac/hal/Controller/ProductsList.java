@@ -1,7 +1,5 @@
 package jp.ac.hal.Controller;
 
-import jp.ac.hal.Util.*;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AdminLogin
+ * Servlet implementation class ProductsList
  */
-@WebServlet("/AdminLogin")
-public class AdminLogin extends HttpServlet {
+@WebServlet("/ProductsList")
+public class ProductsList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminLogin() {
+    public ProductsList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,6 +27,7 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -36,21 +35,7 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		
-		//パラメータ受け取り
-		String administratorId = request.getParameter("administratorId");
-		String passwd = request.getParameter("passwd");
-		InputCheck i = new InputCheck();
-		boolean err = false;
-		err |= i.checkCharaLength(administratorId, 8);
-		err |= i.checkCharaLength(passwd, 50);
-		err |= i.checkNullChar(administratorId ,passwd);
-		err |= i.checkNumbers(administratorId);
-		 
-		if (!err) {
-			
-		}
+		doGet(request, response);
 	}
 
 }
