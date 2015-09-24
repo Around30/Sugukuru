@@ -16,7 +16,40 @@ public class Corporation {
 	private String corporationAccountName;
 	private String state;
 	private int orderId;
-	private Date estimateDate; 
+	private Date estimateDate;
+	
+	/**
+	 * @param なし
+	 */
+	public Corporation() {}
+	
+	/**
+	 * 
+	 * @param corporationName
+	 * @param postalCode
+	 * @param address
+	 * @param phoneNumber
+	 * @param passwd
+	 * @param creditLimit
+	 */
+	public Corporation(
+			String corporationName,
+			String postalCode,
+			String address,
+			String phoneNumber,
+			String passwd,
+			int creditLimit)
+	{
+		super();
+		this.corporationName = corporationName;
+		this.postalCode = postalCode;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.passwd = passwd;
+		this.creditLimit = creditLimit;
+	}
+	
+	
 	
 	public int getCorporationId() {
 		return corporationId;

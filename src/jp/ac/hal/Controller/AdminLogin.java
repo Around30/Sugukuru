@@ -34,19 +34,20 @@ public class AdminLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
 		//パラメータ受け取り
-		String corporationId = request.getParameter("corporationId");
+		String administratorId = request.getParameter("administratorId");
 		String passwd = request.getParameter("passwd");
 		InputCheck i = new InputCheck();
 		boolean err = false;
-		err |= i.checkCharaLength(corporationId, 8);
-		err |= i.checkNullChar(corporationId, passwd);
-		err |= i.checkNumbers(corporationId);
+		err |= i.checkCharaLength(administratorId, 8);
+		err |= i.checkCharaLength(passwd, 50);
+		err |= i.checkNullChar(passwd);
+		err |= i.checkNumbers(administratorId);
 		 
 		if (!err) {
-			//ログイン処理
+			
 		}
 	}
 

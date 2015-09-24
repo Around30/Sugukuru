@@ -1,6 +1,7 @@
 package jp.ac.hal.Controller;
 
 import jp.ac.hal.Dao.*;
+import jp.ac.hal.Model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -62,16 +63,23 @@ public class CorporationRegist extends HttpServlet {
 		err |= i.checkCharaLength(creditLimit, 8);
 		err |= i.checkNumbers(postalCode, phoneNumber, creditLimit);
 		
-		/*
+		String msg = "";
+		
 		if(!err) {
 			try {
 				Dao dao = Dao.getNewInstance();
-				
+				Corporation c = new Corporation(corporationName, postalCode, address, phoneNumber, passwd, Integer.parseInt(creditLimit));
+				dao.insert(c);
+				msg = "登録が完了しました。";
 			} catch (NamingException e) {
 				e.printStackTrace();
+				msg = "DB処理でエラーが発生しました。";
+			} catch (SQLException e) {
+				e.printStackTrace();
+				msg = "DB処理でエラーが発生しました。";
 			}
-			
+		} else {
+			msg = "入力項目に誤りがあります。";
 		}
-		*/
 	}
 }
