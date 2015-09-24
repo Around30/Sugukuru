@@ -57,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 		//セッションの有効時間を30分に設定
 		session.setMaxInactiveInterval(1800);
 
-
 		//Corporationオブジェクト生成
 		Corporation corporationData = new Corporation();
 
@@ -67,15 +66,11 @@ public class LoginServlet extends HttpServlet {
 		//passwdの設定
 		corporationData.setPasswd(request.getParameter("passwd"));
 
-		//
-
-
-
 		//転送処理
 		String disPage = "";
 		//メッセージ転送
 		disPage = "request.jsp";
-
+		
 		RequestDispatcher disp = request.getRequestDispatcher(disPage);
 
 		//文字コード

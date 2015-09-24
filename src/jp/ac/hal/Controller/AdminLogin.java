@@ -3,11 +3,13 @@ package jp.ac.hal.Controller;
 import jp.ac.hal.Util.*;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class AdminLogin
@@ -49,7 +51,10 @@ public class AdminLogin extends HttpServlet {
 		err |= i.checkNumbers(administratorId);
 		 
 		if (!err) {
-			
+			//セッションを生成
+			HttpSession session = request.getSession(true);
+			//セッションの有効時間を30分に設定
+			session.setMaxInactiveInterval(1800);
 		}
 	}
 }
