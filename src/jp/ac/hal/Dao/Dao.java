@@ -12,19 +12,28 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import jp.ac.hal.Model.*;
+import jp.ac.hal.Model.Admin;
+import jp.ac.hal.Model.Corporation;
+import jp.ac.hal.Model.CorporationAccount;
+import jp.ac.hal.Model.CorporationOrder;
+import jp.ac.hal.Model.IndividualOrder;
+import jp.ac.hal.Model.Maker;
+import jp.ac.hal.Model.Order;
+import jp.ac.hal.Model.OrderDetail;
+import jp.ac.hal.Model.Product;
+import jp.ac.hal.Model.ProductGenre;
 
 public class Dao
 {
 	private static Dao instance;
 	private DataSource ds;
-	
+
 	private Dao() throws NamingException
 	{
 		Context context = new InitialContext();
 		ds = (DataSource)context.lookup("java:comp/env/Oracle_JDBC");
 	}
-	
+
 	public static Dao getInstance() throws NamingException
 	{
 		if(instance == null)
@@ -33,18 +42,18 @@ public class Dao
 		}
 		return instance;
 	}
-	
+
 	public static Dao getNewInstance() throws NamingException
 	{
 		instance = new Dao();
 		return instance;
 	}
-	
+
 	private Connection getConnection() throws SQLException
 	{
 		return ds.getConnection();
 	}
-	
+
 	public void executeUpdate(String sql, Object... args) throws SQLException
 	{
 		try
@@ -60,7 +69,7 @@ public class Dao
 			ps.executeUpdate();
 		}
 	}
-	
+
 	/**
 	 * @return insertした行のID
 	 */
@@ -82,7 +91,7 @@ public class Dao
 			return rs.getInt(1);
 		}
 	}
-	
+
 	/**
 	 * @return selectの結果
 	 */
@@ -113,7 +122,7 @@ public class Dao
 			return ret;
 		}
 	}
-	
+
 	/**
 	 * @return selectの結果が1行以上であるかどうか
 	 */
@@ -161,7 +170,17 @@ public class Dao
 			}
 		}
 	}
-	
+
+	public void select(Corporation c) throws SQLException
+	{
+		executeSearch
+		(
+			"select * from corporation_t where corporation_id=? and passwd=?;",
+			c.getCorporationId(),
+			c.getPasswd()
+		);
+	}
+
 	public void insert(ProductGenre g) throws SQLException
 	{
 		executeUpdate
@@ -179,7 +198,7 @@ public class Dao
 			m.getMarkerName()
 		);
 	}
-	
+
 	public void insert(Product p) throws SQLException
 	{
 		executeUpdate
@@ -191,7 +210,7 @@ public class Dao
 			p.getMakerId()
 		);
 	}
-	
+
 	public void insert(Corporation c) throws SQLException
 	{
 		executeUpdate
@@ -205,7 +224,7 @@ public class Dao
 			c.getCreditLimit()
 		);
 	}
-	
+
 	public void insert(CorporationAccount a) throws SQLException
 	{
 		executeUpdate
@@ -215,7 +234,7 @@ public class Dao
 			a.getCorporationAccountId()
 		);
 	}
-	
+
 	public int executeInsert(Order o) throws SQLException
 	{
 		return executeInsert
@@ -224,7 +243,7 @@ public class Dao
 			o.getTotal()
 		);
 	}
-	
+
 	public void insert(CorporationOrder o) throws SQLException
 	{
 		int id = executeInsert(o);
@@ -237,7 +256,7 @@ public class Dao
 			o.getEstimateDate()
 		);
 	}
-	
+
 	public void insert(IndividualOrder o) throws SQLException
 	{
 		int id = executeInsert(o);
@@ -253,7 +272,7 @@ public class Dao
 			o.getMailAddress()
 		);
 	}
-	
+
 	public void insert(OrderDetail d) throws SQLException
 	{
 		executeUpdate
@@ -265,7 +284,7 @@ public class Dao
 			d.getSubTotal()
 		);
 	}
-	
+
 	public void insert(Admin a) throws SQLException
 	{
 		executeUpdate
