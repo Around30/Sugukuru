@@ -34,6 +34,43 @@ public class CorporationRegist extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		//パラメータ受け取り
+		String corporationName = request.getParameter("corporationName");
+		String postalCode = request.getParameter("postalCode");
+		String address = request.getParameter("address");
+		String phoneNumber = request.getParameter("address");
+		String passwd = request.getParameter("passwd");
+		String creditLimit = request.getParameter("creditLimit");
+		
+		String msg = "";
+		boolean err = false;
+		
+		corporationName = "test";
+		postalCode = "1234567";
+		address = "aaaa";
+		phoneNumber = "08050881467";
+		passwd = "passwd";
+		creditLimit = "333333";
+		
+		if(!err) {
+			try {
+				Dao dao = Dao.getNewInstance();
+				Corporation c = new Corporation(corporationName, postalCode, address, phoneNumber, passwd, Integer.parseInt(creditLimit));
+				dao.insert(c);
+				msg = "登録が完了しました。";
+			} catch (NamingException e) {
+				e.printStackTrace();
+				msg = "Naming";
+			} catch (SQLException e) {
+				e.printStackTrace();
+				msg = "SQL";
+			}
+		} else {
+			msg = "入力項目に誤りがあります。";
+		}
+		System.out.println(msg);
 	}
 
 	/**
@@ -63,6 +100,13 @@ public class CorporationRegist extends HttpServlet {
 		err |= i.checkNumbers(postalCode, phoneNumber, creditLimit);
 		
 		String msg = "";
+		
+		corporationName = "test";
+		postalCode = "1234567";
+		address = "aaaa";
+		phoneNumber = "08050881467";
+		passwd = "passwd";
+		creditLimit = "aaaaa";
 		
 		if(!err) {
 			try {
