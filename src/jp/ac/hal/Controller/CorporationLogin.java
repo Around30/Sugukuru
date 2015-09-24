@@ -48,72 +48,70 @@ public class CorporationLogin extends HttpServlet {
 		doGet(request, response);
 
 		// 受け取る文字コードの設定
-		request.setCharacterEncoding("UTF-8");
+				request.setCharacterEncoding("UTF-8");
 
-		//転送先
-		String sendURL = "index.jsp";
-		//エラーフラグ
-		boolean err = false;
-		//メッセージ格納用ArrayList
-		ArrayList<String> msg = new ArrayList<String>();
+				//転送先
+				String sendURL = "index.jsp";
+				//エラーフラグ
+				boolean err = false;
+				//メッセージ格納用ArrayList
 
-		//セッションを生成
-		HttpSession session = request.getSession(true);
-		//セッションの有効時間を30分に設定
-		session.setMaxInactiveInterval(1800);
+				ArrayList<String> msg = new ArrayList<String>();
 
-		//パラメータ受取
-		String corporationId = request.getParameter("corporationId");
-		String passwd = request.getParameter("passwd");
+				//セッションを生成
+				HttpSession session = request.getSession(true);
+				//セッションの有効時間を30分に設定
+				session.setMaxInactiveInterval(1800);
+				String corporationId = request.getParameter("corporationId");
+				String passwd = request.getParameter("passwd");
 
-		//パラメータチェック
-		InputCheck i = new InputCheck();
-		err |= i.checkCharaLength(corporationId, 8);
-		err |= i.checkNullChar(corporationId, passwd);
-		err |= i.checkNumbers(corporationId);
+				//パラメータチェック
+				InputCheck i = new InputCheck();
+				err |= i.checkCharaLength(corporationId, 8);
+				err |= i.checkNullChar(corporationId, passwd);
+				err |= i.checkNumbers(corporationId);
 
-		//エラーなし
-		if (!err) {
-			//ログイン処理
+				//エラーなし
+				if (!err) {
+					//ログイン処理
 
-			try {
-				Dao dao = Dao.getNewInstance();
-				//Corporationオブジェクト生成
-				Corporation c = new Corporation();
-				c.setCorporationId(Integer.parseInt(corporationId));
-				c.setPasswd(passwd);
+					try {
+						Dao dao = Dao.getNewInstance();
+						//Corporationオブジェクト生成
+						Corporation c = new Corporation();
+						c.setCorporationId(Integer.parseInt(corporationId));
+						c.setPasswd(passwd);
 
-				dao.select(c);
-//				msg.add( "ログインしました。");
-			} catch (NamingException e) {
-				e.printStackTrace();
-				err = true;
-				msg.add( "DB処理でエラーが発生しました。");
-			} catch (SQLException e) {
-				e.printStackTrace();
-				err = true;
-				msg.add( "DB処理でエラーが発生しました。");
-			}
+						dao.select(c);
+//						msg.add( "ログインしました。");
+					} catch (NamingException e) {
+						e.printStackTrace();
+						err = true;
+						msg.add( "DB処理でエラーが発生しました。");
+					} catch (SQLException e) {
+						e.printStackTrace();
+						err = true;
+						msg.add( "DB処理でエラーが発生しました。");
+					}
 
-		}
-		//エラーあり
-		else {
+				}
+				//エラーあり
+				else {
 
-		//Login画面へ戻る
-		sendURL = "CorpLogin.jsp";
-		//メッセージ転送
-		request.setAttribute("msg", msg);
+				//Login画面へ戻る
+				sendURL = "CorpLogin.jsp";
+				//メッセージ転送
+				request.setAttribute("msg", msg);
 
-		}
+				}
 
-		RequestDispatcher disp = request.getRequestDispatcher(sendURL);
+				RequestDispatcher disp = request.getRequestDispatcher(sendURL);
 
-		//文字コード
-		response.setContentType("text/html; charset=UTF-8");
+				//文字コード
+				response.setContentType("text/html; charset=UTF-8");
 
 
-		disp.forward(request, response);
-
+				disp.forward(request, response);
 
 	}
 
