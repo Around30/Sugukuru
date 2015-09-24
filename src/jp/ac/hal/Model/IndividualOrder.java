@@ -1,22 +1,15 @@
 package jp.ac.hal.Model;
 
 //個人注文クラス
-public class IndividualOrder {
-	private int orderId;		//注文ID
+public class IndividualOrder extends Order {
 	private String name;		//氏名
 	private String phonetic;	//フリガナ
-	private int postalCode;		//郵便番号
+	private String postalCode;		//郵便番号
 	private String address;		//住所
-	private int phoneNumber;	//電話番号
+	private String phoneNumber;	//電話番号
 	private int mailAddress;	//メールアドレス
 
 
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
 	public String getName() {
 		return name;
 	}
@@ -29,10 +22,10 @@ public class IndividualOrder {
 	public void setPhonetic(String phonetic) {
 		this.phonetic = phonetic;
 	}
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 	public String getAddress() {
@@ -41,10 +34,10 @@ public class IndividualOrder {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public int getMailAddress() {

@@ -1,12 +1,18 @@
 package jp.ac.hal.Controller;
 
-import java.io.IOException;
+import jp.ac.hal.Dao.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 /**
  * Servlet implementation class CorporationRegist
@@ -56,8 +62,16 @@ public class CorporationRegist extends HttpServlet {
 		err |= i.checkCharaLength(creditLimit, 8);
 		err |= i.checkNumbers(postalCode, phoneNumber, creditLimit);
 		
+		/*
 		if(!err) {
-			//登録処理
+			try {
+				Dao dao = Dao.getNewInstance();
+				
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+			
 		}
+		*/
 	}
 }

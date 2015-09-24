@@ -7,9 +7,7 @@ public class Order {
 	private int orderId;	//注文ID
 	private int total;		//総額
 	private Date orderDate;	//注文日
-	private int productId;	//商品ID
-	private int numberOf;	//個数
-	private int subTotal;	//小計
+
 
 	public int getOrderId() {
 		return orderId;
@@ -30,24 +28,5 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-
-	public int getNumberOf() {
-		return numberOf;
-	}
-	public void setNumberOf(int numberOf) {
-		this.numberOf = numberOf;
-	}
-	public int getSubTotal() {
-		return subTotal;
-	}
-	public void setSubTotal(int subTotal) {
-		this.subTotal = subTotal;
-	}
 
 }

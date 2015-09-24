@@ -1,13 +1,12 @@
 package jp.ac.hal.Model;
 
-//管理者
 public class Admin {
 
-	private int administratorId;		//管理者ID
-	private String administratorName;	//管理者名
-	private boolean flg;				//与信限度額設定フラグ
-	private String passwd;				//パスワード
-
+	private int administratorId;
+	private String administratorName;
+	private boolean flg;
+	private String passwd;
+	
 	public int getAdministratorId() {
 		return administratorId;
 	}
@@ -31,5 +30,5 @@ public class Admin {
 	}
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
-	}
+	}	
 }
