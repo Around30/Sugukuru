@@ -142,7 +142,7 @@ public class Dao
 			return rs.next();
 		}
 	}
-	
+
 	/**
 	 * @return selectの結果が1行以上あれば1行目、そうでないならばnull
 	 */
@@ -202,16 +202,6 @@ public class Dao
 				return rs.getInt(1);
 			}
 		}
-	}
-
-	public void select(Corporation c) throws SQLException
-	{
-		executeSearch
-		(
-			"select * from corporation_t where corporation_id=? and passwd=?;",
-			c.getCorporationId(),
-			c.getPasswd()
-		);
 	}
 
 	public void insert(ProductGenre g) throws SQLException
@@ -328,13 +318,13 @@ public class Dao
 			a.getPasswd()
 		);
 	}
-	
-	
+
+
 	public Object[] administratorLogin(int id, String passwd) throws SQLException
 	{
 		return executeGet("select * from administrator_t where administrator_id = ? and passwd = ?", id, passwd);
 	}
-	
+
 	public Object[] corporationLogin(int id, String passwd) throws SQLException
 	{
 		return executeGet("select * from corporation_t where corporation_id = ? and passwd = ?", id, passwd);
