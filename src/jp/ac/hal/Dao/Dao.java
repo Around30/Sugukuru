@@ -142,6 +142,39 @@ public class Dao
 			return rs.next();
 		}
 	}
+	
+	/**
+	 * @return selectの結果が1行以上あれば1行目、そうでないならばnull
+	 */
+	public Object[] executeGet(String sql, Object... args) throws SQLException
+	{
+		try
+		(
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+		)
+		{
+			for(int i = 0; i < args.length; i++)
+			{
+				ps.setObject(i + 1, args[i]);
+			}
+			ResultSet rs = ps.executeQuery();
+			int length = rs.getMetaData().getColumnCount();
+			if(rs.next())
+			{
+				Object[] row = new Object[length];
+				for(int i = 0; i < length; i++)
+				{
+					row[i] = rs.getObject(i + 1);
+				}
+				return row;
+			}
+			else
+			{
+				return null;
+			}
+		}
+	}
 
 	/**
 	 * @return selectの結果が1行以上あれば1行目のID、そうでないならば0
@@ -294,5 +327,16 @@ public class Dao
 			a.isFlg(),
 			a.getPasswd()
 		);
+	}
+	
+	
+	public Object[] administratorLogin(int id, String passwd) throws SQLException
+	{
+		return executeGet("select * from administrator_t where administrator_id = ? and passwd = ?", id, passwd);
+	}
+	
+	public Object[] corporationLogin(int id, String passwd) throws SQLException
+	{
+		return executeGet("select * from corporation_t where corporation_id = ? and passwd = ?", id, passwd);
 	}
 }

@@ -28,10 +28,13 @@ target
 
 # Build
 out
-build
+build/
 bin
 
 # Other
 *.log
 *.swp
 *.bak
+
+# xml
+context.xml
