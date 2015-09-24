@@ -37,7 +37,6 @@ public class CorporationRegist extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		//パラメータ受け取り
-		
 		String corporationName = request.getParameter("corporationName");
 		String postalCode = request.getParameter("postalCode");
 		String address = request.getParameter("address");
