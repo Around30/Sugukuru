@@ -1,7 +1,6 @@
 package jp.ac.hal.Model;
 
 //メーカークラス
-//Product.javaにまとめました
 public class Maker {
 	private int markerId;	//メーカーID
 	private String markerName;	//メーカー名

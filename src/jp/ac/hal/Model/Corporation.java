@@ -2,24 +2,22 @@ package jp.ac.hal.Model;
 
 import java.sql.Date;
 
-//法人
 public class Corporation {
-
-	private int corporationId;				//法人ID
-	private String corporationName;			//法人名
-	private int postalCode;					//郵便番号
-	private String address;					//住所
-	private int phoneNumber;				//電話番号
-	private String passwd;					//パスワード
-	private int creditLimit;				//与信限度額
-	private Date registDate;				//登録日
-	private int corporationAccountId;		//法人アカウントID
-	private String corporationAccountName;	//法人アカウント名
-	private String state;					//状態
-	private int orderId;					//注文ID
-	private Date estimateDate; 				//見積日
-
-
+	
+	private int corporationId;
+	private String corporationName;
+	private String postalCode;
+	private String address;
+	private String phoneNumber;
+	private String passwd;
+	private int creditLimit;
+	private Date registDate;
+	private int corporationAccountId;
+	private String corporationAccountName;
+	private String state;
+	private int orderId;
+	private Date estimateDate; 
+	
 	public int getCorporationId() {
 		return corporationId;
 	}
@@ -32,10 +30,10 @@ public class Corporation {
 	public void setCorporationName(String corporationName) {
 		this.corporationName = corporationName;
 	}
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 	public String getAddress() {
@@ -44,10 +42,10 @@ public class Corporation {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getPasswd() {
