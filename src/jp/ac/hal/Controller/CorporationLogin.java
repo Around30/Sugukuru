@@ -3,7 +3,6 @@ package jp.ac.hal.Controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
@@ -38,15 +37,9 @@ public class CorporationLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 
+		//デバッグ用
 		// 受け取る文字コードの設定
 		request.setCharacterEncoding("UTF-8");
 
@@ -55,10 +48,9 @@ public class CorporationLogin extends HttpServlet {
 		//エラーフラグ
 		boolean err = false;
 		//メッセージ格納用List
+		ArrayList<String> msg = new ArrayList<String>();
 
-		List<String> msg = new ArrayList<String>();
-
-
+		//パラメータ受取
 		String corporationId = request.getParameter("corporationId");
 		String passwd = request.getParameter("passwd");
 
@@ -75,13 +67,16 @@ public class CorporationLogin extends HttpServlet {
 			try {
 				Dao dao = Dao.getNewInstance();
 
-				Object[] corporationLogin = dao.corporationLogin(Integer.parseInt(corporationId),passwd);
-
+				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationId),passwd);
+//				Corporation c = new Corporation(cData[1].toString(), cData[2].toString(), cData[3].toString(), cData[4].toString(), cData[5].toString(), (int)cData[6]);
 //				msg.add( "ログインしました。");
 
+				for(int j = 0; j < cData.length;j++){
+				System.out.println(cData[j]);
+				}
 				//セッションを生成
 				HttpSession session = request.getSession(true);
-				session.setAttribute("corporationLogin",corporationLogin);
+				session.setAttribute("corporationLogin",cData);
 
 				//セッションの有効時間を30分に設定
 				session.setMaxInactiveInterval(1800);
@@ -99,12 +94,89 @@ public class CorporationLogin extends HttpServlet {
 		}
 		//エラーあり
 		else {
+			msg.add("入力項目に誤りがあります。");
+			//Login画面へ戻る
+			sendURL = "CorpLogin.jsp";
+			//メッセージ転送
+			request.setAttribute("msg", msg);
+			request.setAttribute("err", err);
 
-		//Login画面へ戻る
-		sendURL = "CorpLogin.jsp";
-		//メッセージ転送
-		request.setAttribute("msg", msg);
-		request.setAttribute("err", err);
+		}
+
+		RequestDispatcher disp = request.getRequestDispatcher(sendURL);
+
+		//文字コード
+		response.setContentType("text/html; charset=UTF-8");
+
+
+		disp.forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+
+		// 受け取る文字コードの設定
+		request.setCharacterEncoding("UTF-8");
+
+		//転送先
+		String sendURL = "index.jsp";
+		//エラーフラグ
+		boolean err = false;
+		//メッセージ格納用List
+		ArrayList<String> msg = new ArrayList<String>();
+
+		//パラメータ受取
+		String corporationId = request.getParameter("corporationId");
+		String passwd = request.getParameter("passwd");
+
+		//パラメータチェック
+		InputCheck i = new InputCheck();
+		err |= i.checkCharaLength(corporationId, 8);
+		err |= i.checkNullChar(corporationId, passwd);
+		err |= i.checkNumbers(corporationId);
+
+		//エラーなし
+		if (!err) {
+			//ログイン処理
+
+			try {
+				Dao dao = Dao.getNewInstance();
+
+				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationId),passwd);
+//				Corporation c = new Corporation(cData[1].toString(), cData[2].toString(), cData[3].toString(), cData[4].toString(), cData[5].toString(), (int)cData[6]);
+//				msg.add( "ログインしました。");
+
+				//セッションを生成
+				HttpSession session = request.getSession(true);
+				session.setAttribute("corporationLogin",cData);
+
+				//セッションの有効時間を30分に設定
+				session.setMaxInactiveInterval(1800);
+
+			} catch (NamingException e) {
+				e.printStackTrace();
+				err = true;
+				msg.add( "DB処理でエラーが発生しました。");
+			} catch (SQLException e) {
+				e.printStackTrace();
+				err = true;
+				msg.add( "DB処理でエラーが発生しました。");
+			}
+
+		}
+		//エラーあり
+		else {
+			msg.add("入力項目に誤りがあります。");
+			//Login画面へ戻る
+			sendURL = "CorpLogin.jsp";
+			//メッセージ転送
+			request.setAttribute("msg", msg);
+			request.setAttribute("err", err);
 
 		}
 
