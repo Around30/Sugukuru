@@ -1,0 +1,100 @@
+create sequence country_seq;
+create table country_t(
+	country_id					number(8)		not null primary key,
+	cuontry_name				varchar(30)		not null);
+
+create sequence product_genre_seq;
+create table product_genre_t(
+	product_genre_id			number(2)		not null primary key,
+	product_genre_name			varchar2(30)	not null);
+
+create sequence maker_seq;
+create table maker_t(
+	maker_id					number(8)		not null primary key,
+	maker_name					varchar2(30)		not null);
+
+create sequence product_seq;
+create table product_t(
+	product_id					number(8)		not null primary key,
+	product_name				varchar2(60)	not null,
+	product_phonetic			varchar2(30)	not null,
+	price						number(8)		not null,
+	maker_id					number(8)		not null,
+	product_genre_id			number(2)		not null,
+	country_id					number(8)		not null,
+	product_x					number(8),
+	product_y					number(8),
+	product_z					number(8),
+	product_weight				number(8),
+	product_detail				varchar2(200),
+	jan_code					varchar2(13),
+foreign key(country_id)
+	references country_t(country_id),
+foreign key(product_genre_id)
+	references product_genre_t(product_genre_id),
+foreign key(maker_id)
+	references maker_t(maker_id));
+
+create sequence corporation_seq;
+create table corporation_t(
+	corporation_id				number(8)		not null primary key,
+	corporation_name			varchar2(30)	not null,
+	postal_code					varchar2(8)		not null,
+	corporation_address			varchar2(100)	not null,
+	phone_number				varchar2(13)	not null,
+	password					varchar2(50)	not null,
+	credit_limit				number(8),
+	regist_date					date			not null);
+
+create sequence corporation_account_seq;
+create table corporation_account_t(
+	corporation_account_id		number(8)		not null primary key,
+	corporation_account_name	varchar2(30)	not null,
+	corporation_id				number(8)		not null,
+foreign key(corporation_id)
+	references corporation_t(corporation_id));
+
+create sequence order_seq;
+create table order_t(
+	order_id					number(8)		not null primary key,
+	total						number(8)		not null,
+	order_date					date			not null);
+
+create table corporation_order_t(
+	order_id					number(8)		not null primary key,
+	corporation_account_id		number(8)		not null,
+	confirmed					number(1)		not null,
+	estimate_date				date,
+foreign key(order_id)
+	references order_t(order_id),
+foreign key(corporation_account_id)
+	references corporation_account_t(corporation_account_id));
+
+create table individual_order_t(
+	order_id					number(8)		not null primary key,
+	name						varchar2(30)	not null,
+	phonetic					varchar2(30)	not null,
+	postal_code					varchar2(8)		not null,
+	address						varchar2(100)	not null,
+	phone_number				varchar2(13)	not null,
+	mail_address				varchar2(30)	not null,
+foreign key(order_id)
+	references order_t(order_id));
+
+create table order_detail_t(
+	order_id					number(8)		not null,
+	product_id					number(8)		not null,
+	number_of					number(8)		not null,
+	subtotal					number(8)		not null,
+primary key(order_id, product_id),
+foreign key(order_id)
+	references order_t(order_id),
+foreign key(product_id)
+	references product_t(product_id));
+
+create sequence administrator_seq;
+create table administrator_t(
+	administrator_id			number(8)		not null primary key,
+	administrator_name			varchar2(30)	not null,
+	flag						varchar2(1)		not null,
+	password					varchar2(50)	not null);
