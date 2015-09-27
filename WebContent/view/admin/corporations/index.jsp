@@ -1,3 +1,4 @@
+<%@page import="jp.ac.hal.Dao.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,10 +40,11 @@
         <article>
           <h1 class="page-header">法人一覧</h1>
           <table class="table">
-            <tr>
-              <th>法人名</th>
-              <td>まるまる法人</td>
-            </tr>
+            <% for(Object[] r: Dao.getInstance().executeQuery("select corporation_id, corporation_name from corporation_t where rownum <= 10")){ %>
+            	<tr>
+              		<td><a href="corporation_detail.jsp?corporation_id=<%=r[0]%>"><%=r[1]%></a></td>
+            	</tr>
+            <%} %>
           </table>
         </article>
       </main>
