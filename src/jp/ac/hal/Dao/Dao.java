@@ -364,6 +364,6 @@ public class Dao
 
 	public Object[] productDetail(int id) throws SQLException
 	{
-		return executeGet("select * from product_t where product_id = ?", id);
+		return executeGet("select * from product_t, product_genre_t, country_t, maker_t where product_id = ? and product_t.product_genre_id = product_genre_t.product_genre_id and product_t.country_id = country_t.country_id and product_t.maker_id = maker_t.maker_id", id);
 	}
 }
