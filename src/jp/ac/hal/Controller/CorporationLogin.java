@@ -76,10 +76,12 @@ public class CorporationLogin extends HttpServlet {
 				e.printStackTrace();
 				err = true;
 				msg.add( "DB処理でエラーが発生しました。");
+				sendURL = "view/login/index.jsp";
 			} catch (SQLException e) {
 				e.printStackTrace();
 				err = true;
 				msg.add( "DB処理でエラーが発生しました。");
+				sendURL = "view/login/index.jsp";
 			}
 		}
 		//エラーあり
