@@ -45,7 +45,10 @@ public class Dao
 		return ds.getConnection();
 	}
 	
-	public void executeUpdate(String sql, Object... args) throws SQLException
+	/**
+	 * @return 更新行数
+	 */
+	public int executeUpdate(String sql, Object... args) throws SQLException
 	{
 		try
 		(
@@ -57,7 +60,7 @@ public class Dao
 			{
 				ps.setObject(i + 1, args[i]);
 			}
-			ps.executeUpdate();
+			return ps.executeUpdate();
 		}
 	}
 	
@@ -285,10 +288,10 @@ public class Dao
 		);
 	}
 	
-	public void insert(CorporationOrder o) throws SQLException
+	public int insert(CorporationOrder o) throws SQLException
 	{
 		int id = executeInsert(o);
-		executeUpdate
+		return executeInsert
 		(
 			"insert into corporation_order_t values(?, ?, ?, ?)",
 			id,
@@ -297,7 +300,7 @@ public class Dao
 			o.getEstimateDate()
 		);
 	}
-	
+
 	public void insert(IndividualOrder o) throws SQLException
 	{
 		int id = executeInsert(o);
