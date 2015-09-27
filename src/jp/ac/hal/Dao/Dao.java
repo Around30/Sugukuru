@@ -339,11 +339,11 @@ public class Dao
 	
 	public Object[] administratorLogin(int id, String passwd) throws SQLException
 	{
-		return executeGet("select * from administrator_t where administrator_id = ? and passwd = ?", id, passwd);
+		return executeGet("select * from administrator_t where administrator_id = ? and password = ?", id, passwd);
 	}
 	
 	public Object[] corporationLogin(int id, String passwd) throws SQLException
 	{
-		return executeGet("select * from corporation_t where corporation_id = ? and passwd = ?", id, passwd);
+		return executeGet("select * from corporation_t where corporation_id = ? and password = ?", id, passwd);
 	}
 }

@@ -8,7 +8,6 @@
   <title>法人一覧 | すぐくる</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
 </head>
-
 <body>
   <div class="container">
     <div class="row">
