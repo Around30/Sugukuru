@@ -6,7 +6,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>法人一覧 | すぐくる</title>
-  <link rel="stylesheet" href="./../../../css/main.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
 </head>
 
 <body>
