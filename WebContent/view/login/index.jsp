@@ -1,12 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>法人ログイン | すぐくる</title>
   <link rel="stylesheet" href="./../../css/main.css">
 </head>
-
 <body>
   <div class="container">
     <div class="row">
@@ -36,14 +36,14 @@
       <main class="main col-md-12">
         <article>
           <h1 class="page-header">法人ログイン</h1>
-          <form action="">
+          <form action="../../CorporationLogin">
             <div class="form-group">
               <label for="namel">法人ID :</label>
-              <input type="text" class="from_control" id="namel"></input>
+              <input type="text" class="from_control" id="namel" name="corporationId"></input>
             </div>
             <div class="form-group">
               <label for="namel">パスワード :</label>
-              <input type="text" class="from_control" id="namel"></input>
+              <input type="text" class="from_control" id="namel" name="passwd"></input>
             </div>
             <button class="btn btn-primary">ログイン</button>
           </form>
@@ -58,5 +58,4 @@
     </div>
   </div>
 </body>
-
 </html>

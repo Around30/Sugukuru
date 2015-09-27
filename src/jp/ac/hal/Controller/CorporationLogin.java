@@ -44,7 +44,7 @@ public class CorporationLogin extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		//転送先
-		String sendURL = "index.jsp";
+		String sendURL = "view/index.jsp";
 		//エラーフラグ
 		boolean err = false;
 		//メッセージ格納用List
@@ -96,7 +96,7 @@ public class CorporationLogin extends HttpServlet {
 		else {
 			msg.add("入力項目に誤りがあります。");
 			//Login画面へ戻る
-			sendURL = "CorpLogin.jsp";
+			sendURL = "view/login/index.jsp";
 			//メッセージ転送
 			request.setAttribute("msg", msg);
 			request.setAttribute("err", err);
@@ -119,21 +119,17 @@ public class CorporationLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-
 		// 受け取る文字コードの設定
 		request.setCharacterEncoding("UTF-8");
-
 		//転送先
 		String sendURL = "index.jsp";
 		//エラーフラグ
 		boolean err = false;
 		//メッセージ格納用List
 		ArrayList<String> msg = new ArrayList<String>();
-
 		//パラメータ受取
 		String corporationId = request.getParameter("corporationId");
 		String passwd = request.getParameter("passwd");
-
 		//パラメータチェック
 		InputCheck i = new InputCheck();
 		err |= i.checkCharaLength(corporationId, 8);
@@ -143,21 +139,14 @@ public class CorporationLogin extends HttpServlet {
 		//エラーなし
 		if (!err) {
 			//ログイン処理
-
 			try {
 				Dao dao = Dao.getNewInstance();
-
 				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationId),passwd);
-//				Corporation c = new Corporation(cData[1].toString(), cData[2].toString(), cData[3].toString(), cData[4].toString(), cData[5].toString(), (int)cData[6]);
-//				msg.add( "ログインしました。");
-
 				//セッションを生成
 				HttpSession session = request.getSession(true);
 				session.setAttribute("corporationLogin",cData);
-
 				//セッションの有効時間を30分に設定
 				session.setMaxInactiveInterval(1800);
-
 			} catch (NamingException e) {
 				e.printStackTrace();
 				err = true;
