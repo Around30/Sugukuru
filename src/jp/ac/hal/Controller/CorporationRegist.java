@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.ac.hal.Dao.*;
-import jp.ac.hal.Model.*;
-import jp.ac.hal.Util.*;
+import jp.ac.hal.Dao.Dao;
+import jp.ac.hal.Model.Corporation;
+import jp.ac.hal.Util.InputCheck;
 
 /**
  * Servlet implementation class CorporationRegist
@@ -20,7 +20,7 @@ import jp.ac.hal.Util.*;
 @WebServlet("/CorporationRegist")
 public class CorporationRegist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,17 +43,17 @@ public class CorporationRegist extends HttpServlet {
 		String phoneNumber = request.getParameter("address");
 		String passwd = request.getParameter("passwd");
 		String creditLimit = request.getParameter("creditLimit");
-		
+
 		String msg = "";
 		boolean err = false;
-		
+
 		corporationName = "test";
 		postalCode = "1234567";
 		address = "aaaa";
 		phoneNumber = "08050881467";
 		passwd = "passwd";
 		creditLimit = "333333";
-		
+
 		if(!err) {
 			try {
 				Dao dao = Dao.getNewInstance();
@@ -86,7 +86,7 @@ public class CorporationRegist extends HttpServlet {
 		String phoneNumber = request.getParameter("address");
 		String passwd = request.getParameter("passwd");
 		String creditLimit = request.getParameter("creditLimit");
-		
+
 		//入力項目チェック
 		InputCheck i = new InputCheck();
 		boolean err = false;
@@ -98,16 +98,16 @@ public class CorporationRegist extends HttpServlet {
 		err |= i.checkCharaLength(passwd, 50);
 		err |= i.checkCharaLength(creditLimit, 8);
 		err |= i.checkNumbers(postalCode, phoneNumber, creditLimit);
-		
+
 		String msg = "";
-		
+
 		corporationName = "test";
 		postalCode = "1234567";
 		address = "aaaa";
 		phoneNumber = "08050881467";
 		passwd = "passwd";
 		creditLimit = "aaaaa";
-		
+
 		if(!err) {
 			try {
 				Dao dao = Dao.getNewInstance();

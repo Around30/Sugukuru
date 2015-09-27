@@ -15,7 +15,22 @@ public class Product {
 	private int productWeight;
 	private String productDetail;
 	private int janCode;
-	
+
+	public Product(
+			int productId,
+			String productName,
+			int productGenreId,
+			int price,
+			int makerId)
+	{
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productGenreId = productGenreId;
+		this.price = price;
+		this.makerId = makerId;
+	}
+
 	public int getProductId() {
 		return productId;
 	}
