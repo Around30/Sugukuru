@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.ac.hal.Dao.Dao;
+import jp.ac.hal.Util.InputCheck;
+
 /**
  * Servlet implementation class ProductDetail
  */
@@ -38,7 +41,29 @@ public class ProductDetail extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 
+		// 受け取る文字コードの設定
+		request.setCharacterEncoding("UTF-8");
 
+		//転送先
+		String sendURL = "商品詳細.jsp";
+		// パラメータを受け取り変数にセット
+		String productId = request.getParameter("productId");
+		//パラメータチェック
+		InputCheck i = new InputCheck();
+		boolean err = false;
+		err |= i.checkCharaLength(productId, 8);
+		err |= i.checkNullChar(productId);
+		err |= i.checkNumbers(productId);
+
+		//エラーなし
+		if (!err) {
+			try {
+				Dao dao = Dao.getNewInstance();
+
+			}
+		}
+
+	}
 	}
 
 }
