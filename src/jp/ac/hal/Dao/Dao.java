@@ -359,7 +359,7 @@ public class Dao
 
 	public Object[] corporationLogin(int id, String passwd) throws SQLException
 	{
-		return executeGet("select * from corporation_t where corporation_id = ? and password = ?", id, passwd);
+		return executeGet("select corporation_t.corporation_id, corporation_account_id, corporation_account_name from corporation_t, corporation_account_t where corporation_account_id = ? and password = ? and corporation_t.corporation_id = corporation_account_t.corporation_id", id, passwd);
 	}
 
 	public Object[] productDetail(int id) throws SQLException

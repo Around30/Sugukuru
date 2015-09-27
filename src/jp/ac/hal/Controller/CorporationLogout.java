@@ -45,7 +45,7 @@ public class CorporationLogout extends HttpServlet {
 		String sendURL = "view/index.jsp";
 		//サインインセッションを削除
 		HttpSession session = request.getSession(true);
-		session.removeAttribute("customerLogin");
+		session.removeAttribute("corporationLogin");
 
 		RequestDispatcher resultDisp = request.getRequestDispatcher(sendURL);
 

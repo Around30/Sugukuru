@@ -35,7 +35,7 @@ public class CorporationLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+
 	}
 
 	/**
@@ -53,21 +53,24 @@ public class CorporationLogin extends HttpServlet {
 		//メッセージ格納用List
 		ArrayList<String> msg = new ArrayList<String>();
 		//パラメータ受取
-		String corporationId = request.getParameter("corporationId");
+		//テストデータ id:1 pass:zoysxqwgdn
+		String corporationAccountId = request.getParameter("corporationAccountId");
 		String passwd = request.getParameter("passwd");
 		//パラメータチェック
 		InputCheck i = new InputCheck();
-		err |= i.checkCharaLength(corporationId, 8);
-		err |= i.checkNullChar(corporationId, passwd);
-		err |= i.checkNumbers(corporationId);
+		err |= i.checkCharaLength(corporationAccountId, 8);
+		err |= i.checkNullChar(corporationAccountId, passwd);
+		err |= i.checkNumbers(corporationAccountId);
 
 		//エラーなし
 		if (!err) {
 			//ログイン処理
 			try {
 				Dao dao = Dao.getNewInstance();
-				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationId),passwd);
-				//セッションを生成
+				//アカウントIDとpassが一致する法人IDと法人アカウントIDと法人アカウント名を受け取る
+				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationAccountId),passwd);
+
+				//セッションを生成、セッションに受け取ったデータを入れる
 				HttpSession session = request.getSession(true);
 				session.setAttribute("corporationLogin",cData);
 				//セッションの有効時間を30分に設定

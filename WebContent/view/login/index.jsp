@@ -4,7 +4,7 @@
     import="java.util.*"%>
 <%
 	ArrayList<String> msg = (ArrayList<String>)request.getAttribute("msg");
-%>    
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row">
       <header class="header col-md-12">
-        <h1>法人ログイン</h1> 
+        <h1>法人ログイン</h1>
       </header>
     </div>
     <div class="row">
@@ -25,8 +25,8 @@
           <h1 class="page-header">法人ログイン</h1>
           <form action="<%= request.getContextPath() %>/CorporationLogin" method="post">
             <div class="form-group">
-              <label for="namel">法人ID :</label>
-              <input type="text" class="from_control" id="namel" name="corporationId"></input>
+              <label for="namel">法人アカウントID :</label>
+              <input type="text" class="from_control" id="namel" name="corporationAccountId"></input>
             </div>
             <div class="form-group">
               <label for="namel">パスワード :</label>
@@ -42,7 +42,7 @@
     </div>
     <div class="row">
       <footer class="footer col-md-12">
-        <p> <small>Around30a</small> 
+        <p> <small>Around30a</small>
         </p>
       </footer>
     </div>
