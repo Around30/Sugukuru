@@ -212,7 +212,7 @@ public class Dao
 	{
 		executeInsert
 		(
-			"insert into country_t values(country_seq, ?)",
+			"insert into country_t values(country_seq.nextval, ?)",
 			c.getCountryName()
 		);
 	}
@@ -273,9 +273,10 @@ public class Dao
 	{
 		executeUpdate
 		(
-			"insert into corporation_account_t values(corporation_account_seq.nextval, ?, ?)",
+			"insert into corporation_account_t values(corporation_account_seq.nextval, ?, ?, ?)",
 			a.getCorporationAccountName(),
-			a.getCorporationAccountId()
+			a.getCorporationAccountId(),
+			a.getPasswd()
 		);
 	}
 	
@@ -283,8 +284,9 @@ public class Dao
 	{
 		return executeInsert
 		(
-			"insert into order_t values(order_seq.nextval, ?, sysdate)",
-			o.getTotal()
+			"insert into order_t values(order_seq.nextval, ?, sysdate, ?)",
+			o.getTotal(),
+			o.isCart()
 		);
 	}
 	
@@ -333,7 +335,7 @@ public class Dao
 	{
 		executeUpdate
 		(
-			"insert into administer_t values(administrator_seq.nextval, ?, nvl(?, 0), ?)",
+			"insert into administer_t values(administrator_seq.nextval, ?, ?, ?)",
 			a.getAdministratorName(),
 			a.isFlg(),
 			a.getPasswd()

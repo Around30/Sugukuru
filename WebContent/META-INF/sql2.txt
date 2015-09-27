@@ -1,2 +1,3 @@
 ALTER TABLE order_t MODIFY ( total NULL );
-ALTER TABLE corporation_account_t ADD ( passwd varchar2(50) not null) ;
+ALTER TABLE corporation_account_t ADD ( password varchar2(50) not null) ;
+ALTER TABLE order_t ADD ( cart number(1) not null) ;

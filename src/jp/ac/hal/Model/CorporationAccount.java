@@ -5,6 +5,7 @@ public class CorporationAccount
 	private int corporationAccountId;
 	private String corporationAccountName;
 	private int corporationId;
+	private String passwd;
 	
 	public int getCorporationAccountId() {
 		return corporationAccountId;
@@ -24,4 +25,11 @@ public class CorporationAccount
 	public void setCorporationId(int corporationId) {
 		this.corporationId = corporationId;
 	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	
 }

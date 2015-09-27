@@ -7,6 +7,7 @@ public class Order {
 	private int orderId;	//注文ID
 	private int total;		//総額
 	private Date orderDate;	//注文日
+	private boolean cart;	//カート状態かどうか
 
 
 	public int getOrderId() {
@@ -26,6 +27,12 @@ public class Order {
 	}
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+	public boolean isCart() {
+		return cart;
+	}
+	public void setCart(boolean cart) {
+		this.cart = cart;
 	}
 
 
