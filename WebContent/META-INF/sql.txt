@@ -1,3 +1,9 @@
+conn sys/oracle as sysdba;
+drop user sugukuru cascade;
+create user sugukuru identified by sugukuru;
+grant all privileges to sugukuru;
+conn sugukuru/sugukuru;
+
 create sequence country_seq;
 create table country_t(
 	country_id					number(8)		not null primary key,
