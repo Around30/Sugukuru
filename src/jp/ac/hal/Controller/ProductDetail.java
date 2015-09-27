@@ -1,7 +1,10 @@
 package jp.ac.hal.Controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +51,7 @@ public class ProductDetail extends HttpServlet {
 		String sendURL = "商品詳細.jsp";
 		// パラメータを受け取り変数にセット
 		String productId = request.getParameter("productId");
+		String msg;
 		//パラメータチェック
 		InputCheck i = new InputCheck();
 		boolean err = false;
@@ -55,15 +59,42 @@ public class ProductDetail extends HttpServlet {
 		err |= i.checkNullChar(productId);
 		err |= i.checkNumbers(productId);
 
+
 		//エラーなし
 		if (!err) {
 			try {
 				Dao dao = Dao.getNewInstance();
-
+				Object[] pDetail = dao.productDetail(Integer.parseInt(productId));
+				request.setAttribute("pDetail",pDetail);
+			} catch (NamingException e) {
+				e.printStackTrace();
+				err = true;
+				msg = "DB処理でエラーが発生しました。";
+				sendURL = "view/index.jsp";
+			} catch (SQLException e) {
+				e.printStackTrace();
+				err = true;
+				msg = "DB処理でエラーが発生しました。";
+				sendURL = "view/index.jsp";
 			}
 		}
+		//エラーあり
+		else {
+			msg = "不正な値です。";
+			//トップ画面へ戻る
+			sendURL = "view/index.jsp";
+			//メッセージ転送
+			request.setAttribute("msg", msg);
+			request.setAttribute("err", err);
+		}
 
-	}
+		RequestDispatcher disp = request.getRequestDispatcher(sendURL);
+
+		//文字コード
+		response.setContentType("text/html; charset=UTF-8");
+
+		disp.forward(request, response);
+
 	}
 
 }
