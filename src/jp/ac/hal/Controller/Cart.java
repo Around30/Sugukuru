@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import jp.ac.hal.Dao.Dao;
 import jp.ac.hal.Model.Corporation;
 import jp.ac.hal.Model.CorporationOrder;
+import jp.ac.hal.Model.Order;
 import jp.ac.hal.Util.Ic;
 
 /**
@@ -31,7 +32,7 @@ public class Cart extends HttpServlet {
 			Order o = new Order();
 			o.setCorporationAccountId((Integer)s.getAttribute("corporationAccountId"));
 			o.setConfirmed(true);
-			int id = Dao.getInstance().insert(o);
+			int id = Dao.getInstance().executeInsert(o);
 		}
 		catch(Exception e)
 		{
