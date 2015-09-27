@@ -35,7 +35,7 @@ public class CorporationLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+
 	}
 
 	/**
@@ -53,20 +53,21 @@ public class CorporationLogin extends HttpServlet {
 		//メッセージ格納用List
 		ArrayList<String> msg = new ArrayList<String>();
 		//パラメータ受取
-		String corporationId = request.getParameter("corporationId");
+		String corporationAccountId = request.getParameter("corporationAccountId");
 		String passwd = request.getParameter("passwd");
 		//パラメータチェック
 		InputCheck i = new InputCheck();
-		err |= i.checkCharaLength(corporationId, 8);
-		err |= i.checkNullChar(corporationId, passwd);
-		err |= i.checkNumbers(corporationId);
+		err |= i.checkCharaLength(corporationAccountId, 8);
+		err |= i.checkNullChar(corporationAccountId, passwd);
+		err |= i.checkNumbers(corporationAccountId);
 
 		//エラーなし
 		if (!err) {
 			//ログイン処理
 			try {
 				Dao dao = Dao.getNewInstance();
-				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationId),passwd);
+				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationAccountId),passwd);
+
 				//セッションを生成
 				HttpSession session = request.getSession(true);
 				session.setAttribute("corporationLogin",cData);
