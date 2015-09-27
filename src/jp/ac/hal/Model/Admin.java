@@ -1,11 +1,20 @@
 package jp.ac.hal.Model;
 
+import java.math.BigDecimal;
+
 public class Admin {
 
 	private int administratorId;
 	private String administratorName;
 	private boolean flg;
 	private String passwd;
+	
+	public Admin(Object[] o) {
+		this.administratorId = ((BigDecimal)o[0]).intValue();
+		this.administratorName = (String)o[1];
+		BigDecimal b = (BigDecimal)o[2];
+		this.flg = b != null && b.intValue() == 1;
+	}
 	
 	public int getAdministratorId() {
 		return administratorId;

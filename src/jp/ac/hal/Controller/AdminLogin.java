@@ -1,5 +1,7 @@
 package jp.ac.hal.Controller;
 
+import jp.ac.hal.Dao.Dao;
+import jp.ac.hal.Model.Admin;
 import jp.ac.hal.Util.*;
 
 import java.io.IOException;
@@ -37,24 +39,33 @@ public class AdminLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		
-		//パラメータ受け取り
-		String administratorId = request.getParameter("administratorId");
-		String passwd = request.getParameter("passwd");
-		InputCheck i = new InputCheck();
-		boolean err = false;
-		err |= i.checkCharaLength(administratorId, 8);
-		err |= i.checkCharaLength(passwd, 50);
-		err |= i.checkNullChar(administratorId ,passwd);
-		err |= i.checkNumbers(administratorId);
-		 
-		if (!err) {
-			//セッションを生成
-			HttpSession session = request.getSession(true);
-			//セッションの有効時間を30分に設定
-			session.setMaxInactiveInterval(1800);
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+			
+			//パラメータ受け取り
+			String administratorId = request.getParameter("administratorId");
+			String passwd = request.getParameter("passwd");
+			InputCheck i = new InputCheck();
+			boolean err = false;
+			err |= i.checkCharaLength(administratorId, 8);
+			err |= i.checkCharaLength(passwd, 50);
+			err |= i.checkNullChar(administratorId ,passwd);
+			err |= i.checkNumbers(administratorId);
+			Dao dao = Dao.getInstance();
+			Admin admin = new Admin(dao.executeGet("select * from administrator_t where administrator_id = ? and passwd = ?", administratorId, passwd));
+			err |= admin == null;
+			if (!err) {
+				//セッションを生成
+				HttpSession session = request.getSession(true);
+				//セッションの有効時間を30分に設定
+				session.setMaxInactiveInterval(1800);
+				session.setAttribute("admin", admin);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 }
