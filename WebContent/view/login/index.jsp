@@ -42,7 +42,7 @@
     </div>
     <div class="row">
       <footer class="footer col-md-12">
-        <p><small>Around30a</small>
+        <p> <small>Around30a</small> 
         </p>
       </footer>
     </div>
