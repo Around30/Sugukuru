@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jp.ac.hal.Dao.Dao;
 import jp.ac.hal.Model.Corporation;
 import jp.ac.hal.Model.CorporationOrder;
 import jp.ac.hal.Util.Ic;
@@ -36,7 +37,8 @@ public class CorporationWebOrder extends HttpServlet {
 			HttpSession s = request.getSession();
 			CorporationOrder o = new CorporationOrder();
 			o.setCorporationAccountId((Integer)s.getAttribute("corporationAccountId"));
-			o.set
+			o.setConfirmed(true);
+			int id = Dao.getInstance().insert(o);
 		}
 		catch(Exception e)
 		{
