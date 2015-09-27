@@ -7,15 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import jp.ac.hal.Model.Corporation;
 import jp.ac.hal.Model.CorporationOrder;
+import jp.ac.hal.Util.Ic;
 
 /**
  * Servlet implementation class OrderServlet
  */
 @WebServlet("/OrderServlet")
-public class CorporationOrderServlet extends HttpServlet {
+public class CorporationWebOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,7 +31,17 @@ public class CorporationOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CorporationOrder o = new CorporationOrder();
+		try
+		{
+			HttpSession s = request.getSession();
+			CorporationOrder o = new CorporationOrder();
+			o.setCorporationAccountId((Integer)s.getAttribute("corporationAccountId"));
+			o.set
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 }
