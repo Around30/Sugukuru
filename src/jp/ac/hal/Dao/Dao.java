@@ -12,28 +12,19 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import jp.ac.hal.Model.Admin;
-import jp.ac.hal.Model.Corporation;
-import jp.ac.hal.Model.CorporationAccount;
-import jp.ac.hal.Model.CorporationOrder;
-import jp.ac.hal.Model.IndividualOrder;
-import jp.ac.hal.Model.Maker;
-import jp.ac.hal.Model.Order;
-import jp.ac.hal.Model.OrderDetail;
-import jp.ac.hal.Model.Product;
-import jp.ac.hal.Model.ProductGenre;
+import jp.ac.hal.Model.*;
 
 public class Dao
 {
 	private static Dao instance;
 	private DataSource ds;
-
+	
 	private Dao() throws NamingException
 	{
 		Context context = new InitialContext();
 		ds = (DataSource)context.lookup("java:comp/env/Oracle_JDBC");
 	}
-
+	
 	public static Dao getInstance() throws NamingException
 	{
 		if(instance == null)
@@ -42,18 +33,18 @@ public class Dao
 		}
 		return instance;
 	}
-
+	
 	public static Dao getNewInstance() throws NamingException
 	{
 		instance = new Dao();
 		return instance;
 	}
-
+	
 	private Connection getConnection() throws SQLException
 	{
 		return ds.getConnection();
 	}
-
+	
 	public void executeUpdate(String sql, Object... args) throws SQLException
 	{
 		try
@@ -69,7 +60,7 @@ public class Dao
 			ps.executeUpdate();
 		}
 	}
-
+	
 	/**
 	 * @return insertした行のID
 	 */
@@ -86,12 +77,14 @@ public class Dao
 				ps.setObject(i + 1, args[i]);
 			}
 			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			rs.next();
-			return rs.getInt(1);
+			try(ResultSet rs = ps.getGeneratedKeys())
+			{
+				rs.next();
+				return rs.getInt(1);
+			}
 		}
 	}
-
+	
 	/**
 	 * @return selectの結果
 	 */
@@ -107,42 +100,24 @@ public class Dao
 			{
 				ps.setObject(i + 1, args[i]);
 			}
-			ResultSet rs = ps.executeQuery();
-			int length = rs.getMetaData().getColumnCount();
 			List<Object[]> ret = new ArrayList<>();
-			while(rs.next())
+			try(ResultSet rs = ps.executeQuery())
 			{
-				Object[] row = new Object[length];
-				for(int i = 0; i < length; i++)
+				int length = rs.getMetaData().getColumnCount();
+				while(rs.next())
 				{
-					row[i] = rs.getObject(i + 1);
+					Object[] row = new Object[length];
+					for(int i = 0; i < length; i++)
+					{
+						row[i] = rs.getObject(i + 1);
+					}
+					ret.add(row);
 				}
-				ret.add(row);
 			}
 			return ret;
 		}
 	}
-
-	/**
-	 * @return selectの結果が1行以上であるかどうか
-	 */
-	public boolean executeConfirm(String sql, Object... args) throws SQLException
-	{
-		try
-		(
-			Connection conn = getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-		)
-		{
-			for(int i = 0; i < args.length; i++)
-			{
-				ps.setObject(i + 1, args[i]);
-			}
-			ResultSet rs = ps.executeQuery();
-			return rs.next();
-		}
-	}
-
+	
 	/**
 	 * @return selectの結果が1行以上あれば1行目、そうでないならばnull
 	 */
@@ -158,20 +133,44 @@ public class Dao
 			{
 				ps.setObject(i + 1, args[i]);
 			}
-			ResultSet rs = ps.executeQuery();
-			int length = rs.getMetaData().getColumnCount();
-			if(rs.next())
+			try(ResultSet rs = ps.executeQuery())
 			{
-				Object[] row = new Object[length];
-				for(int i = 0; i < length; i++)
+				int length = rs.getMetaData().getColumnCount();
+				if(rs.next())
 				{
-					row[i] = rs.getObject(i + 1);
+					Object[] row = new Object[length];
+					for(int i = 0; i < length; i++)
+					{
+						row[i] = rs.getObject(i + 1);
+					}
+					return row;
 				}
-				return row;
+				else
+				{
+					return null;
+				}
 			}
-			else
+		}
+	}
+	
+	/**
+	 * @return selectの結果が1行以上であるかどうか
+	 */
+	public boolean executeConfirm(String sql, Object... args) throws SQLException
+	{
+		try
+		(
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+		)
+		{
+			for(int i = 0; i < args.length; i++)
 			{
-				return null;
+				ps.setObject(i + 1, args[i]);
+			}
+			try(ResultSet rs = ps.executeQuery())
+			{
+				return rs.next();
 			}
 		}
 	}
@@ -192,18 +191,29 @@ public class Dao
 				ps.setObject(i + 1, args[i]);
 			}
 			ps.executeUpdate();
-			ResultSet rs = ps.executeQuery();
-			if(rs.next())
+			try(ResultSet rs = ps.executeQuery())
 			{
-				return 0;
-			}
-			else
-			{
-				return rs.getInt(1);
+				if(rs.next())
+				{
+					return rs.getInt(1);
+				}
+				else
+				{
+					return 0;
+				}
 			}
 		}
 	}
-
+	
+	public void insert(Country c) throws SQLException
+	{
+		executeInsert
+		(
+			"insert into country_t values(country_seq, ?)",
+			c.getCountryName()
+		);
+	}
+	
 	public void insert(ProductGenre g) throws SQLException
 	{
 		executeUpdate
@@ -221,19 +231,27 @@ public class Dao
 			m.getMarkerName()
 		);
 	}
-
+	
 	public void insert(Product p) throws SQLException
 	{
 		executeUpdate
 		(
-			"insert into product_t values(product_seq.nextval, ?, ?, ?, ?)",
+			"insert into product_t values(product_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 			p.getProductName(),
-			p.getProductGenreId(),
+			p.getProductPhonetic(),
 			p.getPrice(),
-			p.getMakerId()
+			p.getMakerId(),
+			p.getProductGenreId(),
+			p.getCountryId(),
+			p.getProductX(),
+			p.getProductY(),
+			p.getProductZ(),
+			p.getProductWeight(),
+			p.getProductDetail(),
+			p.getJanCode()
 		);
 	}
-
+	
 	public void insert(Corporation c) throws SQLException
 	{
 		executeUpdate
@@ -247,7 +265,7 @@ public class Dao
 			c.getCreditLimit()
 		);
 	}
-
+	
 	public void insert(CorporationAccount a) throws SQLException
 	{
 		executeUpdate
@@ -257,7 +275,7 @@ public class Dao
 			a.getCorporationAccountId()
 		);
 	}
-
+	
 	public int executeInsert(Order o) throws SQLException
 	{
 		return executeInsert
@@ -266,7 +284,7 @@ public class Dao
 			o.getTotal()
 		);
 	}
-
+	
 	public void insert(CorporationOrder o) throws SQLException
 	{
 		int id = executeInsert(o);
@@ -279,7 +297,7 @@ public class Dao
 			o.getEstimateDate()
 		);
 	}
-
+	
 	public void insert(IndividualOrder o) throws SQLException
 	{
 		int id = executeInsert(o);
@@ -295,7 +313,7 @@ public class Dao
 			o.getMailAddress()
 		);
 	}
-
+	
 	public void insert(OrderDetail d) throws SQLException
 	{
 		executeUpdate
@@ -307,7 +325,7 @@ public class Dao
 			d.getSubTotal()
 		);
 	}
-
+	
 	public void insert(Admin a) throws SQLException
 	{
 		executeUpdate
@@ -318,12 +336,12 @@ public class Dao
 			a.getPasswd()
 		);
 	}
-
+	
 	public Object[] administratorLogin(int id, String passwd) throws SQLException
 	{
 		return executeGet("select * from administrator_t where administrator_id = ? and passwd = ?", id, passwd);
 	}
-
+	
 	public Object[] corporationLogin(int id, String passwd) throws SQLException
 	{
 		return executeGet("select * from corporation_t where corporation_id = ? and passwd = ?", id, passwd);
