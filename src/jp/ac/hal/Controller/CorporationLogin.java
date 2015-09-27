@@ -53,6 +53,7 @@ public class CorporationLogin extends HttpServlet {
 		//メッセージ格納用List
 		ArrayList<String> msg = new ArrayList<String>();
 		//パラメータ受取
+		//テストデータ id:1 pass:zoysxqwgdn
 		String corporationAccountId = request.getParameter("corporationAccountId");
 		String passwd = request.getParameter("passwd");
 		//パラメータチェック
@@ -66,9 +67,10 @@ public class CorporationLogin extends HttpServlet {
 			//ログイン処理
 			try {
 				Dao dao = Dao.getNewInstance();
+				//アカウントIDとpassが一致する法人IDと法人アカウントIDと法人アカウント名を受け取る
 				Object[] cData = dao.corporationLogin(Integer.parseInt(corporationAccountId),passwd);
 
-				//セッションを生成
+				//セッションを生成、セッションに受け取ったデータを入れる
 				HttpSession session = request.getSession(true);
 				session.setAttribute("corporationLogin",cData);
 				//セッションの有効時間を30分に設定

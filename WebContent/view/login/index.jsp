@@ -26,7 +26,7 @@
           <form action="<%= request.getContextPath() %>/CorporationLogin" method="post">
             <div class="form-group">
               <label for="namel">法人アカウントID :</label>
-              <input type="text" class="from_control" id="namel" name="corporationId"></input>
+              <input type="text" class="from_control" id="namel" name="corporationAccountId"></input>
             </div>
             <div class="form-group">
               <label for="namel">パスワード :</label>
