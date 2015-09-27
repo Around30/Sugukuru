@@ -2,6 +2,9 @@
 body {
   font-family: 'Open Sans', sans-serif, "ヒラギノ角ゴ Pro W3", "HIragino Kaku Gothic Pro W3", "HIragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif !important; }
 
+.itemList_item_head {
+  font-family: "ヒラギノ角ゴ Pro W3"; }
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -6116,20 +6119,41 @@ button.close {
   padding-bottom: 4px;
   font-size: 18px; }
 
+.itemLists {
+  padding: 0; }
+
 .itemList {
   padding: 0; }
   .itemList_item {
     position: relative;
+    padding: 0;
     list-style: none;
     text-align: center;
     min-height: 300px; }
+    .itemList_item a {
+      text-decoration: none;
+      color: #010101;
+      display: block;
+      transition: all ease 0.3s; }
     .itemList_item_newItemWrap {
       min-height: 300px;
       position: relative;
       display: block;
       width: 100%;
       height: 100%;
-      transition: all ease 0.3s; }
+      transition: all ease 0.3s;
+      /* おすすめ商品 */
+      /* おすすめ商品 */
+      /* おすすめ商品 */
+      /* ~の商品を見る */ }
+      .itemList_item_newItemWrap.recommend::after {
+        background-color: rgba(110, 113, 168, 0.2); }
+      .itemList_item_newItemWrap.genre1::after {
+        background-color: rgba(168, 157, 106, 0.2); }
+      .itemList_item_newItemWrap.genre2::after {
+        background-color: rgba(160, 200, 204, 0.1); }
+      .itemList_item_newItemWrap.textBtn::after {
+        background-color: #D7E5EA; }
     .itemList_item_newItemWrap::after {
       content: "";
       display: block;
@@ -6144,13 +6168,15 @@ button.close {
     .itemList_item_newItemWrap:hover::after {
       background: rgba(255, 255, 255, 0) !important; }
     .itemList_item_head {
+      position: absolute;
       font-size: 14px;
       font-style: italic;
       top: 7%;
       left: 5%;
       padding-right: 1em;
       letter-spacing: 0.1em;
-      z-index: 2; }
+      z-index: 2;
+      font-weight: bold; }
     .itemList_item h2 {
       position: absolute;
       margin: 0;
@@ -6196,13 +6222,45 @@ button.close {
       transform: translate(0, -55%); }
     .itemList_item_price {
       display: none; }
-    .itemList_item.recommendItem {
-      min-height: 300px; }
-      .itemList_item.recommendItem img {
-        width: 200px; }
+    .itemList_item_onlyText {
+      position: absolute;
+      top: 50%;
+      text-align: center;
+      width: 100%;
+      margin-top: -0.5em;
+      z-index: 2; }
+    .itemList_item.news {
+      text-align: left;
+      padding: 2%;
+      background: #e7e7e7; }
+      .itemList_item.news a {
+        text-decoration: underline;
+        color: #278aef; }
+      .itemList_item.news h2 {
+        position: static;
+        font-size: 16px;
+        font-style: italic;
+        padding-right: 1em;
+        letter-spacing: 0.1em;
+        color: #010101; }
+      .itemList_item.news dl {
+        font-size: 12px;
+        font-style: italic;
+        padding-right: 1em;
+        letter-spacing: 0.1em;
+        color: #010101; }
+      .itemList_item.news dl, .itemList_item.news dt {
+        margin: 10% 0 2%; }
 
 .flexslider {
-  border: 0px !important; }
+  border: 0px !important;
+  margin: 0 !important; }
+
+.flex-control-nav {
+  bottom: 3% !important;
+  width: inherit !important;
+  left: 1%;
+  z-index: 2; }
 
 @media screen and (min-width: 768px) {
   .container {
