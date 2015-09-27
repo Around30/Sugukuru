@@ -29,7 +29,7 @@ public class Cart extends HttpServlet {
 			Order o = new Order();
 			o.setCorporationAccountId((Integer)s.getAttribute("corporationAccountId"));
 			o.setConfirmed(true);
-			int id = Dao.getInstance().insert(o);
+			int id = Dao.getInstance().executeInsert(o);
 		}
 		catch(Exception e)
 		{
