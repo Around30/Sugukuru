@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jp.ac.hal.Dao.Dao;
-import jp.ac.hal.Model.Corporation;
-import jp.ac.hal.Model.CorporationOrder;
-import jp.ac.hal.Util.Ic;
+import jp.ac.hal.Model.Order;
 
 /**
  * Servlet implementation class OrderServlet
