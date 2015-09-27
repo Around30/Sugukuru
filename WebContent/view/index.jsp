@@ -3,7 +3,7 @@
     import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"%>
 <%
 	Object[] cData = (Object[])session.getAttribute("corporationLogin");
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +49,13 @@
               </a>
             </li>
             <li class="header_nav_item header_nav_user">
-            <% if (cData == null) {%>
+            <% if (cData == null) { %>
               <a href="">
                 <div class="header_nav_icon"><i class="fa fa-user"></i>
                 </div> <span class="header_nav_text">法人ログイン</span>
               </a>
-            <%} else { %>
-            <%} %> 	
+            <% } else { %>
+            <% } %>
             </li>
           </ul>
           <!-- /ヘッダーナビアイテム -->
