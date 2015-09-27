@@ -17,7 +17,7 @@ public class InputCheck {
 	}
 
 	/**
-	 * 引数strが引数length以上の文字数だった場合trueを返す
+	 * 引数strが引数lengthより大きい文字数だった場合trueを返す
 	 * @param str
 	 * @param length
 	 * @return
