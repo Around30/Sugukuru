@@ -23,14 +23,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ReadProductFromCsv")
 public class ReadProductFromCsv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		(
-			InputStream fis = new FileInputStream("C:\\Users\\nagai.shinji\\Desktop\\files\\4-3\\IH31\\テストデータ\\取引先.csv");
+			InputStream fis = new FileInputStream("C:\\Users\\kama.yosuke\\Documents\\HAL\\IH31\\素材\\テストデータ\\取引先.csv");
 			Reader isr = new InputStreamReader(fis);
 			BufferedReader br = new BufferedReader(isr)
 		){

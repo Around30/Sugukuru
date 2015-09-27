@@ -9,7 +9,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>すぐくる</title>
-  <link rel="stylesheet" href="./../css/main.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
   <!--font-awesome-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
