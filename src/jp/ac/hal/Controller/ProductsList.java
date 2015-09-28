@@ -48,12 +48,32 @@ public class ProductsList extends HttpServlet {
 		// 受け取る文字コードの設定
 		request.setCharacterEncoding("UTF-8");
 		//転送先
-		String sendURL = "商品一覧.jsp";
+		String sendURL = "";
 		//エラーフラグ
 		boolean err = false;
 		//メッセージ格納用List
-		ArrayList<String> msg = new ArrayList<String>();
+		ArrayList<String> msg = new ArrayList<>();
 		List<Object[]> pList = new ArrayList<>();
+		try {
+			Dao dao = Dao.getNewInstance();
+			//カテゴリ検索
+			if (request.getParameter("productGenre") != null) {
+				pList = dao.executeQuery("select * from product_t where product_genre_id = ?", request.getParameter("productGenre"));
+				sendURL = "";
+			} else {
+				//全件検索	
+				pList = dao.executeQuery("select * from product_t");
+				sendURL = "";
+			}
+		} catch (NamingException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			msg.add( "DB処理でエラーが発生しました。");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			msg.add( "DB処理でエラーが発生しました。");
+		}
+		
 		RequestDispatcher disp = request.getRequestDispatcher(sendURL);
 		//文字コード
 		response.setContentType("text/html; charset=UTF-8");
