@@ -302,24 +302,22 @@ public class Dao
 
 	public int insert(CorporationOrder o) throws SQLException
 	{
-		int id = executeInsert(o);
 		return executeInsert
 		(
 			"insert into corporation_order_t values(?, ?, ?, ?)",
-			id,
+			o.getOrderId(),
 			o.getCorporationAccountId(),
 			o.isConfirmed(),
 			o.getEstimateDate()
 		);
 	}
 
-	public void insert(IndividualOrder o) throws SQLException
+	public int insert(IndividualOrder o) throws SQLException
 	{
-		int id = executeInsert(o);
-		executeUpdate
+		return executeUpdate
 		(
 			"insert into individual_order_t values(?, ?, ?, ?, ?, ?)",
-			id,
+			o.getOrderId(),
 			o.getName(),
 			o.getPhonetic(),
 			o.getPostalCode(),
