@@ -7,7 +7,7 @@ public class IndividualOrder extends Order {
 	private String postalCode;		//郵便番号
 	private String address;		//住所
 	private String phoneNumber;	//電話番号
-	private int mailAddress;	//メールアドレス
+	private String mailAddress;	//メールアドレス
 
 
 	public String getName() {
@@ -40,10 +40,10 @@ public class IndividualOrder extends Order {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public int getMailAddress() {
+	public String getMailAddress() {
 		return mailAddress;
 	}
-	public void setMailAddress(int mailAddress) {
+	public void setMailAddress(String mailAddress) {
 		this.mailAddress = mailAddress;
 	}
 
