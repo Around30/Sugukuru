@@ -36,5 +36,5 @@ public class CorporationIndex extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 	}
-
+//aaaa
 }

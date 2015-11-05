@@ -290,7 +290,7 @@ public class Dao
 		);
 	}
 
-	public int executeInsert(Order o) throws SQLException
+	public int insert(Order o) throws SQLException
 	{
 		return executeInsert
 		(

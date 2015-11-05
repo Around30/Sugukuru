@@ -1,6 +1,13 @@
 <%@ page import="jp.ac.hal.Dao.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int product_id = Integer.parseInt(request.getParameter("product_id"));
+	Object[] o = Dao.getInstance().productDetail(product_id);
+	for (int i = 0 ; i < o.length ; i++) {
+		System.out.println(o[i]);
+	}
+%>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -81,21 +88,20 @@
           <!-- / 商品イメージ -->
           <!-- 商品詳細 -->
           <div class="item_detail col-lg-7 col-md-7 col-sm-7">
-            <div class="item_detail_title">アラスカ文具店 図形レターセット（青・赤）</div>
-            <div class="item_detail_price">税込 ￥367 <span class="noneTax">（税抜￥340）</span>
+            <div class="item_detail_title"><%=o[1] %></div>
+            <div class="item_detail_price">税込<%=o[3] %>円</span>
             </div>
             <div class="item_detail_info">
-              <p>岐阜県は柳ケ瀬商店街にあるアラスカ文具店のオリジナル文房具「図形レターセット」。 六角形の便箋と、三角形の封筒がセットになっています。 対角線に沿って便箋を折れば、三角の封筒のなかに収まるしかけ。 便箋は無地なので、文字はもちろんイラストも自由に書き込めます。 図形の面白さ、数学の美しさを身近な文房具に取り入れた素晴らしい一品で、 便箋が封筒にぴったりと収まる様は、単純ながらも感覚的な楽しさを呼び起こしてくれるでしょう。 数学に親しみはじめたお子様や、理系のあの人への贈りものとしても喜ばれそう。
-              </p>
+              <p><%=o[11] %></p>
             </div>
             <dl class="item_detail_category"> <dt>カテゴリ</dt>
-              <dd>書類</dd>
+              <dd><%=o[14] %></dd>
             </dl>
             <dl class="item_detail_place"> <dt>原産地</dt>
-              <dd>日本</dd>
+              <dd><%=o[16] %></dd>
             </dl>
             <dl class="item_detail_size"> <dt>サイズ</dt>
-              <dd>W11.5×H9.5×D.2</dd>
+              <dd>W<%=o[8]%>×H<%=o[9]%>×D<%=o[10]%></dd>
             </dl>
             <div class="item_cart">
               <form action="">
