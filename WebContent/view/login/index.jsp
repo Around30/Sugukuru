@@ -3,7 +3,7 @@
     import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"
     import="java.util.*"%>
 <%
-	ArrayList<String> msg = (ArrayList<String>)request.getAttribute("msg");
+	String msg = (String)request.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,7 +35,7 @@
             <button class="btn btn-primary">ログイン</button>
           </form>
           <%if (msg != null) { %>
-          <%=msg.get(0) %>
+          <%= msg %>
           <%} %>
         </article>
       </main>

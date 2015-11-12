@@ -3,7 +3,7 @@
     import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"
     import="java.util.*"%>
 <%
-	ArrayList<String> msg = (ArrayList<String>)request.getAttribute("msg");
+	String msg = (String)request.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -25,7 +25,7 @@
           <h1 class="page-header">管理者ログイン</h1>
           <form action="<%= request.getContextPath() %>/AdminLogin" method="post">
             <div class="form-group">
-              <label for="namel">管理者アカウントID :</label>
+              <label for="namel">管理者ID :</label>
               <input type="text" class="from_control" id="namel" name="administratorId"></input>
             </div>
             <div class="form-group">
@@ -35,7 +35,7 @@
             <button class="btn btn-primary">ログイン</button>
           </form>
           <%if (msg != null) { %>
-          <%=msg.get(0) %>
+          <%= msg %>
           <%} %>
         </article>
       </main>

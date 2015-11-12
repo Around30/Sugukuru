@@ -3,6 +3,7 @@
     import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"%>
 <%
 	Object[] cData = (Object[])session.getAttribute("corporationLogin");
+
 %>
 <!DOCTYPE html>
 <html>
