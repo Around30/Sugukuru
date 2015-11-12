@@ -7,17 +7,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import jp.ac.hal.Dao.Dao;
-import jp.ac.hal.Model.Order;
 import jp.ac.hal.Model.OrderDetail;
 import jp.ac.hal.Util.Ic;
 
 /**
  * Servlet implementation class OrderServlet
  */
-@WebServlet("/OrderServlet")
+@WebServlet("/AddToCart")
 public class AddToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +29,8 @@ public class AddToCart extends HttpServlet {
 			d.setNumberOf(Ic.intNotNullable(request.getParameter("numberOf")));
 			d.setSubTotal(Ic.intNullable(request.getParameter("subTotal")));
 			Dao.getInstance().insert(d);
+			System.out.println(request.getContextPath() + "/view/cart/index.jsp");
+			response.sendRedirect(request.getContextPath() + "/view/cart/index.jsp");
 		}
 		catch(Exception e)
 		{

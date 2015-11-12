@@ -370,8 +370,9 @@ public class Dao
 	{
 		if(request.getSession().getAttribute("orderId") == null)
 		{
-			request.setAttribute("orderId", insert(new Order()));
+			request.getSession().setAttribute("orderId", insert(new Order()));
 		}
+		System.out.println(request.getSession().getAttribute("orderId"));
 		return (Integer)request.getSession().getAttribute("orderId");
 	}
 }
