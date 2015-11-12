@@ -62,9 +62,13 @@
           <div class="itemLists_head_title">カテゴリ一覧</div>
         </div>
         <div class="itemList row">
-          <% for(Object[] r: Dao.getInstance().executeQuery("select product_genre_id, product_genre_name from product_genre_t where rownum <= 44")){ %>
+          <% 
+          	if(request.getParameter("product_genre_id") == null) {
+        	  for(Object[] r: Dao.getInstance().executeQuery("select product_genre_id, product_genre_name from product_genre_t where rownum <= 44")){ 
+       	  %>
+          }
           <div class="itemList_item boxList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="corporation_detail.jsp?=product_genre_id<%=r[0]%>" class="itemList_item_newItemWrap">
+            <a href="index.jsp?product_genre_id=<%=r[0]%>" class="itemList_item_newItemWrap">
               <div class="itemList_item_head"><%=r[1]%></div>
               <div class="itemList_item_img">
                 <img src="./../../img/stationery/_01.jpg" alt="" class="img-responsive" />
@@ -74,7 +78,27 @@
               </div>
             </a>
           </div>
-          <% } %>
+          <% 
+	          }
+          	} else {
+          		for(Object[] o: Dao.getInstance().executeQuery(
+          				"select * from product_t where product_genre_id = " + request.getParameter("product_genre_id"))) {
+          %>
+          <div class="itemList_item boxList_item col-lg-3 col-md-3 col-sm-4">
+            <a href="item/index.jsp?product_id=<%=o[0]%>" class="itemList_item_newItemWrap">
+              <div class="itemList_item_head"><%=o[0]%></div>
+              <div class="itemList_item_img">
+                <img src="./../../img/stationery/_01.jpg" alt="" class="img-responsive" />
+              </div>
+              <div class="itemList_item_detail">
+                <h3 class="itemList_item_name"><%=o[1]%></h3>
+              </div>
+            </a>
+          </div>
+          <%
+          		}
+          	}
+          %>
         </div>
       </div>
     </article>
