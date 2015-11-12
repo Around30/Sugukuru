@@ -10,27 +10,27 @@
 			<table>
 				<tr>
 					<th>氏名</th>
-					<td><input type="text" value="name"/></td>
+					<td><input type="text" name="name"/></td>
 				</tr>
 				<tr>
 					<th>フリガナ</th>
-					<td><input type="text" value="phonetic"/></td>
+					<td><input type="text" name="phonetic"/></td>
 				</tr>
 				<tr>
 					<th>郵便番号</th>
-					<td><input type="text" value="poatalCode"/></td>
+					<td><input type="text" name="poatalCode"/></td>
 				</tr>
 				<tr>
 					<th>住所</th>
-					<td><input type="text" value="address"/></td>
+					<td><input type="text" name="address"/></td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
-					<td><input type="text" value="phoneNumber"/></td>
+					<td><input type="text" name="phoneNumber"/></td>
 				</tr>
 				<tr>
 					<th>メールアドレス</th>
-					<td><input type="text" value="mailAddress"/></td>
+					<td><input type="text" name="mailAddress"/></td>
 				</tr>
 			</table>
 			<p><input type="submit" value="注文"/></p>
