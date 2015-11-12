@@ -59,6 +59,7 @@ public class CorporationLogin extends HttpServlet {
 		//パラメータチェック
 		InputCheck i = new InputCheck();
 		err |= i.checkCharaLength(corporationAccountId, 8);
+		err |= i.checkCharaLength(passwd, 50);
 		err |= i.checkNullChar(corporationAccountId, passwd);
 		err |= i.checkNumbers(corporationAccountId);
 

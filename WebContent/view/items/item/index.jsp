@@ -1,8 +1,12 @@
 <%@ page import="jp.ac.hal.Dao.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.util.*,jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"%>
+    pageEncoding="UTF-8"%>
 <%
-	ArrayList<String> pDetail = (ArrayList<String>)request.getAttribute("pDetail");
+	int product_id = Integer.parseInt(request.getParameter("product_id"));
+	Object[] o = Dao.getInstance().productDetail(product_id);
+	for (int i = 0 ; i < o.length ; i++) {
+		System.out.println(o[i]);
+	}
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -84,21 +88,20 @@
           <!-- / 商品イメージ -->
           <!-- 商品詳細 -->
           <div class="item_detail col-lg-7 col-md-7 col-sm-7">
-            <div class="item_detail_title"><%= pDetail.get(1)%></div>
-            <div class="item_detail_price">税込 ￥<%=pDetail.get(3) %> <span class="noneTax">（税抜￥<%=pDetail.get(3) %>）</span>
+            <div class="item_detail_title"><%=o[1] %></div>
+            <div class="item_detail_price">税込<%=o[3] %>円</span>
             </div>
             <div class="item_detail_info">
-              <p><%=pDetail.get(4) %>
-              </p>
+              <p><%=o[11] %></p>
             </div>
             <dl class="item_detail_category"> <dt>カテゴリ</dt>
-              <dd>書類</dd>
+              <dd><%=o[14] %></dd>
             </dl>
             <dl class="item_detail_place"> <dt>原産地</dt>
-              <dd>日本</dd>
+              <dd><%=o[16] %></dd>
             </dl>
             <dl class="item_detail_size"> <dt>サイズ</dt>
-              <dd>W11.5×H9.5×D.2</dd>
+              <dd>W<%=o[8]%>×H<%=o[9]%>×D<%=o[10]%></dd>
             </dl>
             <div class="item_cart">
               <form action="">

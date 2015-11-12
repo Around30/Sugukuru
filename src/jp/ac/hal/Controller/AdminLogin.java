@@ -42,34 +42,6 @@ public class AdminLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		try
-//		{
-//			request.setCharacterEncoding("UTF-8");
-//
-//			//パラメータ受け取り
-//			String administratorId = request.getParameter("administratorId");
-//			String passwd = request.getParameter("passwd");
-//			InputCheck i = new InputCheck();
-//			boolean err = false;
-//			err |= i.checkCharaLength(administratorId, 8);
-//			err |= i.checkCharaLength(passwd, 50);
-//			err |= i.checkNullChar(administratorId ,passwd);
-//			err |= i.checkNumbers(administratorId);
-//			Dao dao = Dao.getInstance();
-//			Admin admin = new Admin(dao.executeGet("select * from administrator_t where administrator_id = ? and passwd = ?", administratorId, passwd));
-//			err |= admin == null;
-//			if (!err) {
-//				//セッションを生成
-//				HttpSession session = request.getSession(true);
-//				//セッションの有効時間を30分に設定
-//				session.setMaxInactiveInterval(1800);
-//				session.setAttribute("admin", admin);
-//			}
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
 
 		// 受け取る文字コードの設定
 		request.setCharacterEncoding("UTF-8");
@@ -94,7 +66,7 @@ public class AdminLogin extends HttpServlet {
 			//ログイン処理
 			try {
 				Dao dao = Dao.getNewInstance();
-				//アカウントIDとpassが一致する法人IDと法人アカウントIDと法人アカウント名を受け取る
+				//アカウントIDとpassが一致する管理者と管理者名を受け取る
 				Object[] administratorLogin = dao.administratorLogin(Integer.parseInt(administratorId),passwd);
 
 				//セッションを生成、セッションに受け取ったデータを入れる
