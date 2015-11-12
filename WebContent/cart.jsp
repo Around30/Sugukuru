@@ -8,12 +8,17 @@
 	</head>
 	<body>
 		<table>
-			<%for(Object[] row: Dao.getInstance().executeQuery("select order_t.product_id, product_name, number_of from order_detail_t, product_t where order_id = ? and order_t.product_id = product_t.product_id", session.getAttribute("orderId"))){ %>
-				<tr>
-					<td><%=row[0] %></td>
-					<td><%=row[1] %></td>
-					<td><%=row[2] %></td>
-				</tr>
+			<tr>
+				<td>商品ID</td>
+				<td>商品名</td>
+				<td>個数</td>
+			</tr>
+			<%for(Object[] row: Dao.getInstance().executeQuery("select order_detail_t.product_id, product_name, number_of from order_detail_t, product_t where order_id = ? and order_detail_t.product_id = product_t.product_id", session.getAttribute("orderId"))){ %>
+			<tr>
+				<td><%=row[0] %></td>
+				<td><%=row[1] %></td>
+				<td><%=row[2] %></td>
+			</tr>
 			<%}%>
 		</table>
 	</body>
