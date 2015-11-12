@@ -7,7 +7,9 @@ public class Product {
 	private String productPhonetic;
 	private int price;			//値段
 	private int makerId;		//メーカーID
+	private String makerName;
 	private int productGenreId;	//商品ジャンルID
+	private String productGenreName;
 	private int countryId;
 	private int productX;
 	private int productY;
@@ -15,6 +17,37 @@ public class Product {
 	private int productWeight;
 	private String productDetail;
 	private int janCode;
+
+	public Product(
+			int productId,
+			String productName,
+			String productPhonetic,
+			int price,
+			String makerName,
+			String productGenreName,
+			int countryId,
+			int productX,
+			int productY,
+			int productZ,
+			int productWeight,
+			String productDetail,
+			int janCode)
+	{
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPhonetic = productPhonetic;
+		this.price = price;
+		this.makerName = makerName;
+ 		this.productGenreName = productGenreName;
+		this.countryId = countryId;
+		this.productX = productX;
+		this.productY = productY;
+		this.productZ = productZ;
+		this.productWeight = productWeight;
+		this.productDetail = productDetail;
+		this.janCode = janCode;
+	}
 
 	public Product(
 			int productId,
@@ -61,11 +94,23 @@ public class Product {
 	public void setMakerId(int makerId) {
 		this.makerId = makerId;
 	}
+	public String getMakerName() {
+		return makerName;
+	}
+	public void setMakerName(String makerName) {
+		this.makerName = makerName;
+	}
 	public int getProductGenreId() {
 		return productGenreId;
 	}
 	public void setProductGenreId(int productGenreId) {
 		this.productGenreId = productGenreId;
+	}
+	public String getProductGenreName() {
+		return productGenreName;
+	}
+	public void setProductGenreName(String productGenreName) {
+		this.productGenreName = productGenreName;
 	}
 	public int getCountryId() {
 		return countryId;
