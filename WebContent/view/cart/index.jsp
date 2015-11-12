@@ -9,9 +9,9 @@
 	<body>
 		<table>
 			<tr>
-				<td>商品ID</td>
-				<td>商品名</td>
-				<td>個数</td>
+				<th>商品ID</th>
+				<th>商品名</th>
+				<th>個数</th>
 			</tr>
 			<%for(Object[] row: Dao.getInstance().executeQuery("select order_detail_t.product_id, product_name, number_of from order_detail_t, product_t where order_id = ? and order_detail_t.product_id = product_t.product_id", session.getAttribute("orderId"))){ %>
 			<tr>
@@ -21,6 +21,6 @@
 			</tr>
 			<%}%>
 		</table>
-		<p><a href="">個人注文</a><a href="">法人注文</a></p>
+		<p><a href="IndividualOrder.jsp">個人注文</a> <a href="CorporationOrder.jsp">法人注文</a></p>
 	</body>
 </html>
