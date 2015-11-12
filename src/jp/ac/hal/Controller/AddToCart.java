@@ -25,17 +25,8 @@ public class AddToCart extends HttpServlet {
 	{
 		try
 		{
-			HttpSession s = request.getSession();
-			if(s.getAttribute("orderId") == null)
-			{
-				Order o = new Order();
-				o.setCart(true);
-				int id = Dao.getInstance().insert(o);
-				s.setAttribute("orderId", id);
-			}
-			
 			OrderDetail d = new OrderDetail();
-			d.setOrderId((Integer)s.getAttribute("orderId"));
+			d.setOrderId(Dao.getInstance().getOrderId(request));
 			d.setProductId(Ic.intNotNullable(request.getParameter("productId")));
 			d.setNumberOf(Ic.intNotNullable(request.getParameter("numberOf")));
 			d.setSubTotal(Ic.intNullable(request.getParameter("subTotal")));
