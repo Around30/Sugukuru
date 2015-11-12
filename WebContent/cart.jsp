@@ -21,5 +21,6 @@
 			</tr>
 			<%}%>
 		</table>
+		<p><a href="">個人注文</a><a href="">法人注文</a></p>
 	</body>
 </html>

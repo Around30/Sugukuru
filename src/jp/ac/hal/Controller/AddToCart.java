@@ -18,28 +18,9 @@ import jp.ac.hal.Util.Ic;
  * Servlet implementation class OrderServlet
  */
 @WebServlet("/OrderServlet")
-public class Cart extends HttpServlet {
+public class AddToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		try
-		{
-			HttpSession s = request.getSession();
-			if(s.getAttribute("orderId") == null)
-			{
-				Order o = new Order();
-				o.setCart(true);
-				int id = Dao.getInstance().insert(o);
-				s.setAttribute("orderId", id);
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}		
-	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		try
