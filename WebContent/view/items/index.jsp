@@ -66,7 +66,6 @@
           	if(request.getParameter("product_genre_id") == null) {
         	  for(Object[] r: Dao.getInstance().executeQuery("select product_genre_id, product_genre_name from product_genre_t where rownum <= 44")){ 
        	  %>
-          }
           <div class="itemList_item boxList_item col-lg-3 col-md-3 col-sm-4">
             <a href="index.jsp?product_genre_id=<%=r[0]%>" class="itemList_item_newItemWrap">
               <div class="itemList_item_head"><%=r[1]%></div>

@@ -36,7 +36,7 @@
           <table class="table">
             <% for(Object[] r: Dao.getInstance().executeQuery("select corporation_id, corporation_name from corporation_t")){ %>
             <tr>
-                <td><a href="corporation_detail.jsp?corporation_id=<%=r[0]%>"><%=r[1]%></a></td>
+                <td><a href="corporation/corporation_detail.jsp?corporation_id=<%=r[0]%>"><%=r[1]%></a></td>
             </tr>
             <% } %>
           </table>
