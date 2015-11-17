@@ -1,7 +1,9 @@
 package jp.ac.hal.Controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,20 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jp.ac.hal.Dao.Dao;
-import jp.ac.hal.Model.IndividualOrder;
-import jp.ac.hal.Util.Ic;
 
 /**
- * Servlet implementation class IndividualWebOrder
+ * Servlet implementation class LoginForConfirm
  */
-@WebServlet("/IndividualWebOrder")
-public class IndividualWebOrder extends HttpServlet {
+@WebServlet("/LoginForConfirm")
+public class LoginForConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndividualWebOrder() {
+    public LoginForConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,19 +40,9 @@ public class IndividualWebOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			IndividualOrder o = new IndividualOrder();
-			o.setOrderId(Dao.getInstance().getOrderId(request));
-			System.out.println(o.getOrderId());
-			o.setName(Ic.stringNotNullable(request.getParameter("name")));
-			o.setPhonetic(Ic.stringNotNullable(request.getParameter("phonetic")));
-			o.setPostalCode(Ic.stringNotNullable(request.getParameter("postalCode")));
-			o.setAddress(Ic.stringNotNullable(request.getParameter("address")));
-			o.setPhoneNumber(Ic.stringNotNullable(request.getParameter("phoneNumber")));
-			o.setMailAddress(Ic.stringNotNullable(request.getParameter("mailAddress")));
-			Dao.getInstance().insert(o);
-			request.getSession().setAttribute("orderId", null);
+			Dao.getInstance().getOrderId(request);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

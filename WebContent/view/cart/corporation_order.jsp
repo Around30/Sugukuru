@@ -6,7 +6,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form action="CorporationWebOrder" method="post">
+		<form action="<%= request.getContextPath() %>/CorporationWebOrder" method="post">
 			<table>
 				<tr>
 					<th>ID</th>

@@ -6,7 +6,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form action="IndividuakWebOrder" method="post">
+		<form action="<%= request.getContextPath() %>/IndividualWebOrder" method="post">
 			<table>
 				<tr>
 					<th>氏名</th>
@@ -18,7 +18,7 @@
 				</tr>
 				<tr>
 					<th>郵便番号</th>
-					<td><input type="text" name="poatalCode"/></td>
+					<td><input type="text" name="postalCode"/></td>
 				</tr>
 				<tr>
 					<th>住所</th>
