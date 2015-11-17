@@ -269,12 +269,11 @@ public class Dao
 	{
 		executeUpdate
 		(
-			"insert into corporation_t values(corporation_seq.nextval, ?, ?, ?, ?, ?, ?, sysdate)",
+			"insert into corporation_t values(corporation_seq.nextval, ?, ?, ?, ?, ?, sysdate)",
 			c.getCorporationName(),
 			c.getPostalCode(),
 			c.getAddress(),
 			c.getPhoneNumber(),
-			c.getPasswd(),
 			c.getCreditLimit()
 		);
 	}
@@ -349,6 +348,20 @@ public class Dao
 			a.getPasswd()
 		);
 	}
+	
+	public int update(Corporation c, int corporationId) throws SQLException
+	{
+		return executeUpdate
+		(
+			"update corporation_t set corporation_name = ?, postal_code = ?, corporation_address = ?, phone_number = ?, credit_limit = ?)"
+					+ " wehre corporation_id = " + corporationId,
+				c.getCorporationName(),
+				c.getPostalCode(),
+				c.getAddress(),
+				c.getPhoneNumber(),
+				c.getCreditLimit()
+		);
+	}
 
 	public Object[] administratorLogin(int id, String passwd) throws SQLException
 	{
@@ -363,5 +376,10 @@ public class Dao
 	public Object[] productDetail(int id) throws SQLException
 	{
 		return executeGet("select * from product_t, product_genre_t, country_t, maker_t where product_id = ? and product_t.product_genre_id = product_genre_t.product_genre_id and product_t.country_id = country_t.country_id and product_t.maker_id = maker_t.maker_id", id);
+	}
+	
+	public Object[] corporationDetail(int id) throws SQLException
+	{
+		return executeGet("select * from corporation_t where corporation_id = ?", id);
 	}
 }
