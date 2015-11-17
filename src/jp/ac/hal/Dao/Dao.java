@@ -317,7 +317,7 @@ public class Dao
 	{
 		return executeUpdate
 		(
-			"insert into individual_order_t values(?, ?, ?, ?, ?, ?)",
+			"insert into individual_order_t values(?, ?, ?, ?, ?, ?, ?)",
 			o.getOrderId(),
 			o.getName(),
 			o.getPhonetic(),
@@ -372,7 +372,6 @@ public class Dao
 		{
 			request.getSession().setAttribute("orderId", insert(new Order()));
 		}
-		System.out.println(request.getSession().getAttribute("orderId"));
 		return (Integer)request.getSession().getAttribute("orderId");
 	}
 }
