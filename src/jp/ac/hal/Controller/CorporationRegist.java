@@ -59,6 +59,7 @@ public class CorporationRegist extends HttpServlet {
 			String sendURL = "view/admin/corporations/corporation/corporation_detail.jsp?corporation_id=" + corporationId;
 			
 			System.out.println(corporationName);
+			System.out.println(corporationId);
 			System.out.println(postalCode);
 			System.out.println(address);
 			System.out.println(phoneNumber);
@@ -67,13 +68,9 @@ public class CorporationRegist extends HttpServlet {
 			String msg = "";
 			InputCheck i = new InputCheck();
 			boolean err = false;
-			err |= i.checkNullChar(corporationName, postalCode, address, phoneNumber, creditLimit);
+			err |= i.checkNullChar(corporationName, postalCode, address, phoneNumber);
 			err |= i.checkCharaLength(corporationName, 30);
-			err |= i.checkCharaLength(postalCode, 7);
-			err |= i.checkNumbers(postalCode);
 			err |= i.checkCharaLength(address, 100);
-			err |= i.checkCharaLength(phoneNumber, 11);
-			err |= i.checkNumbers(phoneNumber);
 			err |= i.checkCharaLength(creditLimit, 8);
 			err |= i.checkNumbers(creditLimit);
 			

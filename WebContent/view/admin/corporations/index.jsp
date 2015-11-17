@@ -1,6 +1,9 @@
 <%@ page import="jp.ac.hal.Dao.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Object[] loginUser = (Object[])session.getAttribute("administratorLogin");
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -24,7 +27,8 @@
             <li class="active"><a href="">トップ</a></li>
             <li><a href="">法人一覧</a></li>
             <li><a href="">注文一覧</a></li>
-            <li><a href="">法人追加</a></li>
+            <li><a href="">法人追加</a></li>>
+            <li>ログインユーザ : <%=loginUser[1] %>様</li>
           </ul>
         </div>
       </nav>
@@ -36,7 +40,7 @@
           <table class="table">
             <% for(Object[] r: Dao.getInstance().executeQuery("select corporation_id, corporation_name from corporation_t")){ %>
             <tr>
-                <td><a href="corporation/corporation_detail.jsp?corporation_id=<%=r[0]%>"><%=r[1]%></a></td>
+                <td><a href="/Sugukuru/view/admin/corporations/corporation/corporation_detail.jsp?corporation_id=<%=r[0]%>"><%=r[1]%></a></td>
             </tr>
             <% } %>
           </table>

@@ -2,8 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Object[] corporationDetail = Dao.getInstance().corporationDetail(
-			Integer.parseInt(request.getParameter("corporation_id")));
+	Object[] corporationDetail = Dao.getInstance().corporationDetail(Integer.parseInt(request.getParameter("corporation_id")));
+	Object[] loginUser = (Object[])session.getAttribute("administratorLogin");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,7 @@
             <li><a href="">法人一覧</a></li>
             <li><a href="">注文一覧</a></li>
             <li><a href="">法人追加</a></li>
+            <li>ログインユーザ : <%=loginUser[1] %>様</li>
           </ul>
         </div>
       </nav>
@@ -58,14 +59,27 @@
               <label for="namel">電話番号 :</label>
               <input type="text" class="from_control" id="namel" name="phoneNumber" value="<%=corporationDetail[4]%>"></input>
             </div>
+            <%
+            	//与信限度額設定フラグ = 0の場合このフォームを表示させない
+            	if (Integer.parseInt((String)loginUser[2]) != 0) {
+            %>
             <div class="form-group">
               <label for="namel">与信限度額 :</label>
               <input type="text" class="from_control" id="namel" name="creditLimit" value="<%=corporationDetail[5]%>"></input>
             </div>
+            <%
+            	}
+            %>
             <div class="form-group">
               <label for="namel">登録日 :</label>
               <span><%=corporationDetail[6]%></span>
             </div>
+            <%
+            	// 与信限度額設定フラグ = 0の場合hiddenで与信限度額を設定
+            	if (Integer.parseInt((String)loginUser[2]) == 0) {
+         	%>
+            <input type="hidden" name="creditLimit" value="<%=corporationDetail[5]%>">
+            <% } %>
             <input type="hidden" name="corporationId" value="<%=corporationDetail[0]%>" />
             <input type="submit" class="btn btn-primary" name="edit" value="編集">
           </form>

@@ -60,7 +60,6 @@ public class AdminLogin extends HttpServlet {
 		err |= i.checkNullChar(administratorId ,passwd);
 		err |= i.checkNumbers(administratorId);
 
-
 		//エラーなし
 		if (!err) {
 			//ログイン処理

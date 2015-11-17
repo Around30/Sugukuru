@@ -354,8 +354,8 @@ public class Dao
 	{
 		return executeUpdate
 		(
-			"update corporation_t set corporation_name = ?, postal_code = ?, corporation_address = ?, phone_number = ?, credit_limit = ?)"
-					+ " wehre corporation_id = " + corporationId,
+			"update corporation_t set corporation_name = ?, postal_code = ?, corporation_address = ?, phone_number = ?, credit_limit = ?"
+					+ " where corporation_id = " + corporationId,
 				c.getCorporationName(),
 				c.getPostalCode(),
 				c.getAddress(),
