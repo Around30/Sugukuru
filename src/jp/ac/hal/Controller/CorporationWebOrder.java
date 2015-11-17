@@ -30,7 +30,7 @@ public class CorporationWebOrder extends HttpServlet {
 				request.getSession().getAttribute("orderId")
 			);
 			CorporationOrder o = new CorporationOrder();
-			o.setOrderId((Integer)request.getSession().getAttribute("orderId"));
+			o.setOrderId(Dao.getInstance().getOrderId(request));
 			o.setCorporationAccountId((Integer)request.getSession().getAttribute("orderId"));
 			o.setConfirmed(true);
 			Dao.getInstance().insert(o);

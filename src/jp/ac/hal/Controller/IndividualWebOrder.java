@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jp.ac.hal.Dao.Dao;
-import jp.ac.hal.Model.CorporationOrder;
 import jp.ac.hal.Model.IndividualOrder;
 import jp.ac.hal.Util.Ic;
 
@@ -41,13 +40,8 @@ public class IndividualWebOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			Dao.getInstance().executeUpdate
-			(
-				"update order_t set cart = false where order_id = ?",
-				request.getSession().getAttribute("orderId")
-			);
 			IndividualOrder o = new IndividualOrder();
-			o.setOrderId((Integer)request.getSession().getAttribute("orderId"));
+			o.setOrderId(Dao.getInstance().getOrderId(request));
 			o.setName(Ic.stringNotNullable(request.getParameter("name")));
 			o.setPhonetic(Ic.stringNotNullable(request.getParameter("phonetic")));
 			o.setPostalCode(Ic.stringNotNullable(request.getParameter("postalCode")));

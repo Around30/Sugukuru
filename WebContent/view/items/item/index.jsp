@@ -104,10 +104,11 @@
               <dd>W<%=o[8]%>×H<%=o[9]%>×D<%=o[10]%></dd>
             </dl>
             <div class="item_cart">
-              <form action="">
+              <form action="<%= request.getContextPath() %>/AddToCart" method="post">
                 <div class="item_cart_cntWrap">
+                  <input type="hidden" name="productId" value="<%=o[0] %>" />
                   <input type="button" value="-" id="minus1" class="item_cart_form_minus">
-                  <input type="text" name="cnt" value="1" id="qty" class="item_cart_form_qty">
+                  <input type="text" name="numberOf" value="1" id="qty" class="item_cart_form_qty">
                   <input type="button" value="+" id="plus1" class="item_cart_form_plus">
                 </div>
                 <input type="submit" value="カートに入れる" class="item_cart_submit">

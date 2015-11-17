@@ -10,6 +10,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import jp.ac.hal.Model.Admin;
@@ -381,5 +382,15 @@ public class Dao
 	public Object[] corporationDetail(int id) throws SQLException
 	{
 		return executeGet("select * from corporation_t where corporation_id = ?", id);
+	}
+		
+	public int getOrderId(HttpServletRequest request) throws SQLException
+	{
+		if(request.getSession().getAttribute("orderId") == null)
+		{
+			request.getSession().setAttribute("orderId", insert(new Order()));
+		}
+		System.out.println(request.getSession().getAttribute("orderId"));
+		return (Integer)request.getSession().getAttribute("orderId");
 	}
 }
