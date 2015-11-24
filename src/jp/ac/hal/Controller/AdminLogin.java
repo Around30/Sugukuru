@@ -60,7 +60,6 @@ public class AdminLogin extends HttpServlet {
 		err |= i.checkNullChar(administratorId ,passwd);
 		err |= i.checkNumbers(administratorId);
 
-
 		//エラーなし
 		if (!err) {
 			//ログイン処理
@@ -73,7 +72,7 @@ public class AdminLogin extends HttpServlet {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("administratorLogin",administratorLogin);
 					//セッションの有効時間を30分に設定
-					session.setMaxInactiveInterval(1800);
+					session.setMaxInactiveInterval(18000);
 				}
 				else{
 					err = true;
