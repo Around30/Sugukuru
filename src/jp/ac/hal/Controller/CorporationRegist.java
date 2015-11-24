@@ -36,7 +36,7 @@ public class CorporationRegist extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -46,8 +46,7 @@ public class CorporationRegist extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		System.out.println(request.getParameter("edit"));
-		System.out.println(request.getParameter("regist"));
-		
+
 		if (request.getParameter("edit") != null) {
 			//パラメータ受け取り
 			int corporationId = Integer.parseInt(request.getParameter("corporationId"));
@@ -56,16 +55,14 @@ public class CorporationRegist extends HttpServlet {
 			String address = request.getParameter("address");
 			String phoneNumber = request.getParameter("phoneNumber");
 			String creditLimit = request.getParameter("creditLimit");
-			
+
 			String sendURL = "view/admin/corporations/corporation/corporation_detail.jsp?corporation_id=" + corporationId;
-			
 			String msg = "";
 			InputCheck i = new InputCheck();
 			boolean err = false;
 			err |= i.checkNullChar(corporationName, postalCode, address, phoneNumber);
 			err |= i.checkCharaLength(corporationName, 30);
 			err |= i.checkCharaLength(address, 100);
-			
 			if(!err) {
 				try {
 					Dao dao = Dao.getNewInstance();
@@ -94,20 +91,20 @@ public class CorporationRegist extends HttpServlet {
 			disp.forward(request, response);
 		//////////////////////////////////////
 		// 法人登録
-		//////////////////////////////////////	
+		//////////////////////////////////////
 		} else if (request.getParameter("regist") != null) {
 			String corporationName = request.getParameter("corporationName");
 			String postalCode = request.getParameter("postalCode");
 			String address = request.getParameter("address");
 			String phoneNumber = request.getParameter("phoneNumber");
 			String creditLimit = request.getParameter("creditLimit");
-			
+
 			int ret = 0;
 			String msg = "";
 			boolean err = false;
 			InputCheck c = new InputCheck();
 			err |= c.checkNullChar(corporationName, postalCode, address, phoneNumber, creditLimit);
-			
+
 			if (!err) {
 				try {
 					ret =  Dao.getInstance().executeInsert
@@ -119,7 +116,7 @@ public class CorporationRegist extends HttpServlet {
 							phoneNumber,
 							creditLimit
 					);
-					
+
 					if (ret != 0) {
 						// 処理が成功した場合登録した法人詳細へ飛ばす
 						response.sendRedirect("view/admin/corporations/corporation/corporation_detail.jsp?corporation_id=" + ret);

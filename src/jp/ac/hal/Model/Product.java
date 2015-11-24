@@ -16,7 +16,7 @@ public class Product {
 	private int productZ;
 	private int productWeight;
 	private String productDetail;
-	private int janCode;
+	private String janCode;
 
 	public Product(
 			int productId,
@@ -31,7 +31,7 @@ public class Product {
 			int productZ,
 			int productWeight,
 			String productDetail,
-			int janCode)
+			String janCode)
 	{
 		super();
 		this.productId = productId;
@@ -40,6 +40,37 @@ public class Product {
 		this.price = price;
 		this.makerName = makerName;
  		this.productGenreName = productGenreName;
+		this.countryId = countryId;
+		this.productX = productX;
+		this.productY = productY;
+		this.productZ = productZ;
+		this.productWeight = productWeight;
+		this.productDetail = productDetail;
+		this.janCode = janCode;
+	}
+
+	public Product(
+			int productId,
+			String productName,
+			String productPhonetic,
+			int price,
+			int makerId,
+			int productGenreId,
+			int countryId,
+			int productX,
+			int productY,
+			int productZ,
+			int productWeight,
+			String productDetail,
+			String janCode)
+	{
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPhonetic = productPhonetic;
+		this.price = price;
+		this.makerId = makerId;
+ 		this.productGenreId = productGenreId;
 		this.countryId = countryId;
 		this.productX = productX;
 		this.productY = productY;
@@ -62,6 +93,10 @@ public class Product {
 		this.productGenreId = productGenreId;
 		this.price = price;
 		this.makerId = makerId;
+	}
+
+	public Product() {
+		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	public int getProductId() {
@@ -148,10 +183,10 @@ public class Product {
 	public void setProductDetail(String productDetail) {
 		this.productDetail = productDetail;
 	}
-	public int getJanCode() {
+	public String getJanCode() {
 		return janCode;
 	}
-	public void setJanCode(int janCode) {
+	public void setJanCode(String janCode) {
 		this.janCode = janCode;
 	}
 }

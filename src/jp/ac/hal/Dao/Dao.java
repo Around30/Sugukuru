@@ -349,7 +349,7 @@ public class Dao
 			a.getPasswd()
 		);
 	}
-	
+
 	public int update(Corporation c, int corporationId) throws SQLException
 	{
 		return executeUpdate
@@ -361,6 +361,26 @@ public class Dao
 				c.getAddress(),
 				c.getPhoneNumber(),
 				c.getCreditLimit()
+		);
+	}
+
+	public int update(Product p, int productId) throws SQLException
+	{
+		return executeUpdate
+		(
+			"update product_t set product_name = ?, product_phonetic = ?, price = ?, maker_id = ?, product_genre_id = ?, country_id = ?, product_x = ?, product_y = ?, product_z = ?, product_weight = ?, product_detail = ?, jan_code = ? where product_id = " + productId,
+				p.getProductName(),
+				p.getProductPhonetic(),
+				p.getPrice(),
+				p.getMakerId(),
+				p.getProductGenreId(),
+				p.getCountryId(),
+				p.getProductX(),
+				p.getProductY(),
+				p.getProductZ(),
+				p.getProductWeight(),
+				p.getProductDetail(),
+				p.getJanCode()
 		);
 	}
 
@@ -378,12 +398,12 @@ public class Dao
 	{
 		return executeGet("select * from product_t, product_genre_t, country_t, maker_t where product_id = ? and product_t.product_genre_id = product_genre_t.product_genre_id and product_t.country_id = country_t.country_id and product_t.maker_id = maker_t.maker_id", id);
 	}
-	
+
 	public Object[] corporationDetail(int id) throws SQLException
 	{
 		return executeGet("select * from corporation_t where corporation_id = ?", id);
 	}
-		
+
 	public int getOrderId(HttpServletRequest request) throws SQLException
 	{
 		if(request.getSession().getAttribute("orderId") == null)
