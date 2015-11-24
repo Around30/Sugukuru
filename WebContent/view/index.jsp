@@ -3,7 +3,6 @@
     import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"%>
 <%
 	Object[] cData = (Object[])session.getAttribute("corporationLogin");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +14,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>すぐくる</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
-  <!--font-awesome-->
+  <!-- font-awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
