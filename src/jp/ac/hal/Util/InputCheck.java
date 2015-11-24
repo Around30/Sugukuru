@@ -12,7 +12,7 @@ public class InputCheck {
 		for (String str : args) {
 			err |= (str == null || str.length() == 0);
 		}
-		
+
 		return err;
 	}
 
@@ -23,10 +23,10 @@ public class InputCheck {
 	 * @return
 	 */
 	public boolean checkCharaLength(String str, int length) {
-		
+
 		return str.length() > length;
 	}
-	
+
 	/**
 	 * 引数strに数字以外が含まれている場合trueを返す
 	 * @param str
@@ -40,6 +40,23 @@ public class InputCheck {
 			}
 		} catch (NumberFormatException e) {
 			err = true;
+		}
+
+		return err;
+	}
+	
+	/**
+	 * 数字-のみ
+	 * @param args
+	 * @return
+	 */
+	public boolean addressAndPhoneValidator(String... args) {
+		boolean err = false;
+		String pattern = "[0-9a-zA-Z-]+";
+		for (String str : args) {
+			if (!str.matches(pattern)) {
+				err |= true;
+			}
 		}
 		
 		return err;
