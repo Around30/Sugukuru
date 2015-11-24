@@ -14,10 +14,10 @@
 <body>
   <div class="container">
     <div class="row">
-      <jsp:include page="/view/layout/header.jsp" />
+      <jsp:include page="<%= request.getContextPath() %>/view/layout/header.jsp" />
     </div>
     <div class="row">
-      <jsp:include page="/view/layout/nav.jsp" />
+      <jsp:include page="<%= request.getContextPath() %>/view/layout/nav.jsp" />
     </div>
     <div class="row">
       <main class="main col-md-12">
@@ -34,7 +34,7 @@
       </main>
     </div>
     <div class="row">
-      <jsp:include page="/view/layout/footer.jsp" />
+      <jsp:include page="<%= request.getContextPath() %>/view/layout/footer.jsp" />
     </div>
   </div>
 </body>
