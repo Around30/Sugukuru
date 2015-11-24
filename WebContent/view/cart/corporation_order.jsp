@@ -17,7 +17,7 @@
 					<td><input type="text" name="phonetic"/></td>
 				</tr>
 			</table>
-			<p><input type="submit" value="注文"/></p>
+			<p><input type="submit" value="注文確認画面へ"/></p>
 		</form>
 	</body>
 </html>
