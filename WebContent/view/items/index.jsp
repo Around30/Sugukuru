@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>すぐくる</title>
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
   <!--font-awesome-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
@@ -21,8 +21,8 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
           </button>
-          <a class="header_titleLogo navbar-brand" href="http://localhost:9000/view">
-            <img src="http://localhost:9000/img/sugukuru2.png" alt="すぐくる">
+          <a class="header_titleLogo navbar-brand" href="<%= request.getContextPath() %>/view">
+            <img src="<%= request.getContextPath() %>/assets/img/sugukuru2.png" alt="すぐくる">
           </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -70,7 +70,7 @@
             <a href="index.jsp?product_genre_id=<%=r[0]%>" class="itemList_item_newItemWrap">
               <div class="itemList_item_head"><%=r[1]%></div>
               <div class="itemList_item_img">
-                <img src="./../../img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name"></h3>
@@ -87,7 +87,7 @@
             <a href="item/index.jsp?product_id=<%=o[0]%>" class="itemList_item_newItemWrap">
               <div class="itemList_item_head"><%=o[0]%></div>
               <div class="itemList_item_img">
-                <img src="./../../img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name"><%=o[1]%></h3>
@@ -103,10 +103,10 @@
     </article>
   </main>
   <footer class="footer clearfix">
-    <img src="http://localhost:9000/img/sugukuru.png" alt="" class="footer_logo" />
+    <img src="<%= request.getContextPath() %>/assets/img/sugukuru.png" alt="" class="footer_logo" />
     <div class="footer_nav">
       <ul>
-        <li><a href="http://localhost:9000/view">ホーム</a>
+        <li><a href="<%= request.getContextPath() %>/view">ホーム</a>
         </li>
         <li><a href="">支払い・配送・返品について</a>
         </li>
@@ -117,9 +117,9 @@
       </ul>
     </div>
   </footer>
-  <script src="./../../js/main.js"></script>
-  <script src="./../../js/plugins.js"></script>
-  <script src="./../../js/vendor.js"></script>
+  <script src="<%= request.getContextPath() %>/js/main.js"></script>
+  <script src="<%= request.getContextPath() %>/js/plugins.js"></script>
+  <script src="<%= request.getContextPath() %>/js/vendor.js"></script>
 </body>
 
 </html>
