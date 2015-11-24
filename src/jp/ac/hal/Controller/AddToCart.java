@@ -29,7 +29,6 @@ public class AddToCart extends HttpServlet {
 			d.setNumberOf(Ic.intNotNullable(request.getParameter("numberOf")));
 			d.setSubTotal(Ic.intNullable(request.getParameter("subTotal")));
 			Dao.getInstance().insert(d);
-			System.out.println(request.getContextPath() + "/view/cart/index.jsp");
 			response.sendRedirect(request.getContextPath() + "/view/cart/index.jsp");
 		}
 		catch(Exception e)

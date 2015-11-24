@@ -15,7 +15,7 @@ import jp.ac.hal.Model.CorporationOrder;
  * Servlet implementation class CorporationWebOrder
  */
 @WebServlet("/CorporationWebOrder")
-public class CorporationWebOrder extends HttpServlet {
+public class CopyOfCorporationWebOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -34,6 +34,7 @@ public class CorporationWebOrder extends HttpServlet {
 			o.setCorporationAccountId((Integer)request.getSession().getAttribute("orderId"));
 			o.setConfirmed(true);
 			Dao.getInstance().insert(o);
+			request.getSession().setAttribute("orderId", null);
 		}
 		catch(Exception e)
 		{

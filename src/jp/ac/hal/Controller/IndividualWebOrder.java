@@ -50,7 +50,6 @@ public class IndividualWebOrder extends HttpServlet {
 			o.setPhoneNumber(Ic.stringNotNullable(request.getParameter("phoneNumber")));
 			o.setMailAddress(Ic.stringNotNullable(request.getParameter("mailAddress")));
 			Dao.getInstance().insert(o);
-			request.getSession().setAttribute("orderId", null);
 		}
 		catch(Exception e)
 		{
