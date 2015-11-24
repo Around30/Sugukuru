@@ -24,11 +24,15 @@
         <article>
           <h1 class="page-header">法人一覧</h1>
           <table class="table">
+<<<<<<< Updated upstream
             <% for(Object[] r: Dao.getInstance().executeQuery("select corporation_id, corporation_name from corporation_t")) { %>
             <tr>
                 <td><a href="/Sugukuru/view/admin/corporations/corporation/corporation_detail.jsp?corporation_id=<%=r[0]%>"><%=r[1]%></a></td>
+=======
+            <tr>
+              <td>テスト会社</td>
+>>>>>>> Stashed changes
             </tr>
-            <% } %>
           </table>
         </article>
       </main>
