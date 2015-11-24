@@ -226,7 +226,7 @@
   <script src="<%= request.getContextPath() %>/assets/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="<%= request.getContextPath() %>/assets/bower_components/javascripts/bootstrap.min.js"></script>"
   <script src="<%= request.getContextPath() %>/assets/bower_components/angular/angular.min.js"></script>
-  <script src="<%= request.getContextPath() %>/assets/bower_components/flexslider/jquery.jquery.flexslider-min.js"></script>
+  <script src="<%= request.getContextPath() %>/assets/bower_components/flexslider/jquery.flexslider-min.js"></script>
   <script type="text/javascript" charset="utf-8">
     // スライドショーの設定
       $(window).load(function()
