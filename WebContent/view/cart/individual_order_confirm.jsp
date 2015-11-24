@@ -9,29 +9,30 @@
 	<body>
 		<p>ご注文はこちらでよろしいでですか？</p>
 		<table>
+			<%Object[] o = Dao.getInstance().executeGet("select name, phonetic, postal_code, address, phone_number, mail_address from individual_order_t where order_id = ?", session.getAttribute("orderId")); %>
 			<tr>
 				<th>氏名</th>
-				<td></td>
+				<td><%=o[0] %></td>
 			</tr>
 			<tr>
 				<th>フリガナ</th>
-				<td></td>
+				<td><%=o[1] %></td>
 			</tr>
 			<tr>
 				<th>郵便番号</th>
-				<td></td>
+				<td><%=o[2] %></td>
 			</tr>
 			<tr>
 				<th>住所</th>
-				<td></td>
+				<td><%=o[3] %></td>
 			</tr>
 			<tr>
 				<th>電話番号</th>
-				<td></td>
+				<td><%=o[4] %></td>
 			</tr>
 			<tr>
 				<th>メールアドレス</th>
-				<td></td>
+				<td><%=o[5] %></td>
 			</tr>
 		</table>
 		<table>
@@ -48,7 +49,7 @@
 			</tr>
 			<%}%>
 		</table>
-		<form action="submit">
+		<form action="submit" action="<%=request.getServletContext() %>/ConfirmOrder" method="post">
 			<input type="hidden" name="orderId" value="<%=session.getAttribute("orderId")%>" />
 			<input type="hidden" name="revision" value="<%=Dao.getInstance().executeGet("select revision from order_t where order_id = ?", session.getAttribute("orderId"))[0] %>" />
 			<input type="submit" value="承認" />
