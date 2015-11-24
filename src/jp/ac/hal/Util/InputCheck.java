@@ -44,4 +44,21 @@ public class InputCheck {
 		
 		return err;
 	}
+	
+	/**
+	 * 数字-のみ
+	 * @param args
+	 * @return
+	 */
+	public boolean addressAndPhoneValidator(String... args) {
+		boolean err = false;
+		String pattern = "[0-9a-zA-Z-]+";
+		for (String str : args) {
+			if (!str.matches(pattern)) {
+				err |= true;
+			}
+		}
+		
+		return err;
+	}
 }

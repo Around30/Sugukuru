@@ -45,8 +45,6 @@ public class CorporationRegist extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		System.out.println(request.getParameter("edit"));
-		System.out.println(request.getParameter("regist"));
 		
 		if (request.getParameter("edit") != null) {
 			//パラメータ受け取り

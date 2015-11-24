@@ -3,6 +3,7 @@
 *.jar
 *.war
 *.ear
+AdminMail.java
 
 # Eclipse
 .project
