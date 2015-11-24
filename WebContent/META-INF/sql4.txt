@@ -1,1 +1,1 @@
-ALTER TABLE corporation_account_t ADD ( password varchar2(50) not null) ;
+ALTER TABLE order_t MODIFY ( order_date NULL );

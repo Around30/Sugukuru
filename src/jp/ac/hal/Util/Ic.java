@@ -2,6 +2,18 @@ package jp.ac.hal.Util;
 
 public class Ic
 {
+	public static Object compare(Object o1, Object o2)
+	{
+		if(o1.equals(o2))
+		{
+			return o1;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	public static String stringNullable(String str)
 	{
 		if(str == null || str.isEmpty())

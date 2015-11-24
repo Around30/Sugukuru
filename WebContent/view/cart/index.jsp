@@ -21,6 +21,6 @@
 			</tr>
 			<%}%>
 		</table>
-		<p><a href="individual_order.jsp">個人注文</a> <a href="corporation_order.jsp">法人注文</a></p>
+		<p><a href="individual_order.jsp">個人注文画面へ</a> <a href="corporation_order.jsp">法人注文画面へ</a></p>
 	</body>
 </html>

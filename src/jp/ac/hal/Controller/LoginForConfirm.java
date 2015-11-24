@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jp.ac.hal.Dao.Dao;
+import jp.ac.hal.Util.Ic;
 
 /**
  * Servlet implementation class LoginForConfirm
@@ -40,7 +41,12 @@ public class LoginForConfirm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			Dao.getInstance().getOrderId(request);
+			Dao.getInstance().corporationLogin
+			(
+				Ic.intNotNullable(request.getParameter("corporation_account_id")),
+				Ic.stringNotNullable(request.getParameter("password"), 8, 16)
+			);
+			response.sendRedirect(request.getContextPath() + "/view/cart/corporation_order_confirm.jsp");
 		}
 		catch (Exception e)
 		{
