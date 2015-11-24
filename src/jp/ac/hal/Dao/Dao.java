@@ -294,7 +294,7 @@ public class Dao
 	{
 		return executeInsert
 		(
-			"insert into order_t values(order_seq.nextval, ?, sysdate, ?)",
+			"insert into order_t values(order_seq.nextval, ?, null, ?)",
 			o.getTotal(),
 			o.isCart()
 		);
