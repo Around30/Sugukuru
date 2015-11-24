@@ -13,8 +13,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>すぐくる</title>
-  <link rel="stylesheet" href="" />
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/bower_components/normalize-css/normalize.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
@@ -28,7 +28,7 @@
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
           </button>
           <a class="header_titleLogo navbar-brand" href="#">
-            <img src="http://localhost:9000/img/sugukuru2.png" alt="すぐくる">
+            <img src="<%= request.getContextPath() %>/assets/img/sugukuru2.png" alt="すぐくる">
           </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,13 +68,13 @@
   <div class="flexslider">
     <ul class="slides">
       <li>
-        <img src="./../img/slideImg/slide07.jpg" alt="">
+        <img src="<%= request.getContextPath() %>/assets/img/slideImg/slide07.jpg" alt="">
       </li>
       <li>
-        <img src="./../img/slideImg/slide08.jpg" alt="">
+        <img src="<%= request.getContextPath() %>/assets/img/slideImg/slide08.jpg" alt="">
       </li>
       <li>
-        <img src="./../img/slideImg/slide09.jpg" alt="">
+        <img src="<%= request.getContextPath() %>/assets/img/slideImg/slide09.jpg" alt="">
       </li>
     </ul>
   </div>
@@ -223,9 +223,10 @@
   <footer>
     <p></p>
   </footer>
-  <script src="./../js/main.js"></script>
-  <script src="./../js/plugins.js"></script>
-  <script src="./../js/vendor.js"></script>
+  <script src="<%= request.getContextPath() %>/assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<%= request.getContextPath() %>/assets/bower_components/javascripts/bootstrap.min.js"></script>"
+  <script src="<%= request.getContextPath() %>/assets/bower_components/angular/angular.min.js"></script>
+  <script src="<%= request.getContextPath() %>/assets/bower_components/flexslider/jquery.jquery.flexslider-min.js"></script>
   <script type="text/javascript" charset="utf-8">
     // スライドショーの設定
       $(window).load(function()

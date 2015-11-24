@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../bower_components/FlexSlider-Scss/flexslider.scss";
 
 $allSeeBtnColor: #D7E5EA;
 
@@ -40,7 +41,7 @@ body {
 
 .jumbotron {
   text-align: center;
-  background: url(./../images/jumbotron.jpg);
+  background: url(./../img/jumbotron.jpg);
   color: #fff;
 }
 

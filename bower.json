@@ -18,6 +18,8 @@
   "devDependencies": {
     "normalize-css": "normalize.css#~3.0.3",
     "angular": "~1.4.7",
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.5",
+    "flexslider": "FlexSlider#~2.6.0",
+    "FlexSlider-Scss": "~1.0.0"
   }
 }
