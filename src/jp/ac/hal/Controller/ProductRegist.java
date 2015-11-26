@@ -44,11 +44,17 @@ public class ProductRegist extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		System.out.println(request.getParameter("edit"));
 
+		String msg = "";
+		String sendURL = "";
+		/**************************************
+		 *商品情報変更
+		 **************************************/
 		if (request.getParameter("edit") != null) {
-			//パラメータ受け取り
 			int productId = Integer.parseInt(request.getParameter("productId"));
+			sendURL = "view/admin/productManagement/products/product_detail.jsp?product_id=" + productId;
+			//パラメータ受け取り
+
 			String productName = request.getParameter("productName");
 			String productPhonetic = request.getParameter("productPhonetic");
 
@@ -64,17 +70,9 @@ public class ProductRegist extends HttpServlet {
 			String productDetail = request.getParameter("productDetail");
 			String janCode = request.getParameter("janCode");
 
-			String sendURL = "view/admin/productManagement/products/product_detail.jsp?product_id=" + productId;
 
-			System.out.println(productId);
-			System.out.println(productName);
-			System.out.println(productPhonetic);
-			System.out.println(price);
-			System.out.println(makerId);
-			System.out.println(productGenreId);
-			System.out.println(countryId);
 
-			String msg = "";
+
 			InputCheck i = new InputCheck();
 			boolean err = false;
 			err |= i.checkNullChar(productName, productPhonetic, price, makerId, productGenreId, countryId, productX, productY, productZ, productWeight, productDetail, janCode);
@@ -110,8 +108,13 @@ public class ProductRegist extends HttpServlet {
 					p.setProductWeight(Integer.parseInt(productWeight));
 					p.setProductDetail(productDetail);
 					p.setJanCode(janCode);
+
 					dao.update(p, productId);
+
+					dao.insert(p);
+
 					msg = "登録が完了しました。";
+
 				} catch (NamingException e) {
 					e.printStackTrace();
 					msg = "Naming";
@@ -122,12 +125,14 @@ public class ProductRegist extends HttpServlet {
 			} else {
 				msg = "入力項目に誤りがあります。";
 			}
+		}
+		else if(request.getParameter("regist") != null){
+
+		}
 			request.setAttribute("msg", msg);
 			RequestDispatcher disp = request.getRequestDispatcher(sendURL);
 			//文字コード
 			response.setContentType("text/html; charset=UTF-8");
 			disp.forward(request, response);
 		}
-	}
-
 }

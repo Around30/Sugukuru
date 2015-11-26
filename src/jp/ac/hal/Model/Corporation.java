@@ -3,7 +3,7 @@ package jp.ac.hal.Model;
 import java.sql.Date;
 
 public class Corporation {
-	
+
 	private int corporationId;
 	private String corporationName;
 	private String postalCode;
@@ -17,14 +17,14 @@ public class Corporation {
 	private String state;
 	private int orderId;
 	private Date estimateDate;
-	
+
 	/**
 	 * @param なし
 	 */
 	public Corporation() {}
-	
+
 	/**
-	 * 
+	 *
 	 * @param corporationName
 	 * @param postalCode
 	 * @param address
@@ -48,9 +48,9 @@ public class Corporation {
 		this.passwd = passwd;
 		this.creditLimit = creditLimit;
 	}
-	
-	
-	
+
+
+
 	public int getCorporationId() {
 		return corporationId;
 	}
