@@ -1,12 +1,6 @@
 package jp.ac.hal.Controller;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import java.io.PrintWriter;
 import java.util.Properties;
 
@@ -16,8 +10,13 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import jp.ac.hal.Util.*;
+import jp.ac.hal.Util.AdminMail;
 
 /**
  * Servlet implementation class SendMail
@@ -25,7 +24,7 @@ import jp.ac.hal.Util.*;
 @WebServlet("/SendMail")
 public class SendMail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,23 +32,23 @@ public class SendMail extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		String to = ""; //送り先メールアドレス
 		String from = AdminMail.EMAIL_ADDRESS;
 		String userName = AdminMail.USER_NAME;
 		String passwd = AdminMail.PASSWORD;
-		
+
 		PrintWriter out = response.getWriter();
 		try {
 			Properties property = new Properties();
-			
+
 			property.put("mail.smtp.host","smtp.gmail.com");
 
             //GmailのSMTP設定
@@ -91,7 +90,7 @@ public class SendMail extends HttpServlet {
         }
 
         out.close();
-		
+
 	}
 
 	/**
