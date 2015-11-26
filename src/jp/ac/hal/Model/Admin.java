@@ -8,14 +8,14 @@ public class Admin {
 	private String administratorName;
 	private boolean flg;
 	private String passwd;
-	
+
 	public Admin(Object[] o) {
 		this.administratorId = ((BigDecimal)o[0]).intValue();
 		this.administratorName = (String)o[1];
 		BigDecimal b = (BigDecimal)o[2];
 		this.flg = b != null && b.intValue() == 1;
 	}
-	
+
 	public int getAdministratorId() {
 		return administratorId;
 	}
@@ -39,5 +39,5 @@ public class Admin {
 	}
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
-	}	
+	}
 }

@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Object[] productDetail = Dao.getInstance().productDetail(Integer.parseInt(request.getParameter("product_id")));
 	String msg = (String)request.getAttribute("msg");
 %>
 <!DOCTYPE html>
@@ -10,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
-<title>商品詳細 | すぐくる</title>
+<title>商品登録 | すぐくる</title>
 </head>
 <body>
   <div class="container">
@@ -37,27 +36,25 @@
     <div class="row">
       <main class="main col-md-12">
         <article>
-          <h1 class="page-header">商品詳細 : <%=productDetail[1] %></h1>
-          <form action="<%= request.getContextPath() %>/ProductRegist" method="post" id ="f0">
-            <div class="form-group">
-              <label for="namel">商品ID :</label>
-              <span><%=productDetail[0]%></span>
-            </div>
+          <h1 class="page-header">商品新規登録</h1>
+          <form action="<%= request.getContextPath() %>/ProductRegist" method="post">
+
             <div class="form-group">
               <label for="namel">商品名 :</label>
-              <input type="text" class="from_control" id="namel" name="productName" value="<%=productDetail[1]%>"></input>
+              <input type="text" class="from_control" id="namel" name="productName"></input>
             </div>
             <div class="form-group">
               <label for="namel">フリガナ :</label>
-              <input type="text" class="from_control" id="namel" name="productPhonetic" value="<%=productDetail[2]%>"></input>
+              <input type="text" class="from_control" id="namel" name="productPhonetic"></input>
             </div>
             <div class="form-group">
               <label for="namel">価格 :</label>
-              <input type="text" class="from_control" id="namel" name="price" value="<%=productDetail[3]%>">円</input>
+              <input type="text" class="from_control" id="namel" name="price">円</input>
             </div>
             <div class="form-group">
               <label for="namel">メーカー :</label>
               <select name ="makerId">
+              		<option value="">選択して下さい</option>
 	              <% for(Object[] r: Dao.getInstance().executeQuery("select maker_id, maker_name from maker_t")){ %>
 	              	<option  value  ="<%=r[0] %>" label="<%=r[0] %>,<%=r[1] %>"></option>
 	              <% } %>
@@ -66,6 +63,7 @@
             <div class="form-group">
               <label for="namel">商品ジャンル :</label>
               <select name ="productGenreId">
+              		<option value="">選択して下さい</option>
 	              <% for(Object[] r: Dao.getInstance().executeQuery("select product_genre_id, product_genre_name from product_genre_t")){ %>
 	              	<option value ="<%=r[0] %>" label="<%=r[0] %>,<%=r[1] %>" ></option>
 	              <% } %>
@@ -75,6 +73,7 @@
             <div class="form-group">
               <label for="namel">原産地 :</label>
               <select name ="countryId">
+             		 <option value="">選択して下さい</option>
 	              <% for(Object[] r: Dao.getInstance().executeQuery("select country_id, cuontry_name from country_t")){ %>
 	              	<option value ="<%=r[0] %>" label="<%=r[0] %>,<%=r[1] %>"></option>
 	              <% } %>
@@ -82,25 +81,23 @@
             </div>
             <div class="form-group">
               <label for="namel">サイズ :</label>
-              W<input type="number" class="from_control" id="namel" name="productX" max="8" value="<%=productDetail[7]%>">×</input>
-              H<input type="number" class="from_control" id="namel" name="productY" max="8" value="<%=productDetail[8]%>">×</input>
-              D<input type="number" class="from_control" id="namel" name="productZ" max="8" value="<%=productDetail[9]%>"></input>
+              W<input type="number" class="from_control" id="namel" name="productX">×</input>
+              H<input type="number" class="from_control" id="namel" name="productY">×</input>
+              D<input type="number" class="from_control" id="namel" name="productZ"></input>
 
             </div>
             <div class="form-group">
-            重さ<input type="number" class="from_control" id="namel" name="productWeight" max="8" value="<%=productDetail[10]%>"></input>
+            重さ<input type="text" class="from_control" id="namel" name="productWeight"></input>
             </div>
             <div class="form-group">
               <label for="namel">商品説明 :</label>
-              <input type="textarea" class="from_control" id="namel" name="productDetail" value="<%=productDetail[11]%>"></input>
+              <input type="number" class="from_control" id="namel" name="productDetail"></input>
             </div>
              <div class="form-group">
               <label for="namel">JANコード :</label>
-              <input type="text" class="from_control" id="namel" name="janCode" value="<%=productDetail[12]%>"></input>
+              <input type="text" class="from_control" id="namel" name="janCode"></input>
             </div>
-
-            <input type="hidden" name="productId" value="<%=productDetail[0]%>" />
-            <input type="submit" class="btn btn-primary" name="edit" value="編集">
+            <input type="submit" class="btn btn-primary" name="regist" value="登録">
           </form>
           <%if (msg != null) { %>
           <%= msg %>
@@ -116,15 +113,6 @@
       </footer>
     </div>
   </div>
-  <script src="./../../../../js/selected.js"></script>
-  <script type="text/javascript" charset="utf-8">
-	  window.onload=function(){
-		  var f=document.getElementById("f0");
-		  var ymd=new Date();
-		  checkSelect(f.elements["makerId"],<%=productDetail[4]%>);
-		  checkSelect(f.elements["productGenreId"],<%=productDetail[5]%>);
-		  checkSelect(f.elements["countryId"],<%=productDetail[6]%>);
-	  }
-  </script>
+
 </body>
 </html>
