@@ -10,7 +10,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>管理者ログイン | すぐくる</title>
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
 </head>
 <body>
   <div class="container">
@@ -41,7 +41,11 @@
       </main>
     </div>
     <div class="row">
-      <jsp:include page="/view/layout/admin/footer.jsp" />
+      <footer class="footer col-md-12">
+        <p>
+          <small>Around30a</small>
+        </p>
+      </footer>
     </div>
   </div>
 </body>
