@@ -19,7 +19,7 @@ public class ConfirmOrder extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -29,7 +29,7 @@ public class ConfirmOrder extends HttpServlet
 			Dao.getInstance().executeUpdate
 			(
 				"update order_t set order_date = sysdate where order_id = ?",
-				request.getSession().getAttribute("orderId"), request.getParameter("orderId")
+				request.getSession().getAttribute("orderId")
 			);
 			request.getSession().setAttribute("orderId", null);
 		}

@@ -1,0 +1,1 @@
+ALTER TABLE country_t RENAME COLUMN cuontry_name TO country_name;

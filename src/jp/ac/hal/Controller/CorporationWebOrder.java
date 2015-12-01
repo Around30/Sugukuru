@@ -24,16 +24,15 @@ public class CorporationWebOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			Dao.getInstance().executeUpdate
-			(
-				"update order_t set cart = false where order_id = ?",
-				request.getSession().getAttribute("orderId")
-			);
-			CorporationOrder o = new CorporationOrder();
-			o.setOrderId(Dao.getInstance().getOrderId(request));
-			o.setCorporationAccountId((Integer)request.getSession().getAttribute("orderId"));
-			o.setConfirmed(true);
-			Dao.getInstance().insert(o);
+			if()
+			{
+				CorporationOrder o = new CorporationOrder();
+				o.setOrderId(Dao.getInstance().getOrderId(request));
+				o.setCorporationAccountId(request.getParameter(""));
+				o.setConfirmed(true);
+				Dao.getInstance().insert(o);
+				response.sendRedirect(request.getContextPath() + "/view/cart/corporation_order_confirm.jsp");
+			}
 		}
 		catch(Exception e)
 		{

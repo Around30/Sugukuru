@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class CorporationOrder extends Order
 {
-	private int corporationAccountId;
+	private String corporationAccountId;
 	private boolean confirmed;
 	private Date estimateDate;
-	
-	public int getCorporationAccountId() {
+
+	public String getCorporationAccountId() {
 		return corporationAccountId;
 	}
-	public void setCorporationAccountId(int corporationAccountId) {
+	public void setCorporationAccountId(String corporationAccountId) {
 		this.corporationAccountId = corporationAccountId;
 	}
 	public boolean isConfirmed() {
