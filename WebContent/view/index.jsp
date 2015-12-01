@@ -101,7 +101,7 @@
             <a href="#" class="itemList_item_newItemWrap recommend">
               <div class="itemList_item_head">オススメ商品01</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name">『夜の木』レターセット ＜からみあう木＞</h3>
@@ -113,7 +113,7 @@
             <a href="#" class="itemList_item_newItemWrap recommend">
               <div class="itemList_item_head">オススメ商品02</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name">『夜の木』レターセット ＜からみあう木＞</h3>
@@ -131,7 +131,7 @@
             <a href="#" class="itemList_item_newItemWrap">
               <div class="itemList_item_head">New Item01</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name">『夜の木』レターセット ＜からみあう木＞</h3>
@@ -143,7 +143,7 @@
             <a href="#" class="itemList_item_newItemWrap genre1">
               <div class="itemList_item_head">New Item02</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_02.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_02.jpg" alt="" class="img-responsive" />
               </div>
               <h3 class="itemList_item_name">CHARKHA×nakaban 引き出すカード＆封筒</h3>
               <div class="itemList_item_price">Price：¥ 194</div>
@@ -153,7 +153,7 @@
             <a href="#" class="itemList_item_newItemWrap">
               <div class="itemList_item_head">New Item03</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_03.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_03.jpg" alt="" class="img-responsive" />
               </div>
               <h3 class="itemList_item_name">こけし通信筒（菜の花）</h3>
               <div class="itemList_item_price">Price：¥ 558</div>
@@ -163,7 +163,7 @@
             <a href="#" class="itemList_item_newItemWrap">
               <div class="itemList_item_head">New Item04</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_04.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_04.jpg" alt="" class="img-responsive" />
               </div>
               <h3 class="itemList_item_name">CHARKHA × nakaban レターセット（antibes）</h3>
               <div class="itemList_item_price">Price：¥ 1296</div>
@@ -173,7 +173,7 @@
             <a href="#" class="itemList_item_newItemWrap">
               <div class="itemList_item_head">New Item05</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_05.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_05.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name">CHARKHA × nakaban レターセット（late morning）</h3>
@@ -185,7 +185,7 @@
             <a href="#" class="itemList_item_newItemWrap">
               <div class="itemList_item_head">New Item06</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_06.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_06.jpg" alt="" class="img-responsive" />
               </div>
               <h3 class="itemList_item_name">武井武雄「鳥遣いの乙女」三つ折りカード+封筒セットA</h3>
               <div class="itemList_item_price">Price：¥ 972</div>
@@ -195,7 +195,7 @@
             <a href="#" class="itemList_item_newItemWrap">
               <div class="itemList_item_head">New Item07</div>
               <div class="itemList_item_img">
-                <img src="./../img/stationery/_07.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_07.jpg" alt="" class="img-responsive" />
               </div>
               <h3 class="itemList_item_name">武井武雄「鳥遣いの乙女」三つ折りカード+封筒セットB</h3>
               <div class="itemList_item_price">Price：¥ 972</div>
