@@ -41,10 +41,7 @@
       </main>
     </div>
     <div class="row">
-      <footer class="footer col-md-12">
-        <p> <small>Around30a</small>
-        </p>
-      </footer>
+      <jsp:include page="/view/layout/admin/footer.jsp" />
     </div>
   </div>
 </body>

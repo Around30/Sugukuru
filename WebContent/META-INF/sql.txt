@@ -7,7 +7,7 @@ conn sugukuru/sugukuru;
 create sequence country_seq;
 create table country_t(
 	country_id					number(8)		not null primary key,
-	cuontry_name				varchar(30)		not null);
+	country_name				varchar(30)		not null);
 
 create sequence product_genre_seq;
 create table product_genre_t(
@@ -104,3 +104,69 @@ create table administrator_t(
 	administrator_name			varchar2(30)	not null,
 	flag						varchar2(1)		not null,
 	password					varchar2(50)	not null);
+
+/*
+	サンプル品持出テーブル
+*/
+create table sample_product_t(
+	product_id					number(8)		not null,	/* 持出商品ID */
+	administrator_id			varchar(256)	not null,	/* 入力者ID(管理者ID) */
+	sample_date					date			not null,	/* 入力日時 */
+	takeout_number				number(8)		not null,	/* 持出個数 */
+	primary key(product_id, administrator_id),				/* 主キー 商品ID, 管理者ID */
+	foreign key(product_id)									/* 外部キー	商品ID */
+		references product_t(product_id),
+	foreign key(administrator_id)							/* 外部キー 管理者ID */
+		references administrator_t(administrator_id)
+	);
+
+/*
+	棚卸テーブル
+*/
+create sequence inventory_seq;
+create table inventory_t(
+	inventory_id				number(8)		not null primary key,	/* 棚卸ID */
+	administrator_id			varchar(256)	not null,				/* 入力者ID */
+	inventory_date				date			not null				/* 入力日時 */
+	);
+/*
+	棚卸詳細テーブル
+*/
+create table inventory_detail_t(
+	inventory_id				number(8)		not null,	/* 棚卸ID */
+	product_id					number(8)		not null,	/* 商品ID */
+	number_of					number(8)		not null,	/* 個数 */
+	price						number(8)		not null,	/* 単価 */
+	total_price					number(8)		not	null,	/* 金額 */
+	primary key(inventory_id, product_id),
+	foreign key(inventory_id)
+		references inventory_t(inventory_id),
+	foreign key(product_id)
+		references product_t(product_id)
+	);
+
+/*
+	商品受入テーブル
+*/
+create sequence acceptance_seq;
+create table acceptance_t(
+	acceptance_id				number(8)		not null primary key,	/* 商品受入ID */
+	administrator_id			varchar(256)	not null,				/* 入力者ID */
+	acceptance_date				date			not null				/* 入力日時 */
+	);
+);
+/*
+	商品受入詳細テーブル
+*/
+create table acceptance_detail_t(
+	acceptance_id				number(8)		not null,	/* 商品受入ID */
+	product_id					number(8)		not null,	/* 商品ID */
+	number_of					number(8)		not null,	/* 個数 */
+	price						number(8)		not null,	/* 単価 */
+	total_price					number(8)		not	null,	/* 金額 */
+	primary key(acceptance_id, product_id),
+	foreign key(acceptance_id)
+		references acceptance_t(acceptance_id),
+	foreign key(product_id)
+		references product_t(product_id)
+	);

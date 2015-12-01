@@ -44,7 +44,7 @@ public class InputCheck {
 
 		return err;
 	}
-	
+
 	/**
 	 * 数字-のみ
 	 * @param args
@@ -58,7 +58,36 @@ public class InputCheck {
 				err |= true;
 			}
 		}
-		
+
 		return err;
 	}
+	/**
+	 * 引数strに英数字以外が含まれている場合trueを返す
+	 * @param str
+	 * @return
+	 */
+	public boolean checkAlphanumeric(String... args){
+		boolean err = false;
+		for (String str : args) {
+			if (!str.matches("[0-9a-zA-Z]+")){
+				err = true;
+			}
+		}
+		return err;
+	}
+	/**
+	 * メールアドレスかどうか
+	 * @param args
+	 * @return
+	 */
+	public boolean checkMailAddress(String... args){
+		boolean err = false;
+		for (String str : args) {
+			if (!str.matches("[\\w\\.\\-]+@(?:[\\w\\-]+\\.)+[\\w\\-]+")){
+				err = true;
+			}
+		}
+		return err;
+	}
+
 }

@@ -102,10 +102,11 @@ public class CorporationRegist extends HttpServlet {
 			String msg = "";
 			boolean err = false;
 			InputCheck c = new InputCheck();
-			err |= c.checkNullChar(corporationName, postalCode, address, phoneNumber, creditLimit);
+			err |= c.checkNullChar(corporationName, postalCode, address, phoneNumber);
 
 			if (!err) {
 				try {
+					System.out.println("ss");
 					ret =  Dao.getInstance().executeInsert
 					(
 							"insert into corporation_t values(corporation_seq.nextval, ?, ?, ?, ?, ?, sysdate)",
