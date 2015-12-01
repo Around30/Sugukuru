@@ -9,30 +9,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
 <title>法人詳細 | すぐくる</title>
 </head>
 <body>
   <div class="container">
     <div class="row">
-      <header class="header col-md-12">
-        <h1>SUGUKURU管理者</h1>
-      </header>
+      <jsp:include page="/view/layout/admin/header.jsp" />
     </div>
     <div class="row">
-      <nav class="navbar navbar-inverse col-md-12">
-        <div class="container-fluid">
-          <div class="navbar-head"> <a href="#" class="navbar-brand">法人一覧 | すぐくる</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="">トップ</a></li>
-            <li><a href="">法人一覧</a></li>
-            <li><a href="">注文一覧</a></li>
-            <li><a href="">法人追加</a></li>
-            <li>ログインユーザ : <%=loginUser[1] %>様</li>
-          </ul>
-        </div>
-      </nav>
+      <jsp:include page="/view/layout/admin/nav.jsp" />
     </div>
     <div class="row">
       <main class="main col-md-12">
