@@ -40,7 +40,7 @@ public class SendMail extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		String to = ""; //送り先メールアドレス
+		String to = AdminMail.EMAIL_ADDRESS; //送り先メールアドレス
 		String from = AdminMail.EMAIL_ADDRESS;
 		String userName = AdminMail.USER_NAME;
 		String passwd = AdminMail.PASSWORD;
