@@ -24,7 +24,7 @@ public class CorporationWebOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			if()
+			if(false)
 			{
 				CorporationOrder o = new CorporationOrder();
 				o.setOrderId(Dao.getInstance().getOrderId(request));
