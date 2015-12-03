@@ -62,20 +62,6 @@ public class InputCheck {
 		return err;
 	}
 	/**
-	 * 引数strに英数字以外が含まれている場合trueを返す
-	 * @param str
-	 * @return
-	 */
-	public boolean checkAlphanumeric(String... args){
-		boolean err = false;
-		for (String str : args) {
-			if (!str.matches("[0-9a-zA-Z]+")){
-				err = true;
-			}
-		}
-		return err;
-	}
-	/**
 	 * メールアドレスかどうか
 	 * @param args
 	 * @return

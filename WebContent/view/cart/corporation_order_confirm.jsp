@@ -2,11 +2,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-	</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>すぐくる</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
 	<body>
+	<jsp:include page="/view/layout/user/header.jsp" >
+      <jsp:param name="corporationFlg" value="corporationFlg" />
+    </jsp:include>
 		<p>ご注文はこちらでよろしいでですか？</p>
 		<table>
 			<%Object[] o = Dao.getInstance().executeGet("select corporation_name, corporation_account_name from corporation_order_t, corporation_account_t, corporation_t where corporation_order_t.corporation_account_id = corporation_account_t.corporation_account_id and corporation_account_t.corporation_id = corporation_t.corporation_id and order_id = ?", session.getAttribute("orderId")); %>
@@ -37,5 +43,6 @@
 			<input type="hidden" name="orderId" value="<%=session.getAttribute("orderId")%>" />
 			<input type="submit" value="承認" />
 		</form>
+		<jsp:include page="/view/layout/user/footer.jsp" />
 	</body>
 </html>

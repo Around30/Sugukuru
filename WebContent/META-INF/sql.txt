@@ -54,7 +54,7 @@ create table corporation_t(
 
 create sequence corporation_account_seq;
 create table corporation_account_t(
-	corporation_account_id		number(8)		not null primary key,
+	corporation_account_id		varchar(256)	not null primary key,
 	corporation_account_name	varchar2(30)	not null,
 	corporation_id				number(8)		not null,
 foreign key(corporation_id)
@@ -100,7 +100,7 @@ foreign key(product_id)
 
 create sequence administrator_seq;
 create table administrator_t(
-	administrator_id			number(8)		not null primary key,
+	administrator_id			varchar(256)	not null primary key,
 	administrator_name			varchar2(30)	not null,
 	flag						varchar2(1)		not null,
 	password					varchar2(50)	not null);

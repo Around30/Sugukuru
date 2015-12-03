@@ -1,5 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<header class="header col-md-12">
-  <h1>SUGUKURU管理者</h1>
-</header>
+    
+<% 
+boolean corporationFlg = Boolean.valueOf(request.getParameter("corporationFlg"));
+%>    
+<header class="header">
+    <!-- ヘッダーナビ -->
+    <nav class="navbar navbar-default header_bg">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
+          </button>
+          <a class="header_titleLogo navbar-brand" href="#">
+            <img src="<%= request.getContextPath() %>/assets/img/sugukuru2.png" alt="すぐくる">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <!-- ヘッダーフォーム -->
+          <form class="navbar-form navbar-left header_form" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-info">検索</button>
+          </form>
+          <!-- /ヘッダーフォーム -->
+          <!-- ヘッダーナビアイテム -->
+          <ul class="nav navbar-nav navbar-right header_nav">
+            <li class="header_nav_item header_nav_cart">
+              <a href="">
+                <div class="header_nav_icon"><i class="fa fa-cart-arrow-down"></i>
+                </div> <span class="header_nav_text">カート</span>
+              </a>
+            </li>
+            <li class="header_nav_item header_nav_user">
+            <% if (corporationFlg) { %>
+              <a href="">
+                <div class="header_nav_icon"><i class="fa fa-user"></i>
+                </div> <span class="header_nav_text">法人ログイン</span>
+              </a>
+            <% } else { %>
+            <% } %>
+            </li>
+          </ul>
+          <!-- /ヘッダーナビアイテム -->
+        </div>
+      </div>
+    </nav>
+    <!-- /ヘッダーナビ -->
+  </header>

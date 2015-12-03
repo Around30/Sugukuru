@@ -7,6 +7,9 @@
 	for (int i = 0 ; i < o.length ; i++) {
 		System.out.println(o[i]);
 	}
+	
+	Object[] cData = (Object[])session.getAttribute("corporationLogin");
+	boolean corporationFlg = (cData == null) ? true : false;  // headerをincludeするために必要
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -20,48 +23,10 @@
 </head>
 
 <body>
-  <header class="header">
-    <!-- ヘッダーナビ -->
-    <nav class="navbar navbar-default header_bg">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
-          </button>
-          <a class="header_titleLogo navbar-brand" href="<%= request.getContextPath() %>/view">
-            <img src="<%= request.getContextPath() %>/assets/img/sugukuru2.png" alt="すぐくる">
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <!-- ヘッダーフォーム -->
-          <form class="navbar-form navbar-left header_form" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-info">検索</button>
-          </form>
-          <!-- /ヘッダーフォーム -->
-          <!-- ヘッダーナビアイテム -->
-          <ul class="nav navbar-nav navbar-right header_nav">
-            <li class="header_nav_item header_nav_cart">
-              <a href="">
-                <div class="header_nav_icon"><i class="fa fa-cart-arrow-down"></i>
-                </div> <span class="header_nav_text">カート</span>
-              </a>
-            </li>
-            <li class="header_nav_item header_nav_user">
-              <a href="">
-                <div class="header_nav_icon"><i class="fa fa-user"></i>
-                </div> <span class="header_nav_text">法人ログイン</span>
-              </a>
-            </li>
-          </ul>
-          <!-- /ヘッダーナビアイテム -->
-        </div>
-      </div>
-    </nav>
-    <!-- /ヘッダーナビ -->
-  </header>
+  <jsp:include page="/view/layout/user/header.jsp" >
+    <jsp:param name="corporationFlg" value="corporationFlg" />
+  </jsp:include>
+  
   <main>
     <article>
       <div class="item boxList container-fluid">
@@ -120,21 +85,7 @@
       </div>
     </article>
   </main>
-  <footer class="footer clearfix">
-    <img src="<%= request.getContextPath() %>/assets/img/sugukuru.png" alt="" class="footer_logo" />
-    <div class="footer_nav">
-      <ul>
-        <li><a href="<%= request.getContextPath() %>/view">ホーム</a>
-        </li>
-        <li><a href="">支払い・配送・返品について</a>
-        </li>
-        <li><a href="">特定商取引法に基く表記</a>
-        </li>
-        <li><a href="">お問い合わせ</a>
-        </li>
-      </ul>
-    </div>
-  </footer>
+  <jsp:include page="/view/layout/user/footer.jsp" />
   <script src="<%= request.getContextPath() %>/js/main.js"></script>
   <script src="<%= request.getContextPath() %>/js/plugins.js"></script>
   <script src="<%= request.getContextPath() %>/js/vendor.js"></script>
