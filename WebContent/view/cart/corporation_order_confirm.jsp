@@ -14,7 +14,8 @@
       <jsp:param name="corporationFlg" value="corporationFlg" />
     </jsp:include>
 		<p>ご注文はこちらでよろしいでですか？</p>
-		<table>
+		<table class="table">
+		  <tbody>
 			<%Object[] o = Dao.getInstance().executeGet("select corporation_name, corporation_account_name from corporation_order_t, corporation_account_t, corporation_t where corporation_order_t.corporation_account_id = corporation_account_t.corporation_account_id and corporation_account_t.corporation_id = corporation_t.corporation_id and order_id = ?", session.getAttribute("orderId")); %>
 			<tr>
 				<th>企業名</th>
@@ -38,6 +39,7 @@
 				<td><%=row[2] %></td>
 			</tr>
 			<%}%>
+		  </tbody>
 		</table>
 		<form action="submit" action="<%=request.getContextPath() %>/ConfirmOrder" method="post">
 			<input type="hidden" name="orderId" value="<%=session.getAttribute("orderId")%>" />

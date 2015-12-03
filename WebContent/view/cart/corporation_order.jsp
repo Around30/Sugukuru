@@ -12,19 +12,20 @@
 	<jsp:include page="/view/layout/user/header.jsp" >
       <jsp:param name="corporationFlg" value="corporationFlg" />
     </jsp:include>
+      <div class="container">
 		<form action="<%= request.getContextPath() %>/CorporationWebOrder" method="post">
-			<table>
-				<tr>
-					<th>ID</th>
-					<td><input type="text" name="id"/></td>
-				</tr>
-				<tr>
-					<th>パスワード</th>
-					<td><input type="password" name="password"/></td>
-				</tr>
-			</table>
-			<p><input type="submit" value="注文確認画面へ"/><input type="submit" value="見積依頼確認画面へ"/></p>
+		<div class="form-group">
+			<label>ID</label>
+			<input type="text" name="id" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label>パスワード</label>
+			<input type="password" name="password" class="form-control"/>
+		</div>
+		<input type="submit" value="注文確認画面へ"/>
 		</form>
-		<jsp:include page="/view/layout/user/footer.jsp" />
+	  </div>
+	  
+	  <jsp:include page="/view/layout/user/footer.jsp" />
 	</body>
 </html>

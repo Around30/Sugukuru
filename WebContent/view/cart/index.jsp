@@ -17,7 +17,9 @@
 	<jsp:include page="/view/layout/user/header.jsp" >
       <jsp:param name="corporationFlg" value="corporationFlg" />
     </jsp:include>
-		<table>
+      <h1>カート一覧</h1>
+		<table class="table">
+		  <tbody>
 			<tr>
 				<th>商品ID</th>
 				<th>商品名</th>
@@ -30,6 +32,7 @@
 				<td><%=row[2] %></td>
 			</tr>
 			<%}%>
+		  </tbody>
 		</table>
 		<p><a href="individual_order.jsp">個人注文画面へ</a> <a href="corporation_order.jsp">法人注文画面へ</a></p>
 		<jsp:include page="/view/layout/user/footer.jsp" />
