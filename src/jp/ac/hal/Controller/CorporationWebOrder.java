@@ -24,11 +24,11 @@ public class CorporationWebOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			if()
+			if(Dao.getInstance().executeConfirm("select * from corporation_account_t where corporation_account_id = ? and password = ?", request.getParameter("id"), request.getParameter("password")))
 			{
 				CorporationOrder o = new CorporationOrder();
 				o.setOrderId(Dao.getInstance().getOrderId(request));
-				o.setCorporationAccountId(request.getParameter(""));
+				o.setCorporationAccountId(request.getParameter("id"));
 				o.setConfirmed(true);
 				Dao.getInstance().insert(o);
 				response.sendRedirect(request.getContextPath() + "/view/cart/corporation_order_confirm.jsp");

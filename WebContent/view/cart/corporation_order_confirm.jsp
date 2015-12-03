@@ -35,7 +35,6 @@
 		</table>
 		<form action="submit" action="<%=request.getContextPath() %>/ConfirmOrder" method="post">
 			<input type="hidden" name="orderId" value="<%=session.getAttribute("orderId")%>" />
-			<input type="hidden" name="revision" value="<%=Dao.getInstance().executeGet("select revision from order_t where order_id = ?", session.getAttribute("orderId"))[0] %>" />
 			<input type="submit" value="承認" />
 		</form>
 	</body>

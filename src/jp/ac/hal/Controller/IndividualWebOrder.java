@@ -18,7 +18,7 @@ import jp.ac.hal.Util.Ic;
 @WebServlet("/IndividualWebOrder")
 public class IndividualWebOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,6 +50,7 @@ public class IndividualWebOrder extends HttpServlet {
 			o.setPhoneNumber(Ic.stringNotNullable(request.getParameter("phoneNumber")));
 			o.setMailAddress(Ic.stringNotNullable(request.getParameter("mailAddress")));
 			Dao.getInstance().insert(o);
+			response.sendRedirect(request.getContextPath() + "/view/cart/individual_order_confirm.jsp");
 		}
 		catch(Exception e)
 		{

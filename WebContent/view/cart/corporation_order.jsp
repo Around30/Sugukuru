@@ -10,11 +10,11 @@
 			<table>
 				<tr>
 					<th>ID</th>
-					<td><input type="text" name="name"/></td>
+					<td><input type="text" name="id"/></td>
 				</tr>
 				<tr>
 					<th>パスワード</th>
-					<td><input type="text" name="phonetic"/></td>
+					<td><input type="password" name="password"/></td>
 				</tr>
 			</table>
 			<p><input type="submit" value="注文確認画面へ"/></p>

@@ -26,12 +26,15 @@ public class ConfirmOrder extends HttpServlet
 	{
 		try
 		{
-			Dao.getInstance().executeUpdate
-			(
-				"update order_t set order_date = sysdate where order_id = ?",
-				request.getSession().getAttribute("orderId")
-			);
-			request.getSession().setAttribute("orderId", null);
+			if(request.getParameter("order_id").equals(request.getSession().getAttribute("order_id")))
+			{
+				Dao.getInstance().executeUpdate
+				(
+					"update order_t set order_date = sysdate where order_id = ?",
+					request.getSession().getAttribute("orderId")
+				);
+				request.getSession().setAttribute("orderId", null);
+			}
 		}
 		catch(SQLException e)
 		{
