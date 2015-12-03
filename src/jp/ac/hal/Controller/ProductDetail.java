@@ -42,8 +42,8 @@ public class ProductDetail extends HttpServlet {
 				//転送先
 				String sendURL = "view/items/item/index.jsp";
 				// パラメータを受け取り変数にセット
-//				String productId = request.getParameter("productId");
-				String productId = "1";
+				String productId = request.getParameter("productId");
+
 				String msg;
 				//パラメータチェック
 				InputCheck i = new InputCheck();

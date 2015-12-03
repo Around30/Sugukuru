@@ -8,30 +8,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
 <title>商品登録 | すぐくる</title>
 </head>
 <body>
   <div class="container">
     <div class="row">
-      <header class="header col-md-12">
-        <h1>SUGUKURU管理者/</h1>
-      </header>
+      <jsp:include page="/view/layout/admin/header.jsp" />
     </div>
     <div class="row">
-      <nav class="navbar navbar-inverse col-md-12">
-        <div class="container-fluid">
-          <div class="navbar-head"> <a href="#" class="navbar-brand">商品詳細 | すぐくる</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="">トップ</a></li>
-            <li><a href="">商品一覧</a></li>
-            <li><a href="">商品登録</a></li>
-            <li><a href="">棚卸結果入力</a></li>
-            <li><a href="">サンプル品持出内容入力</a></li>
-          </ul>
-        </div>
-      </nav>
+      <jsp:include page="/view/layout/admin/nav_pm.jsp" />
     </div>
     <div class="row">
       <main class="main col-md-12">
@@ -91,7 +77,7 @@
             </div>
             <div class="form-group">
               <label for="namel">商品説明 :</label>
-              <input type="number" class="from_control" id="namel" name="productDetail"></input>
+               <textarea name="productDetail" class="from_control" id="namel" cols="40" rows="5" maxlength="200"></textarea>
             </div>
              <div class="form-group">
               <label for="namel">JANコード :</label>
@@ -107,10 +93,7 @@
       </main>
     </div>
     <div class="row">
-      <footer class="footer col-md-12">
-        <p> <small>Around30a</small>
-        </p>
-      </footer>
+      <jsp:include page="/view/layout/admin/footer.jsp" />
     </div>
   </div>
 
