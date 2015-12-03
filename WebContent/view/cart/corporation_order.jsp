@@ -17,7 +17,7 @@
 					<td><input type="password" name="password"/></td>
 				</tr>
 			</table>
-			<p><input type="submit" value="注文確認画面へ"/></p>
+			<p><input type="submit" value="注文確認画面へ"/><input type="submit" value="見積依頼確認画面へ"/></p>
 		</form>
 	</body>
 </html>

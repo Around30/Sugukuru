@@ -5,7 +5,7 @@ import java.util.Date;
 public class CorporationOrder extends Order
 {
 	private String corporationAccountId;
-	private boolean confirmed;
+	private Date estimateRequestDate;
 	private Date estimateDate;
 
 	public String getCorporationAccountId() {
@@ -14,11 +14,11 @@ public class CorporationOrder extends Order
 	public void setCorporationAccountId(String corporationAccountId) {
 		this.corporationAccountId = corporationAccountId;
 	}
-	public boolean isConfirmed() {
-		return confirmed;
+	public Date getEstimateRequestDate() {
+		return estimateRequestDate;
 	}
-	public void setConfirmed(boolean confirmed) {
-		this.confirmed = confirmed;
+	public void setEstimateRequestDate(Date estimateRequestDate) {
+		this.estimateRequestDate = estimateRequestDate;
 	}
 	public Date getEstimateDate() {
 		return estimateDate;

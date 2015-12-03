@@ -2,15 +2,15 @@ package jp.ac.hal.Model;
 
 public class CorporationAccount
 {
-	private int corporationAccountId;
+	private String corporationAccountId;
 	private String corporationAccountName;
 	private int corporationId;
 	private String passwd;
-	
-	public int getCorporationAccountId() {
+
+	public String getCorporationAccountId() {
 		return corporationAccountId;
 	}
-	public void setCorporationAccountId(int corporationAccountId) {
+	public void setCorporationAccountId(String corporationAccountId) {
 		this.corporationAccountId = corporationAccountId;
 	}
 	public String getCorporationAccountName() {
@@ -31,5 +31,5 @@ public class CorporationAccount
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	
+
 }

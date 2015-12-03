@@ -23,13 +23,34 @@ public class AddToCart extends HttpServlet {
 	{
 		try
 		{
-			OrderDetail d = new OrderDetail();
-			d.setOrderId(Dao.getInstance().getOrderId(request));
-			d.setProductId(Ic.intNotNullable(request.getParameter("productId")));
-			d.setNumberOf(Ic.intNotNullable(request.getParameter("numberOf")));
-			d.setSubTotal(Ic.intNullable(request.getParameter("subTotal")));
-			Dao.getInstance().insert(d);
-			response.sendRedirect(request.getContextPath() + "/view/cart/index.jsp");
+			if
+			(
+				Dao.getInstance().executeConfirm
+				(
+					"select * from order_detail_t where order_id = ? and product_id = ?",
+					Dao.getInstance().getOrderId(request),
+					Ic.intNotNullable(request.getParameter("productId"))
+				)
+			)
+			{
+				Dao.getInstance().executeUpdate(
+					"update order_detail_t set number_of = number_of + ? where order_id = ? and product_id = ?",
+					Ic.intNotNullable(request.getParameter("numberOf")),
+					Dao.getInstance().getOrderId(request),
+					Ic.intNotNullable(request.getParameter("productId"))
+				);
+				response.sendRedirect(request.getContextPath() + "/view/cart/index.jsp");
+			}
+			else
+			{
+				OrderDetail d = new OrderDetail();
+				d.setOrderId(Dao.getInstance().getOrderId(request));
+				d.setProductId(Ic.intNotNullable(request.getParameter("productId")));
+				d.setNumberOf(Ic.intNotNullable(request.getParameter("numberOf")));
+				d.setSubTotal(Ic.intNullable(request.getParameter("subTotal")));
+				Dao.getInstance().insert(d);
+				response.sendRedirect(request.getContextPath() + "/view/cart/index.jsp");
+			}
 		}
 		catch(Exception e)
 		{

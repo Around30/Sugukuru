@@ -294,9 +294,8 @@ public class Dao
 	{
 		return executeInsert
 		(
-			"insert into order_t values(order_seq.nextval, ?, null, ?)",
-			o.getTotal(),
-			o.isCart()
+			"insert into order_t values(order_seq.nextval, ?, null)",
+			o.getTotal()
 		);
 	}
 
@@ -307,7 +306,7 @@ public class Dao
 			"insert into corporation_order_t values(?, ?, ?, ?)",
 			o.getOrderId(),
 			o.getCorporationAccountId(),
-			o.isConfirmed(),
+			o.getEstimateRequestDate(),
 			o.getEstimateDate()
 		);
 	}

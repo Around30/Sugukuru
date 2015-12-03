@@ -43,7 +43,7 @@ public class ConfirmEstimate extends HttpServlet {
 		{
 			Dao.getInstance().executeUpdate
 			(
-				"update corporation_order_t set estimate_date = sysdate where order_id = ?",
+				"update corporation_order_t set estimate_request_date = sysdate where order_id = ?",
 				request.getSession().getAttribute("orderId")
 			);
 			request.getSession().setAttribute("orderId", null);

@@ -29,7 +29,6 @@ public class CorporationWebOrder extends HttpServlet {
 				CorporationOrder o = new CorporationOrder();
 				o.setOrderId(Dao.getInstance().getOrderId(request));
 				o.setCorporationAccountId(request.getParameter("id"));
-				o.setConfirmed(true);
 				Dao.getInstance().insert(o);
 				response.sendRedirect(request.getContextPath() + "/view/cart/corporation_order_confirm.jsp");
 			}
@@ -39,5 +38,4 @@ public class CorporationWebOrder extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }
