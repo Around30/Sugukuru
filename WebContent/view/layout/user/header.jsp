@@ -12,7 +12,7 @@ boolean corporationFlg = Boolean.valueOf(request.getParameter("corporationFlg"))
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>  <span class="icon-bar"></span>
           </button>
-          <a class="header_titleLogo navbar-brand" href="#">
+          <a class="header_titleLogo navbar-brand" href="<%= request.getContextPath() %>/view">
             <img src="<%= request.getContextPath() %>/assets/img/sugukuru2.png" alt="すぐくる">
           </a>
         </div>
