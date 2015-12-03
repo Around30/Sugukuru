@@ -9,10 +9,10 @@
       <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/index.jsp">トップ</a></li>
       <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/index.jsp">商品一覧</a></li>
       <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/products/product_new.jsp">新規登録</a></li>
-      <li><a href="">商品受入</a></li>
-      <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/products/product_acceptance.jsp">棚卸</a></li>
-      <li><a href="">サンプル品持出</a></li>
-      <li><a href="">緊急発注</a></li>
+      <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/products/product_acceptance.jsp">商品受入</a></li>
+      <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/products/product_inventory.jsp">棚卸</a></li>
+      <li><a href="<%= request.getContextPath() %>/view/admin/productManagement/products/sample_product.jsp">サンプル品持出</a></li>
+      <li><a href="">緊急登録</a></li>
     </ul>
   </div>
 </nav>

@@ -70,14 +70,14 @@ insert into flaged
 	サンプル品持出テーブル
 */
 create table sample_product_t(
-	product_id					number(8)		not null,	/* 持出商品ID */
-	administrator_id			varchar(256)	not null,	/* 入力者ID(管理者ID) */
-	sample_date					date			not null,	/* 入力日時 */
-	takeout_number				number(8)		not null,	/* 持出個数 */
-	primary key(product_id, administrator_id),				/* 主キー 商品ID, 管理者ID */
-	foreign key(product_id)									/* 外部キー	商品ID */
+	sample_id					number(8)		not null primary key,	/* 持出ID */
+	product_id					number(8)		not null,				/* 持出商品ID */
+	administrator_id			varchar(256)	not null,				/* 入力者ID(管理者ID) */
+	sample_date					date			not null,				/* 入力日時 */
+	takeout_number				number(8)		not null,				/* 持出個数 */
+	foreign key(product_id)												/* 外部キー	商品ID */
 		references product_t(product_id),
-	foreign key(administrator_id)							/* 外部キー 管理者ID */
+	foreign key(administrator_id)										/* 外部キー 管理者ID */
 		references administrator_t(administrator_id)
 	);
 
@@ -127,6 +127,17 @@ create table acceptance_detail_t(
 	primary key(acceptance_id, product_id),
 	foreign key(acceptance_id)
 		references acceptance_t(acceptance_id),
+	foreign key(product_id)
+		references product_t(product_id)
+	);
+
+/*
+	商品在庫テーブル
+*/
+create table acceptance detail_t(
+	product_id					number(8)		not null primary key,	/* 商品ID */
+	stock						number(8)		not null,				/* 在庫数 */
+	available_stock				number(8)		not null,				/* 有効在庫数 */
 	foreign key(product_id)
 		references product_t(product_id)
 	);
