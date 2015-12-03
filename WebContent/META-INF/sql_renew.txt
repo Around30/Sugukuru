@@ -6,14 +6,127 @@ drop table sample_product_t;
 drop table administrator_t;
 drop table order_detail_t;
 drop table individual_order_t;
-drop table corporation_order_ts;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
-drop table ;
+drop table corporation_order_t;
+drop table order_t;
+drop table corporation_account_t;
+
+
+
+create table corporation_account_t(
+	corporation_account_id		varchar2(256)	not null primary key,
+	corporation_account_name	varchar2(30)	not null,
+	password					varchar2(50)	not null,
+	corporation_id				number(8)		not null,
+foreign key(corporation_id)
+	references corporation_t(corporation_id));
+
+create sequence order_seq;
+create table order_t(
+	order_id					number(8)		not null primary key,
+	total						number(8),
+	order_date					date);
+
+create table corporation_order_t(
+	order_id					number(8)		not null primary key,
+	corporation_account_id		varchar2(256)	not null,
+	estimate_request_date		date,
+	estimate_date				date,
+foreign key(order_id)
+	references order_t(order_id),
+foreign key(corporation_account_id)
+	references corporation_account_t(corporation_account_id));
+
+create table individual_order_t(
+	order_id					number(8)		not null primary key,
+	name						varchar2(30)	not null,
+	phonetic					varchar2(30)	not null,
+	postal_code					varchar2(8)		not null,
+	address						varchar2(100)	not null,
+	phone_number				varchar2(13)	not null,
+	mail_address				varchar2(30)	not null,
+foreign key(order_id)
+	references order_t(order_id));
+
+create table order_detail_t(
+	order_id					number(8)		not null,
+	product_id					number(8)		not null,
+	number_of					number(8)		not null,
+	subtotal					number(8),
+primary key(order_id, product_id),
+foreign key(order_id)
+	references order_t(order_id),
+foreign key(product_id)
+	references product_t(product_id));
+
+create table administrator_t(
+	administrator_id			varchar2(256)	not null primary key,
+	administrator_name			varchar2(30)	not null,
+	flag						varchar2(1)		not null,
+	password					varchar2(50)	not null);
+
+insert into flaged
+
+/*
+	サンプル品持出テーブル
+*/
+create table sample_product_t(
+	product_id					number(8)		not null,	/* 持出商品ID */
+	administrator_id			varchar(256)	not null,	/* 入力者ID(管理者ID) */
+	sample_date					date			not null,	/* 入力日時 */
+	takeout_number				number(8)		not null,	/* 持出個数 */
+	primary key(product_id, administrator_id),				/* 主キー 商品ID, 管理者ID */
+	foreign key(product_id)									/* 外部キー	商品ID */
+		references product_t(product_id),
+	foreign key(administrator_id)							/* 外部キー 管理者ID */
+		references administrator_t(administrator_id)
+	);
+
+/*
+	棚卸テーブル
+*/
+create sequence inventory_seq;
+create table inventory_t(
+	inventory_id				number(8)		not null primary key,	/* 棚卸ID */
+	administrator_id			varchar(256)	not null,				/* 入力者ID */
+	inventory_date				date			not null				/* 入力日時 */
+	);
+/*
+	棚卸詳細テーブル
+*/
+create table inventory_detail_t(
+	inventory_id				number(8)		not null,	/* 棚卸ID */
+	product_id					number(8)		not null,	/* 商品ID */
+	number_of					number(8)		not null,	/* 個数 */
+	price						number(8)		not null,	/* 単価 */
+	total_price					number(8)		not	null,	/* 金額 */
+	primary key(inventory_id, product_id),
+	foreign key(inventory_id)
+		references inventory_t(inventory_id),
+	foreign key(product_id)
+		references product_t(product_id)
+	);
+
+/*
+	商品受入テーブル
+*/
+create sequence acceptance_seq;
+create table acceptance_t(
+	acceptance_id				number(8)		not null primary key,	/* 商品受入ID */
+	administrator_id			varchar(256)	not null,				/* 入力者ID */
+	acceptance_date				date			not null				/* 入力日時 */
+);
+/*
+	商品受入詳細テーブル
+*/
+create table acceptance_detail_t(
+	acceptance_id				number(8)		not null,	/* 商品受入ID */
+	product_id					number(8)		not null,	/* 商品ID */
+	number_of					number(8)		not null,	/* 個数 */
+	price						number(8)		not null,	/* 単価 */
+	total_price					number(8)		not	null,	/* 金額 */
+	primary key(acceptance_id, product_id),
+	foreign key(acceptance_id)
+		references acceptance_t(acceptance_id),
+	foreign key(product_id)
+		references product_t(product_id)
+	);
