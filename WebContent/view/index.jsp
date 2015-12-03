@@ -77,7 +77,7 @@
             </a>
           </div>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap textBtn">
+            <a href="<%= request.getContextPath() %>/view/items" class="itemList_item_newItemWrap textBtn">
               <div class="itemList_item_onlyText">全てのオススメ商品を見る</div>
             </a>
           </div>
@@ -156,18 +156,8 @@
               <div class="itemList_item_price">Price：¥ 972</div>
             </a>
           </div>
-          <!--<div class="itemList_item col-lg-3 col-md-3 col-sm-4">-->
-          <!--<a href="#" class="itemList_item_newItemWrap">-->
-          <!--<div class="itemList_item_head">New Item08</div>-->
-          <!--<div class="itemList_item_img">-->
-          <!--<img src="./../img/stationery/_08.jpg" alt="" class="img-responsive"/>-->
-          <!--</div>-->
-          <!--<h3 class="itemList_item_name">アラスカ文具店 図形レターセット（青・赤）</h3>-->
-          <!--<div class="itemList_item_price">Price：¥ 367</div>-->
-          <!--</a>-->
-          <!--</div>-->
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap textBtn">
+            <a href="<%= request.getContextPath() %>/view/items" class="itemList_item_newItemWrap textBtn">
               <div class="itemList_item_onlyText">全ての新作商品を見る</div>
             </a>
           </div>
