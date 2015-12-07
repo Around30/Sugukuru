@@ -20,7 +20,10 @@ create table corporation_account_t(
 foreign key(corporation_id)
 	references corporation_t(corporation_id));
 
-create sequence order_seq;
+create or replace sequence mail_seq;
+insert into corporation_account_t select 'mail' || '@domain' 
+
+create or replace sequence order_seq;
 create table order_t(
 	order_id					number(8)		not null primary key,
 	total						number(8),
@@ -84,7 +87,7 @@ create table sample_product_t(
 /*
 	棚卸テーブル
 */
-create sequence inventory_seq;
+create or replace sequence inventory_seq;
 create table inventory_t(
 	inventory_id				number(8)		not null primary key,	/* 棚卸ID */
 	administrator_id			varchar(256)	not null,				/* 入力者ID */
@@ -109,7 +112,7 @@ create table inventory_detail_t(
 /*
 	商品受入テーブル
 */
-create sequence acceptance_seq;
+create or replace sequence acceptance_seq;
 create table acceptance_t(
 	acceptance_id				number(8)		not null primary key,	/* 商品受入ID */
 	administrator_id			varchar(256)	not null,				/* 入力者ID */
