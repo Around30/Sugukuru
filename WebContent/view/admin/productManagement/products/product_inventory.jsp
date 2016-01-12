@@ -19,7 +19,7 @@
     <div class="row">
       <main class="main col-md-12">
         <article>
-          <h1 class="page-header">商品受入入力</h1>
+          <h1 class="page-header">棚卸結果入力</h1>
           <form action="<%= request.getContextPath() %>/ProductAcceptance" method="post">
 	         <table class="table">
 	           <tr>

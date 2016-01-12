@@ -66,7 +66,7 @@ public class AdminLogin extends HttpServlet {
 			try {
 				Dao dao = Dao.getNewInstance();
 				//アカウントIDとpassが一致する管理者と管理者名を受け取る
-				Object[] administratorLogin = dao.administratorLogin(Integer.parseInt(administratorId),passwd);
+				Object[] administratorLogin = dao.administratorLogin(administratorId,passwd);
 				if(administratorLogin != null){
 					//セッションを生成、セッションに受け取ったデータを入れる
 					HttpSession session = request.getSession(true);

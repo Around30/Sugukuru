@@ -383,7 +383,7 @@ public class Dao
 		);
 	}
 
-	public Object[] administratorLogin(int id, String passwd) throws SQLException
+	public Object[] administratorLogin(String id, String passwd) throws SQLException
 	{
 		return executeGet("select * from administrator_t where administrator_id = ? and password = ?", id, passwd);
 	}
