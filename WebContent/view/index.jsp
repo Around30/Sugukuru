@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*"%>
+    import="jp.ac.hal.Controller.*, jp.ac.hal.Dao.*, jp.ac.hal.Model.*, jp.ac.hal.Util.*, java.util.*"%>
 <%
 	Object[] cData = (Object[])session.getAttribute("corporationLogin");
 	boolean corporationFlg = (cData == null) ? true : false;  // headerをincludeするために必要
+	
+	Dao dao = Dao.getInstance();
+	List<Product> newProducts = dao.getNewItems(2);
+	
+	for(Product product : newProducts) {
+		System.out.println(product.getJanCode());
+	}
 %>
 <!DOCTYPE html>
 <html>

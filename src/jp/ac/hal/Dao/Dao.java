@@ -131,6 +131,52 @@ public class Dao
 			return ret;
 		}
 	}
+	
+	/**
+	 * getCntで指定した数の新しい商品を取得する
+	 * 
+	 * @param getCnt 取得した商品数
+	 * @return List<Product>
+	 * @throws SQLException
+	 */
+	public List<Product> getNewItems(int getCnt) throws SQLException
+	{
+		
+		String sql = "select * from product_t where rownum <= ?";
+		List<Product> products = new ArrayList<Product>();
+		
+		try
+		(
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+		)
+		{
+			ps.setInt(1, getCnt);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				int productId = rs.getInt("product_id");
+				String productName = rs.getString("product_name");
+				String productPhonetic = rs.getString("product_phonetic");
+				int price = rs.getInt("price");
+				int makerId = rs.getInt("maker_id");
+				int productGenreId = rs.getInt("PRODUCT_GENRE_ID");
+				//String productGenreName = rs.getString("product_genre_name");
+				int countryId = rs.getInt("country_id");
+				int productX = rs.getInt("product_x");
+				int productY = rs.getInt("product_y");
+				int productZ = rs.getInt("product_z");
+				int productWeight = rs.getInt("product_weight");
+				String productDetail = rs.getString("product_detail");
+				String janCode = rs.getString("jan_code");
+				
+				Product product = new Product(productId, productName, productPhonetic, price, makerId, productGenreId, countryId, productX, productY, productZ, productWeight, productDetail, janCode);
+				
+				products.add(product);
+			}
+		}
+		return products;
+	}
 
 	/**
 	 * @return selectの結果が1行以上あれば1行目、そうでないならばnull
