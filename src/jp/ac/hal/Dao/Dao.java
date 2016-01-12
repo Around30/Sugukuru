@@ -13,6 +13,8 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
+import com.sun.media.jfxmedia.events.NewFrameEvent;
+
 import jp.ac.hal.Model.Admin;
 import jp.ac.hal.Model.Corporation;
 import jp.ac.hal.Model.CorporationAccount;
@@ -177,6 +179,41 @@ public class Dao
 		}
 		return products;
 	}
+	
+	public Product getProductFromProdutId(int id) throws SQLException
+	{
+		String sql = "select * from product_t where product_id = ?";
+		Product product = new Product();
+		
+		try
+		(
+			Connection conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+		)
+		{
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				product.setProductId(rs.getInt("product_id"));
+				product.setProductName(rs.getString("product_name"));
+				product.setProductPhonetic(rs.getString("product_phonetic"));
+				product.setPrice(rs.getInt("price"));
+				product.setMakerId(rs.getInt("maker_id"));
+				product.setProductGenreId(rs.getInt("PRODUCT_GENRE_ID"));
+				product.setCountryId(rs.getInt("country_id"));
+				product.setProductX(rs.getInt("product_x"));
+				product.setProductY(rs.getInt("product_y"));
+				product.setProductZ(rs.getInt("product_z"));
+				product.setProductWeight(rs.getInt("product_weight"));
+				product.setProductDetail(rs.getString("product_detail"));
+				product.setJanCode(rs.getString("jan_code"));
+			}
+		}
+		return product;
+	}
+	
+	
 
 	/**
 	 * @return selectの結果が1行以上あれば1行目、そうでないならばnull
