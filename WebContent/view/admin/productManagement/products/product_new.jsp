@@ -5,7 +5,7 @@
 	String msg = (String)request.getAttribute("msg");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
@@ -89,7 +89,6 @@
           <%= msg %>
           <%} %>
         </article>
-
       </main>
     </div>
     <div class="row">

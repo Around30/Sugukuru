@@ -87,6 +87,7 @@
 
             <input type="hidden" name="productId" value="<%=productDetail[0]%>" />
             <input type="submit" class="btn btn-primary" name="edit" value="編集">
+            <input type="submit" class="btn btn-primary" name="del" value="削除">
           </form>
           <%if (msg != null) { %>
           <%= msg %>

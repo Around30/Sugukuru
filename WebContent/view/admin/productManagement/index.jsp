@@ -1,6 +1,9 @@
 <%@ page import="jp.ac.hal.Dao.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String msg = (String)request.getAttribute("msg");
+%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -19,6 +22,9 @@
     <div class="row">
       <main class="main col-md-12">
         <article>
+        <%if (msg != null) { %>
+          <%= msg %>
+          <%} %>
           <h1 class="page-header">商品一覧</h1>
           <table class="table">
             <% for(Object[] r: Dao.getInstance().executeQuery("select product_id, product_name from product_t")){ %>
