@@ -1,3 +1,4 @@
+<%@page import="jp.ac.hal.Model.Product"%>
 <%@ page import="jp.ac.hal.Dao.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +8,11 @@
 	for (int i = 0 ; i < o.length ; i++) {
 		System.out.println(o[i]);
 	}
+	
+	// 受け取ったproduct_idよりProduct型のオブジェクトを取得する
+	Product product = Dao.getInstance().getProductFromProdutId(product_id);
+	System.out.println("受け取ったproductの名前は" + product.getProductName());
+	
 	
 	Object[] cData = (Object[])session.getAttribute("corporationLogin");
 	boolean corporationFlg = (cData == null) ? true : false;  // headerをincludeするために必要
