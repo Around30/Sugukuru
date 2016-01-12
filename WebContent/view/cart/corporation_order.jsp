@@ -14,18 +14,21 @@
     </jsp:include>
       <div class="container">
 		<form action="<%= request.getContextPath() %>/CorporationWebOrder" method="post">
-		<div class="form-group">
-			<label>ID</label>
-			<input type="text" name="id" class="form-control"/>
-		</div>
-		<div class="form-group">
-			<label>パスワード</label>
-			<input type="password" name="password" class="form-control"/>
-		</div>
-		<input type="submit" value="注文確認画面へ"/>
+			<div class="form-group">
+				<label>ID</label>
+				<input type="text" name="id" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>パスワード</label>
+				<input type="password" name="password" class="form-control" value="<%=request.getSession().getAttribute("administratorLogin") != null? "管理者代行中": "" %>"/>
+			</div>
+			<div>
+				<button type="submit" name="order" value="order" ><%=request.getSession().getAttribute("administratorLogin") != null? "注文確認メール送信": "注文確認画面へ" %></button>
+				<button type="submit" name="order" value="estimate" ><%=request.getSession().getAttribute("administratorLogin") != null? "見積確認メール送信": "見積確認画面へ" %></button>
+			</div>
 		</form>
 	  </div>
-	  
+
 	  <jsp:include page="/view/layout/user/footer.jsp" />
 	</body>
 </html>

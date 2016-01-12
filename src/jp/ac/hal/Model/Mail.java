@@ -13,7 +13,7 @@ import jp.ac.hal.Util.AdminMail;
 
 public class Mail
 {
-	public static boolean send(String to, String message)
+	public static boolean send(String to, String subject, String message)
 	{
 		String from = AdminMail.EMAIL_ADDRESS;
 		String userName = AdminMail.USER_NAME;
@@ -47,7 +47,7 @@ public class Mail
             mimeMessage.setRecipient(Message.RecipientType.TO, toAddress);
             InternetAddress fromAddress = new InternetAddress(from);
             mimeMessage.setFrom(fromAddress);
-            mimeMessage.setSubject("すぐくる社から確認メール", "ISO-2022-JP");
+            mimeMessage.setSubject(subject, "ISO-2022-JP");
             mimeMessage.setText(message, "ISO-2022-JP");
             Transport.send(mimeMessage);
 

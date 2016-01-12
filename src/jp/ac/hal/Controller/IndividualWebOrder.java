@@ -40,6 +40,8 @@ public class IndividualWebOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
+			Dao.getInstance().executeUpdate("delete from corporation_order_t where order_id = ?", Dao.getInstance().getOrderId(request));
+			Dao.getInstance().executeUpdate("delete from individual_order_t where order_id = ?", Dao.getInstance().getOrderId(request));
 			IndividualOrder o = new IndividualOrder();
 			o.setOrderId(Dao.getInstance().getOrderId(request));
 			System.out.println(o.getOrderId());

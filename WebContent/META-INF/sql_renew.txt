@@ -20,10 +20,10 @@ create table corporation_account_t(
 foreign key(corporation_id)
 	references corporation_t(corporation_id));
 
-create or replace sequence mail_seq;
-insert into corporation_account_t select 'mail' || '@domain' 
+insert into corporation_account_t(corporation_account_id, corporation_account_name, password, corporation_id) values('sugukuruyo@gmail.com', 'すぐくる', 'sugukuru', (select min(corporation_id) from corporation_t));
 
-create or replace sequence order_seq;
+drop sequence order_seq;
+create sequence order_seq;
 create table order_t(
 	order_id					number(8)		not null primary key,
 	total						number(8),
@@ -87,7 +87,8 @@ create table sample_product_t(
 /*
 	棚卸テーブル
 */
-create or replace sequence inventory_seq;
+drop sequence inventory_seq;
+create sequence inventory_seq;
 create table inventory_t(
 	inventory_id				number(8)		not null primary key,	/* 棚卸ID */
 	administrator_id			varchar(256)	not null,				/* 入力者ID */
@@ -112,7 +113,8 @@ create table inventory_detail_t(
 /*
 	商品受入テーブル
 */
-create or replace sequence acceptance_seq;
+drop sequence acceptance_seq;
+create sequence acceptance_seq;
 create table acceptance_t(
 	acceptance_id				number(8)		not null primary key,	/* 商品受入ID */
 	administrator_id			varchar(256)	not null,				/* 入力者ID */
@@ -126,7 +128,7 @@ create table acceptance_detail_t(
 	product_id					number(8)		not null,	/* 商品ID */
 	number_of					number(8)		not null,	/* 個数 */
 	price						number(8)		not null,	/* 単価 */
-	total_price					number(8)		not	null,	/* 金額 */
+	total_price					number(8)		not null,	/* 金額 */
 	primary key(acceptance_id, product_id),
 	foreign key(acceptance_id)
 		references acceptance_t(acceptance_id),
@@ -137,7 +139,7 @@ create table acceptance_detail_t(
 /*
 	商品在庫テーブル
 */
-create table acceptance detail_t(
+create table stock_t(
 	product_id					number(8)		not null primary key,	/* 商品ID */
 	stock						number(8)		not null,				/* 在庫数 */
 	available_stock				number(8)		not null,				/* 有効在庫数 */

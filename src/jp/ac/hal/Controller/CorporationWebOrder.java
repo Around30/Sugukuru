@@ -30,7 +30,8 @@ public class CorporationWebOrder extends HttpServlet {
 				Mail.send
 				(
 					request.getParameter("id"),
-					request.getContextPath() + "/view/cart/login_for_confirm.jsp"
+					"すぐくる社からの確認メール",
+					request.getContextPath() + "/view/cart/login_for_confirm.jsp?order=" + request.getParameter("order") + "&order_id=" + request.getParameter("order_id")
 				);
 			}
 			else if
@@ -43,6 +44,8 @@ public class CorporationWebOrder extends HttpServlet {
 				)
 			)
 			{
+				Dao.getInstance().executeUpdate("delete from corporation_order_t where order_id = ?", Dao.getInstance().getOrderId(request));
+				Dao.getInstance().executeUpdate("delete from individual_order_t where order_id = ?", Dao.getInstance().getOrderId(request));
 				CorporationOrder o = new CorporationOrder();
 				o.setOrderId(Dao.getInstance().getOrderId(request));
 				o.setCorporationAccountId(request.getParameter("id"));

@@ -1,9 +1,7 @@
 package jp.ac.hal.Controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +17,7 @@ import jp.ac.hal.Util.Ic;
 @WebServlet("/LoginForConfirm")
 public class LoginForConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,12 +39,19 @@ public class LoginForConfirm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			Dao.getInstance().corporationLogin
+			if
 			(
-				Ic.intNotNullable(request.getParameter("corporation_account_id")),
-				Ic.stringNotNullable(request.getParameter("password"), 8, 16)
-			);
-			response.sendRedirect(request.getContextPath() + "/view/cart/corporation_order_confirm.jsp");
+				Dao.getInstance().executeConfirm
+				(
+					"select 1 from corporation_account_t",
+					Ic.intNotNullable(request.getParameter("corporation_account_id")),
+					Ic.stringNotNullable(request.getParameter("password"), 8, 16)
+				)
+			)
+			{
+				request.getSession().setAttribute("orderId", request.getParameter("orderId"));
+				response.sendRedirect(request.getContextPath() + "/view/cart/corporation_order_confirm.jsp");
+			}
 		}
 		catch (Exception e)
 		{
