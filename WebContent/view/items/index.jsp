@@ -35,7 +35,7 @@
             <a href="index.jsp?product_genre_id=<%=r[0]%>" class="itemList_item_newItemWrap">
               <div class="itemList_item_head"><%=r[1]%></div>
               <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/genre_img/<%=r[0]%>.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
                 <h3 class="itemList_item_name"></h3>
