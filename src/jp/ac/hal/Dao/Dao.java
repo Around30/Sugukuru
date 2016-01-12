@@ -383,6 +383,11 @@ public class Dao
 		);
 	}
 
+	public int delete(int productId) throws SQLException
+	{
+		return executeUpdate("delete from product_t where product_id = ?", productId);
+	}
+
 	public Object[] administratorLogin(String id, String passwd) throws SQLException
 	{
 		return executeGet("select * from administrator_t where administrator_id = ? and password = ?", id, passwd);

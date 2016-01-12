@@ -61,7 +61,7 @@ public class ProductsList extends HttpServlet {
 				pList = dao.executeQuery("select * from product_t where product_genre_id = ?", request.getParameter("productGenre"));
 				sendURL = "";
 			} else {
-				//全件検索	
+				//全件検索
 				pList = dao.executeQuery("select * from product_t");
 				sendURL = "";
 			}
@@ -73,7 +73,7 @@ public class ProductsList extends HttpServlet {
 			e.printStackTrace();
 			msg.add( "DB処理でエラーが発生しました。");
 		}
-		
+
 		RequestDispatcher disp = request.getRequestDispatcher(sendURL);
 		//文字コード
 		response.setContentType("text/html; charset=UTF-8");
