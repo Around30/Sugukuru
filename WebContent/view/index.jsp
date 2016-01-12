@@ -93,7 +93,7 @@
           <!-- 新商品 -->
           <% for(int i = 0; i < newProducts.size(); i++) { %>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap">
+            <a href="items/item/index.jsp?product_id=<%= newProducts.get(i).getProductId() %>" class="itemList_item_newItemWrap">
             <% String twoCharactersCharacter = String.format("%1$02d", (i + 1) ); // 2ケタのindex番号を作成 %>
               <div class="itemList_item_head">New Item<%= twoCharactersCharacter %></div>
               <div class="itemList_item_img">
