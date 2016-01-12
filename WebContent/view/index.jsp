@@ -6,7 +6,7 @@
 	boolean corporationFlg = (cData == null) ? true : false;  // headerをincludeするために必要
 	
 	Dao dao = Dao.getInstance();
-	List<Product> newProducts = dao.getNewItems(2);
+	List<Product> newProducts = dao.getNewItems(7);
 	
 	for(Product product : newProducts) {
 		System.out.println(product.getJanCode());
@@ -89,80 +89,24 @@
             </a>
           </div>
           <!-- / recommend_item -->
+          
+          <!-- 新商品 -->
+          <% for(int i = 0; i < newProducts.size(); i++) { %>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
             <a href="#" class="itemList_item_newItemWrap">
-              <div class="itemList_item_head">New Item01</div>
+            <% String twoCharactersCharacter = String.format("%1$02d", (i + 1) ); // 2ケタのindex番号を作成 %>
+              <div class="itemList_item_head">New Item<%= twoCharactersCharacter %></div>
               <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_<%= twoCharactersCharacter %>.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
-                <h3 class="itemList_item_name">『夜の木』レターセット ＜からみあう木＞</h3>
-                <div class="itemList_item_price">Price：¥ 540</div>
+                <h3 class="itemList_item_name"><%= newProducts.get(i).getProductName() %></h3>
+                <div class="itemList_item_price">Price：¥ <%= newProducts.get(i).getPrice() %></div>
               </div>
             </a>
           </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap genre1">
-              <div class="itemList_item_head">New Item02</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_02.jpg" alt="" class="img-responsive" />
-              </div>
-              <h3 class="itemList_item_name">CHARKHA×nakaban 引き出すカード＆封筒</h3>
-              <div class="itemList_item_price">Price：¥ 194</div>
-            </a>
-          </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap">
-              <div class="itemList_item_head">New Item03</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_03.jpg" alt="" class="img-responsive" />
-              </div>
-              <h3 class="itemList_item_name">こけし通信筒（菜の花）</h3>
-              <div class="itemList_item_price">Price：¥ 558</div>
-            </a>
-          </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap">
-              <div class="itemList_item_head">New Item04</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_04.jpg" alt="" class="img-responsive" />
-              </div>
-              <h3 class="itemList_item_name">CHARKHA × nakaban レターセット（antibes）</h3>
-              <div class="itemList_item_price">Price：¥ 1296</div>
-            </a>
-          </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap">
-              <div class="itemList_item_head">New Item05</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_05.jpg" alt="" class="img-responsive" />
-              </div>
-              <div class="itemList_item_detail">
-                <h3 class="itemList_item_name">CHARKHA × nakaban レターセット（late morning）</h3>
-                <div class="itemList_item_price">Price：¥ 1296</div>
-              </div>
-            </a>
-          </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap">
-              <div class="itemList_item_head">New Item06</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_06.jpg" alt="" class="img-responsive" />
-              </div>
-              <h3 class="itemList_item_name">武井武雄「鳥遣いの乙女」三つ折りカード+封筒セットA</h3>
-              <div class="itemList_item_price">Price：¥ 972</div>
-            </a>
-          </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap">
-              <div class="itemList_item_head">New Item07</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_07.jpg" alt="" class="img-responsive" />
-              </div>
-              <h3 class="itemList_item_name">武井武雄「鳥遣いの乙女」三つ折りカード+封筒セットB</h3>
-              <div class="itemList_item_price">Price：¥ 972</div>
-            </a>
-          </div>
+          <% } %>
+          <!-- / 新商品 -->
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
             <a href="<%= request.getContextPath() %>/view/items" class="itemList_item_newItemWrap textBtn">
               <div class="itemList_item_onlyText">全ての新作商品を見る</div>
