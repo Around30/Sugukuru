@@ -78,9 +78,9 @@
               <form action="<%= request.getContextPath() %>/AddToCart" method="post">
                 <div class="item_cart_cntWrap">
                   <input type="hidden" name="productId" value="<%=o[0] %>" />
-                  <input type="button" value="-" id="minus1" class="item_cart_form_minus">
-                  <input type="text" name="numberOf" value="1" id="qty" class="item_cart_form_qty">
-                  <input type="button" value="+" id="plus1" class="item_cart_form_plus">
+                  <input type="button" value="-" id="minus1" class="item_cart_form_minus js-cartMinusBtn">
+                  <input type="text" name="numberOf" value="1" id="qty" class="item_cart_form_qty js-cartNumText">
+                  <input type="button" value="+" id="plus1" class="item_cart_form_plus js-cartPlusBtn">
                 </div>
                 <input type="submit" value="カートに入れる" class="item_cart_submit">
               </form>
@@ -92,6 +92,7 @@
     </article>
   </main>
   <jsp:include page="/view/layout/user/footer.jsp" />
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="<%= request.getContextPath() %>/js/main.js"></script>
   <script src="<%= request.getContextPath() %>/js/plugins.js"></script>
   <script src="<%= request.getContextPath() %>/js/vendor.js"></script>
