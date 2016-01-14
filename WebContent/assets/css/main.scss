@@ -99,6 +99,8 @@ body {
   }
 }
 .itemLists {
+  padding: 0;
+
   &_head {
     background-color: #383CA2;
 
@@ -111,6 +113,7 @@ body {
   }
 }
 .itemList {
+	padding: 0 !important;
   &_item {
     position: relative;
     padding: 0;

@@ -7688,6 +7688,9 @@ html[xmlns] .slides {
   padding: 0;
 }
 
+.itemLists {
+  padding: 0;
+}
 .itemLists_head {
   background-color: #383CA2;
 }
@@ -7698,6 +7701,9 @@ html[xmlns] .slides {
   color: #E5E5E5;
 }
 
+.itemList {
+  padding: 0 !important;
+}
 .itemList_item {
   position: relative;
   padding: 0;
