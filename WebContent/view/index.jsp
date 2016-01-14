@@ -6,11 +6,11 @@
 	boolean corporationFlg = (cData == null) ? true : false;  // headerをincludeするために必要
 	
 	Dao dao = Dao.getInstance();
+	// 新商品を取得する
 	List<Product> newProducts = dao.getNewItems(7);
 	
-	for(Product product : newProducts) {
-		System.out.println(product.getJanCode());
-	}
+	// おすすめ商品を取得する（今は新商品を2つだけ取得する処理で代替しておく）
+	List<Product> recommendProducts = dao.getNewItems(2);
 %>
 <!DOCTYPE html>
 <html>
@@ -58,37 +58,29 @@
             </dl>
           </div>
           <!-- / news -->
-          <!-- recommend_item -->
+          
+          <!-- おすすめ商品 -->
+          <% for(int i = 0; i < recommendProducts.size(); i++) { %>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap recommend">
-              <div class="itemList_item_head">オススメ商品01</div>
+            <a href="items/item/index.jsp?product_id=<%= recommendProducts.get(i).getProductId() %>" class="itemList_item_newItemWrap recommend">
+            <% String twoCharactersCharacter = String.format("%1$02d", (i + 1) ); // 2ケタのindex番号を作成 %>
+              <div class="itemList_item_head">オススメ商品<%= twoCharactersCharacter %></div>
               <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
+                <img src="<%= request.getContextPath() %>/assets/img/stationery/_<%= twoCharactersCharacter %>.jpg" alt="" class="img-responsive" />
               </div>
               <div class="itemList_item_detail">
-                <h3 class="itemList_item_name">『夜の木』レターセット ＜からみあう木＞</h3>
-                <div class="itemList_item_price">Price：¥ 540</div>
+                <h3 class="itemList_item_name"><%= newProducts.get(i).getProductName() %></h3>
+                <div class="itemList_item_price">Price：¥ <%= newProducts.get(i).getPrice() %></div>
               </div>
             </a>
           </div>
-          <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
-            <a href="#" class="itemList_item_newItemWrap recommend">
-              <div class="itemList_item_head">オススメ商品02</div>
-              <div class="itemList_item_img">
-                <img src="<%= request.getContextPath() %>/assets/img/stationery/_01.jpg" alt="" class="img-responsive" />
-              </div>
-              <div class="itemList_item_detail">
-                <h3 class="itemList_item_name">『夜の木』レターセット ＜からみあう木＞</h3>
-                <div class="itemList_item_price">Price：¥ 540</div>
-              </div>
-            </a>
-          </div>
+          <% } %>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
             <a href="<%= request.getContextPath() %>/view/items" class="itemList_item_newItemWrap textBtn">
               <div class="itemList_item_onlyText">全てのオススメ商品を見る</div>
             </a>
           </div>
-          <!-- / recommend_item -->
+          <!-- / おすすめ商品 -->
           
           <!-- 新商品 -->
           <% for(int i = 0; i < newProducts.size(); i++) { %>
