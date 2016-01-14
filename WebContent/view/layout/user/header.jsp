@@ -28,7 +28,7 @@ boolean corporationFlg = Boolean.valueOf(request.getParameter("corporationFlg"))
           <!-- ヘッダーナビアイテム -->
           <ul class="nav navbar-nav navbar-right header_nav">
             <li class="header_nav_item header_nav_cart">
-              <a href="">
+              <a href="<%= request.getContextPath() + "/view/cart/index.jsp"%>">
                 <div class="header_nav_icon"><i class="fa fa-cart-arrow-down"></i>
                 </div> <span class="header_nav_text">カート</span>
               </a>
