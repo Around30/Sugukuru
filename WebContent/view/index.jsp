@@ -4,11 +4,11 @@
 <%
 	Object[] cData = (Object[])session.getAttribute("corporationLogin");
 	boolean corporationFlg = (cData == null) ? true : false;  // headerをincludeするために必要
-	
+
 	Dao dao = Dao.getInstance();
-	// 新商品を取得する
+	// 新商品を取得する。
 	List<Product> newProducts = dao.getNewItems(7);
-	
+
 	// おすすめ商品を取得する（今は新商品を2つだけ取得する処理で代替しておく）
 	List<Product> recommendProducts = dao.getNewItems(2);
 %>
@@ -58,7 +58,7 @@
             </dl>
           </div>
           <!-- / news -->
-          
+
           <!-- おすすめ商品 -->
           <% for(int i = 0; i < recommendProducts.size(); i++) { %>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
@@ -81,7 +81,7 @@
             </a>
           </div>
           <!-- / おすすめ商品 -->
-          
+
           <!-- 新商品 -->
           <% for(int i = 0; i < newProducts.size(); i++) { %>
           <div class="itemList_item col-lg-3 col-md-3 col-sm-4">
