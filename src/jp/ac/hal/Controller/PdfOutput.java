@@ -1,6 +1,10 @@
 package jp.ac.hal.Controller;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,11 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.ac.hal.Util.AdminMail;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.html.simpleparser.HTMLWorker;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -22,7 +23,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 @WebServlet("/PdfOutput")
 public class PdfOutput extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,7 +39,7 @@ public class PdfOutput extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String k = "<html><body>This is my project こんにちはaaaaaaaaaaaaaaaa</body></html>";
-		OutputStream file = new FileOutputStream(new File(AdminMail.PDF_PATH));
+		OutputStream file = new FileOutputStream(new File("C:\\TEMP\\test.pdf"));
 		Document document = new Document();
 		try {
 			PdfWriter.getInstance(document, file);

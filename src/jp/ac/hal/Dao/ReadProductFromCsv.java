@@ -30,7 +30,7 @@ public class ReadProductFromCsv extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		(
-			InputStream fis = new FileInputStream("C:\\Users\\kama.yosuke\\Documents\\HAL\\IH31\\素材\\テストデータ\\取引先.csv");
+			InputStream fis = new FileInputStream("D:\\sub\\files\\hal\\4-3\\ih31\\テストデータ\\テストデータ\\商品.csv");
 			Reader isr = new InputStreamReader(fis);
 			BufferedReader br = new BufferedReader(isr)
 		){
@@ -43,7 +43,6 @@ public class ReadProductFromCsv extends HttpServlet {
 			br.readLine();
 			while((line = br.readLine()) != null)
 			{
-				System.out.println("aaaa");
 				values = line.split(",");
 				Integer cat = cats.get(values[4]);
 				if(cat == null)
